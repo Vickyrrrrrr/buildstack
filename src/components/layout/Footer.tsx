@@ -32,22 +32,22 @@ export default function Footer() {
                         </p>
                         <div className="flex flex-col gap-4">
                             <a
-                                href="mailto:hello@buildstack.com"
+                                href="mailto:contactme@buildstack.live"
                                 className="flex items-center gap-3 text-slate-400 hover:text-[var(--accent)] transition-colors"
                             >
                                 <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
                                     <Mail size={16} />
                                 </div>
-                                <span>hello@buildstack.com</span>
+                                <span>contactme@buildstack.live</span>
                             </a>
                             <a
-                                href="https://wa.me/919876543210"
+                                href="https://wa.me/917905388194"
                                 className="flex items-center gap-3 text-slate-400 hover:text-[var(--accent)] transition-colors"
                             >
                                 <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
                                     <Phone size={16} />
                                 </div>
-                                <span>+91 98765 43210</span>
+                                <span>+91 79053 88194</span>
                             </a>
                         </div>
                     </div>

@@ -129,8 +129,8 @@ function ContactContent() {
                         {/* Contact Info */}
                         <div className="space-y-6 animate-fade-in stagger-3">
                             {[
-                                { icon: Mail, title: 'Email', value: 'hello@buildstack.com', href: 'mailto:hello@buildstack.com' },
-                                { icon: Phone, title: 'WhatsApp', value: '+91 98765 43210', href: 'https://wa.me/919876543210' },
+                                { icon: Mail, title: 'Email', value: 'contactme@buildstack.live', href: 'mailto:contactme@buildstack.live' },
+                                { icon: Phone, title: 'WhatsApp', value: '+91 79053 88194', href: 'https://wa.me/917905388194' },
                                 { icon: MapPin, title: 'Location', value: 'Remote — Working globally', href: null }
                             ].map((item) => (
                                 <div key={item.title} className="flex items-center gap-6 p-4 rounded-2xl hover:bg-white/5 transition-colors group">
