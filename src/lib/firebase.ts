@@ -19,9 +19,16 @@ if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
 }
 
 // Initialize Firebase
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+let app;
+try {
+    if (firebaseConfig.apiKey && firebaseConfig.projectId) {
+        app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+    }
+} catch (error) {
+    console.error("Firebase initialization failed:", error);
+}
 
-// Initialize Firestore and Auth
-export const db: Firestore = getFirestore(app);
-export const auth: Auth = getAuth(app);
+// Initialize Firestore and Auth safely
+export const db: Firestore = app ? getFirestore(app) : (null as any);
+export const auth: Auth = app ? getAuth(app) : (null as any);
 
