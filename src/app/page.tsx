@@ -3,11 +3,13 @@ import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import { ArrowRight, Layout, Palette, Code2, Rocket, CheckCircle2, Package, Sparkles } from 'lucide-react';
 import Portfolio from '@/components/sections/Portfolio';
+import JsonLd from '@/components/seo/JsonLd';
 
 export default function HomePage() {
   return (
     <>
       <Header />
+      <JsonLd />
       <main className="bg-black text-white">
         {/* Hero Section */}
         <section className="min-h-screen flex items-center pt-20 relative overflow-hidden bg-[#0A0A0A]">
