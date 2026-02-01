@@ -4,6 +4,8 @@ import { createContext, useContext, useEffect, useState, ReactNode } from 'react
 import {
     User,
     signInWithPopup,
+    signInWithRedirect,
+    getRedirectResult,
     signOut as firebaseSignOut,
     onAuthStateChanged,
     GoogleAuthProvider
@@ -28,6 +30,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const isAdmin = user?.email?.toLowerCase().trim() === 'vickynishad110@gmail.com';
 
     useEffect(() => {
+        // Handle redirect result (for mobile/fallback flow)
+        getRedirectResult(auth).catch((error) => {
+            console.error("Error returning from redirect login:", error);
+        });
+
         const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
             setUser(firebaseUser);
             setLoading(false);
@@ -55,9 +62,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         const provider = new GoogleAuthProvider();
         try {
             await signInWithPopup(auth, provider);
-        } catch (error) {
-            console.error('Error signing in with Google:', error);
-            throw error;
+        } catch (error: any) {
+            console.warn('Google popup sign-in failed, attempting redirect fallback:', error);
+            // Fallback to redirect if popup fails (e.g., blocked, mobile)
+            // Don't redirect if the user explicitly closed the popup
+            if (error.code !== 'auth/popup-closed-by-user') {
+                try {
+                    await signInWithRedirect(auth, provider);
+                } catch (redirectError) {
+                    console.error('Google redirect sign-in failed:', redirectError);
+                    throw redirectError;
+                }
+            } else {
+                throw error;
+            }
         }
     };
 
