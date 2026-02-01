@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { Menu, X, User } from 'lucide-react';
 import { useAuth } from '@/components/providers/AuthProvider';
@@ -23,8 +24,13 @@ export default function Header() {
                 <nav className="flex items-center justify-between h-20">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-3 group">
-                        <div className="w-10 h-10 bg-[var(--accent)] rounded-xl flex items-center justify-center transition-transform group-hover:rotate-6">
-                            <span className="text-black font-black text-xl">B</span>
+                        <div className="relative w-10 h-10 transition-transform group-hover:rotate-6">
+                            <Image
+                                src="/logo.png"
+                                alt="Buildstack Logo"
+                                fill
+                                className="object-contain"
+                            />
                         </div>
                         <span className="font-bold text-2xl tracking-tighter text-white">Buildstack</span>
                     </Link>

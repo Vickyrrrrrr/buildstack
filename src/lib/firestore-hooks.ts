@@ -119,11 +119,17 @@ export function useStations(projectId: string | null, clientId?: string) {
     return { stations, loading };
 }
 
-export function useProjects(clientId?: string) {
+export function useProjects(clientId?: string | null) {
     const [projects, setProjects] = useState<Project[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        if (clientId === null) {
+            setProjects([]);
+            setLoading(false);
+            return;
+        }
+
         let q = query(
             collection(db, 'buildstack_projects'),
             orderBy('createdAt', 'desc')

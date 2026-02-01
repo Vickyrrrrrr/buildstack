@@ -10,7 +10,7 @@ import { useAuth } from '@/components/providers/AuthProvider';
 export default function DashboardPage() {
     const { user, loading: authLoading } = useAuth();
     const uid = user?.uid;
-    const { projects, loading: projectsLoading } = useProjects(uid);
+    const { projects, loading: projectsLoading } = useProjects(authLoading ? null : uid);
 
     // Get the first project for now (most recent)
     const project = projects.length > 0 ? projects[0] : null;

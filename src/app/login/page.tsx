@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { ArrowRight, Eye, EyeOff, Star, Check, Quote } from 'lucide-react';
 import { useAuth } from '@/components/providers/AuthProvider';
 
@@ -52,8 +53,13 @@ export default function LoginPage() {
                 {/* Logo */}
                 <div className="relative z-10">
                     <Link href="/" className="inline-flex items-center gap-3 group">
-                        <div className="w-10 h-10 bg-[var(--accent)] rounded-xl flex items-center justify-center transition-transform group-hover:rotate-6">
-                            <span className="text-black font-black text-xl">B</span>
+                        <div className="relative w-10 h-10 transition-transform group-hover:rotate-6">
+                            <Image
+                                src="/logo.png"
+                                alt="Buildstack Logo"
+                                fill
+                                className="object-contain"
+                            />
                         </div>
                         <span className="font-bold text-2xl tracking-tighter">Buildstack</span>
                     </Link>
