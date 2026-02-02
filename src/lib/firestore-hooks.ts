@@ -77,6 +77,7 @@ export function useProject(projectId: string | null) {
 export function useStations(projectId: string | null, clientId?: string) {
     const [stations, setStations] = useState<Station[]>([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<Error | null>(null);
 
     useEffect(() => {
         if (!projectId) {
@@ -107,8 +108,10 @@ export function useStations(projectId: string | null, clientId?: string) {
             })) as Station[];
             setStations(data);
             setLoading(false);
+            setError(null);
         }, (error) => {
             console.error('Error fetching stations:', error);
+            setError(error);
             setStations([]);
             setLoading(false);
         });
@@ -116,7 +119,7 @@ export function useStations(projectId: string | null, clientId?: string) {
         return () => unsub();
     }, [projectId]);
 
-    return { stations, loading };
+    return { stations, loading, error };
 }
 
 export function useProjects(clientId?: string | null) {

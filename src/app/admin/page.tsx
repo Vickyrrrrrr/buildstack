@@ -10,7 +10,8 @@ import {
     CheckCircle2,
     DollarSign,
     AlertCircle,
-    FileText
+    FileText,
+    X
 } from 'lucide-react';
 import Link from 'next/link';
 import { useProjects, useInvoices } from '@/lib/firestore-hooks';
@@ -23,15 +24,15 @@ export default function AdminDashboard() {
     const { projects, loading: projectsLoading } = useProjects();
     const { invoices, loading: invoicesLoading } = useInvoices();
     const [isProcessing, setIsProcessing] = useState<string | null>(null);
+    const [showRevenueModal, setShowRevenueModal] = useState(false);
 
     const pendingProjects = projects.filter((p: Project) => p.status === 'pending');
     const activeCount = projects.filter((p: Project) => p.status === 'active').length;
     const completedCount = projects.filter((p: Project) => p.status === 'completed').length;
 
     // Calculate real revenue from paid invoices
-    const totalRevenue = invoices
-        .filter((inv: Invoice) => inv.status === 'paid')
-        .reduce((sum, inv) => sum + (inv.amount || 0), 0);
+    const paidInvoices = invoices.filter((inv: Invoice) => inv.status === 'paid');
+    const totalRevenue = paidInvoices.reduce((sum, inv) => sum + (inv.amount || 0), 0);
 
     const pendingInvoicesCount = invoices.filter((inv: Invoice) => inv.status === 'pending').length;
 
@@ -101,8 +102,24 @@ export default function AdminDashboard() {
 
                 {/* Main Stats Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {/* Total Revenue - Clickable */}
+                    <div
+                        onClick={() => setShowRevenueModal(true)}
+                        className="card p-8 group relative overflow-hidden cursor-pointer hover:border-[var(--accent-border)] transition-all"
+                    >
+                        <div className="absolute top-0 right-0 w-24 h-24 bg-white/[0.02] rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+                        <div className="flex items-center justify-between mb-6">
+                            <div className="p-3 bg-white/5 border border-white/10 rounded-2xl group-hover:border-[var(--accent-border)] transition-colors">
+                                <DollarSign size={24} style={{ color: 'var(--accent)' }} />
+                            </div>
+                            <span className="text-[var(--accent)] text-xs font-black px-2 py-1 bg-[var(--accent-soft)] rounded-lg">Click for Details</span>
+                        </div>
+                        <h3 className="text-slate-400 text-sm font-bold uppercase tracking-widest mb-1">Total Revenue</h3>
+                        <p className="text-4xl font-black tracking-tighter">₹{(totalRevenue / 1000).toFixed(1)}K</p>
+                    </div>
+
+                    {/* Other Stats */}
                     {[
-                        { label: 'Total Revenue', value: `₹${(totalRevenue / 1000).toFixed(1)}K`, trend: 'Real Data', icon: DollarSign, color: 'var(--accent)' },
                         { label: 'Active Projects', value: activeCount.toString().padStart(2, '0'), trend: `+${activeCount}`, icon: Package, color: '#38bdf8' },
                         { label: 'Completed', value: completedCount.toString().padStart(2, '0'), trend: '100%', icon: CheckCircle2, color: '#4ade80' },
                         { label: 'Total Clients', value: projects.length.toString().padStart(2, '0'), trend: `+${projects.length}`, icon: Users, color: '#f472b6' },
@@ -317,6 +334,66 @@ export default function AdminDashboard() {
                     </div>
                 </div>
             </div>
+
+            {/* Revenue Details Modal */}
+            {showRevenueModal && (
+                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowRevenueModal(false)}>
+                    <div className="bg-[#111] border border-white/10 rounded-3xl w-full max-w-2xl max-h-[80vh] overflow-hidden" onClick={(e) => e.stopPropagation()}>
+                        {/* Header */}
+                        <div className="p-6 border-b border-white/10 flex items-center justify-between">
+                            <div>
+                                <h2 className="text-2xl font-black">Revenue Breakdown</h2>
+                                <p className="text-sm text-slate-400 mt-1">All cleared invoices contributing to revenue</p>
+                            </div>
+                            <button onClick={() => setShowRevenueModal(false)} className="p-2 hover:bg-white/10 rounded-xl transition-colors">
+                                <X size={24} />
+                            </button>
+                        </div>
+
+                        {/* Content */}
+                        <div className="p-6 overflow-y-auto max-h-[60vh]">
+                            {paidInvoices.length === 0 ? (
+                                <div className="text-center py-12 text-slate-500">
+                                    <DollarSign size={48} className="mx-auto mb-4 opacity-50" />
+                                    <p className="font-bold">No Cleared Invoices Yet</p>
+                                    <p className="text-sm mt-2">Mark invoices as cleared in project financials to add to revenue.</p>
+                                </div>
+                            ) : (
+                                <div className="space-y-3">
+                                    {paidInvoices.map((inv: Invoice) => {
+                                        const project = projects.find((p: Project) => p.id === inv.projectId);
+                                        return (
+                                            <div key={inv.id} className="flex items-center justify-between p-4 bg-white/5 border border-white/10 rounded-2xl hover:border-green-500/30 transition-all">
+                                                <div className="flex items-center gap-4">
+                                                    <div className="w-10 h-10 bg-green-500/20 rounded-xl flex items-center justify-center">
+                                                        <CheckCircle2 size={20} className="text-green-400" />
+                                                    </div>
+                                                    <div>
+                                                        <p className="font-bold">{project?.name || 'Unknown Project'}</p>
+                                                        <p className="text-xs text-slate-400">{project?.email || 'No email'}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="text-right">
+                                                    <p className="text-xl font-black text-green-400">₹{inv.amount.toLocaleString('en-IN')}</p>
+                                                    <p className="text-xs text-slate-500">Cleared</p>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Footer */}
+                        <div className="p-6 border-t border-white/10 bg-[var(--accent-soft)]">
+                            <div className="flex items-center justify-between">
+                                <span className="text-sm font-bold text-slate-400">TOTAL REVENUE EARNED</span>
+                                <span className="text-3xl font-black text-[var(--accent)]">₹{totalRevenue.toLocaleString('en-IN')}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </AdminLayout>
     );
 }

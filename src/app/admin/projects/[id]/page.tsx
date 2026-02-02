@@ -31,13 +31,22 @@ import {
     query,
     where,
     orderBy,
-    getDocs
+    getDocs,
+    writeBatch
 } from 'firebase/firestore';
+
+const STANDARD_STATIONS = [
+    { name: 'Discovery & Planning', note: 'Defining project scope and requirements' },
+    { name: 'UI/UX Design', note: 'Creating wireframes and visual designs' },
+    { name: 'Core Development', note: 'Building functionality and frontend' },
+    { name: 'Testing & QA', note: 'Bug fixing and quality assurance' },
+    { name: 'Final Deployment', note: 'Launching to production server' }
+];
 
 export default function AdminProjectDetail({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params);
     const { project, loading: projectLoading } = useProject(id);
-    const { stations, loading: stationsLoading } = useStations(id);
+    const { stations, loading: stationsLoading, error: stationsError } = useStations(id);
     const { invoice, loading: invoiceLoading } = useInvoice(id);
     const { deliverable, loading: deliverableLoading } = useDeliverable(id);
 
@@ -76,9 +85,61 @@ export default function AdminProjectDetail({ params }: { params: Promise<{ id: s
                 order: stations.length,
                 updatedAt: serverTimestamp()
             });
+
+            // Calculate new progress
+            const newTotal = stations.length + 1;
+            const completed = stations.filter(s => s.status === 'completed').length;
+            const progress = Math.round((completed / newTotal) * 100);
+
+            await updateDoc(doc(db, 'buildstack_projects', id), {
+                progress,
+                updatedAt: serverTimestamp()
+            });
+
             setNewStation({ name: '', updateNote: '' });
-        } catch (error) {
+        } catch (error: any) {
             console.error(error);
+            alert('Failed to add station: ' + error.message);
+        } finally {
+            setIsUpdating(false);
+        }
+    };
+
+    const initializeStandardStations = async () => {
+        if (stations.length > 0) {
+            if (!confirm('This will add 5 new stations to your existing list. Continue?')) return;
+        }
+
+        setIsUpdating(true);
+        try {
+            // Sequential adds to ensure correct order
+            const currentCount = stations.length;
+
+            for (let i = 0; i < STANDARD_STATIONS.length; i++) {
+                const station = STANDARD_STATIONS[i];
+                await addDoc(collection(db, 'buildstack_stations'), {
+                    projectId: id,
+                    name: station.name,
+                    updateNote: station.note,
+                    status: 'pending',
+                    order: currentCount + i,
+                    updatedAt: serverTimestamp()
+                });
+            }
+
+            // Update Progress
+            const total = currentCount + STANDARD_STATIONS.length;
+            const completed = stations.filter(s => s.status === 'completed').length;
+            const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+            await updateDoc(doc(db, 'buildstack_projects', id), {
+                progress,
+                updatedAt: serverTimestamp()
+            });
+
+        } catch (error: any) {
+            console.error(error);
+            alert('Failed to initialize stations: ' + error.message);
         } finally {
             setIsUpdating(false);
         }
@@ -91,8 +152,20 @@ export default function AdminProjectDetail({ params }: { params: Promise<{ id: s
                 status,
                 updatedAt: serverTimestamp()
             });
-        } catch (error) {
+
+            // Calculate new progress
+            const updatedStations = stations.map(s => s.id === stationId ? { ...s, status } : s);
+            const total = updatedStations.length;
+            const completed = updatedStations.filter(s => s.status === 'completed').length;
+            const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+            await updateDoc(doc(db, 'buildstack_projects', id), {
+                progress,
+                updatedAt: serverTimestamp()
+            });
+        } catch (error: any) {
             console.error(error);
+            alert('Failed to update station: ' + error.message);
         } finally {
             setIsUpdating(false);
         }
@@ -102,8 +175,20 @@ export default function AdminProjectDetail({ params }: { params: Promise<{ id: s
         if (!confirm('Are you sure?')) return;
         try {
             await deleteDoc(doc(db, 'buildstack_stations', stationId));
-        } catch (error) {
+
+            // Calculate new progress
+            const updatedStations = stations.filter(s => s.id !== stationId);
+            const total = updatedStations.length;
+            const completed = updatedStations.filter(s => s.status === 'completed').length;
+            const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+            await updateDoc(doc(db, 'buildstack_projects', id), {
+                progress,
+                updatedAt: serverTimestamp()
+            });
+        } catch (error: any) {
             console.error(error);
+            alert('Failed to delete station: ' + error.message);
         }
     };
 
@@ -223,7 +308,7 @@ export default function AdminProjectDetail({ params }: { params: Promise<{ id: s
 
                     <div className="flex items-center gap-3">
                         <select
-                            value={project.status}
+                            value={project.status || 'pending'}
                             onChange={(e) => handleStatusChange(e.target.value)}
                             disabled={isUpdating}
                             className="bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-sm font-bold outline-none focus:border-[var(--accent)] transition-all cursor-pointer"
@@ -289,13 +374,41 @@ export default function AdminProjectDetail({ params }: { params: Promise<{ id: s
                                         disabled={isUpdating || !newStation.name}
                                         className="btn-primary w-fit px-8 text-xs disabled:opacity-50"
                                     >
-                                        Add Station
+                                        Add Custom Station
                                     </button>
                                 </div>
 
+                                {/* Quick Templates */}
+                                {stations.length === 0 && (
+                                    <div className="card p-6 flex flex-col md:flex-row items-center justify-between gap-4 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border-blue-500/20">
+                                        <div>
+                                            <h4 className="font-bold text-lg text-blue-300">New Project Setup?</h4>
+                                            <p className="text-sm text-slate-400">One-click to add the standard 5-step Web Development lifecycle.</p>
+                                        </div>
+                                        <button
+                                            onClick={initializeStandardStations}
+                                            disabled={isUpdating}
+                                            className="btn-primary bg-blue-500 hover:bg-blue-600 border-blue-500 border-b-4 border-blue-700 active:border-b-0 active:translate-y-1"
+                                        >
+                                            Use Standard Workflow
+                                        </button>
+                                    </div>
+                                )}
+
                                 {/* Station List */}
                                 <div className="space-y-4">
-                                    {stations.length === 0 ? (
+                                    {stationsError ? (
+                                        <div className="p-6 text-center text-red-400 border border-red-500/20 bg-red-500/5 rounded-3xl animate-pulse">
+                                            <AlertCircle className="mx-auto mb-2" />
+                                            <p className="font-bold">Error Loading Stations</p>
+                                            <p className="text-xs opacity-80 mt-1">{stationsError.message}</p>
+                                            {stationsError.message.includes('index') && (
+                                                <p className="text-xs font-bold mt-2 text-yellow-500">
+                                                    Database Index Building... Please wait a few minutes and refresh.
+                                                </p>
+                                            )}
+                                        </div>
+                                    ) : stations.length === 0 ? (
                                         <div className="p-12 text-center text-slate-500 border border-dashed border-white/10 rounded-3xl">
                                             No stations created yet.
                                         </div>
@@ -384,55 +497,78 @@ export default function AdminProjectDetail({ params }: { params: Promise<{ id: s
                                             </div>
                                         </div>
 
-                                        <div className="flex items-center gap-4">
-                                            {invoice.status !== 'paid' ? (
-                                                <div className="flex-1 space-y-4">
-                                                    <div className="space-y-2">
-                                                        <label className="text-xs font-black text-slate-500 uppercase tracking-widest">Invoice Link (PDF)</label>
-                                                        <div className="flex gap-2">
-                                                            <input
-                                                                type="text"
-                                                                className="flex-1 bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-[var(--accent)] outline-none"
-                                                                placeholder="Paste invoice PDF URL here..."
-                                                                defaultValue={invoice.pdfUrl || ''}
-                                                                onChange={(e) => setInvoicePdfUrl(e.target.value)}
-                                                            />
-                                                            <button
-                                                                onClick={saveInvoiceDetails}
-                                                                disabled={isUpdating}
-                                                                className="btn-outline px-6 text-xs font-black flex items-center gap-2"
-                                                            >
-                                                                <Save size={16} />
-                                                                Save Changes
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    <button
-                                                        onClick={markInvoicePaid}
+                                        <div className="space-y-4">
+                                            {/* Invoice Cleared Checkbox */}
+                                            <div className={`p-6 rounded-2xl border-2 transition-all ${invoice.status === 'paid'
+                                                ? 'bg-green-500/10 border-green-500/30'
+                                                : 'bg-yellow-500/5 border-yellow-500/20'}`}>
+                                                <label className="flex items-center gap-4 cursor-pointer">
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={invoice.status === 'paid'}
+                                                        onChange={async (e) => {
+                                                            const newStatus = e.target.checked ? 'paid' : 'pending';
+                                                            setIsUpdating(true);
+                                                            try {
+                                                                await updateDoc(doc(db, 'buildstack_invoices', invoice.id), {
+                                                                    status: newStatus,
+                                                                    updatedAt: serverTimestamp()
+                                                                });
+                                                            } catch (error: any) {
+                                                                console.error(error);
+                                                                alert('Failed to update invoice: ' + error.message);
+                                                            } finally {
+                                                                setIsUpdating(false);
+                                                            }
+                                                        }}
                                                         disabled={isUpdating}
-                                                        className="btn-primary w-full py-4 text-sm font-black flex items-center justify-center gap-2 shadow-[0_0_30px_rgba(191,255,0,0.2)]"
-                                                    >
-                                                        <CheckCircle2 size={18} />
-                                                        Confirm Payment & Mark as Paid
-                                                    </button>
-                                                </div>
-                                            ) : (
-                                                <div className="flex items-center gap-4">
-                                                    <div className="flex items-center gap-2 text-green-400 font-bold">
-                                                        <CheckCircle2 size={20} />
-                                                        Payment Successful
+                                                        className="w-6 h-6 rounded-lg border-2 border-white/20 bg-black/40 checked:bg-green-500 checked:border-green-500 appearance-none cursor-pointer relative
+                                                            after:content-['✓'] after:absolute after:inset-0 after:flex after:items-center after:justify-center after:text-white after:font-bold after:opacity-0 checked:after:opacity-100"
+                                                    />
+                                                    <div className="flex-1">
+                                                        <p className={`font-black text-lg ${invoice.status === 'paid' ? 'text-green-400' : 'text-yellow-400'}`}>
+                                                            {invoice.status === 'paid' ? '✓ Invoice Cleared — Added to Revenue' : '⏳ Payment Pending'}
+                                                        </p>
+                                                        <p className="text-xs text-slate-400 mt-1">
+                                                            {invoice.status === 'paid'
+                                                                ? `₹${invoice.amount.toLocaleString()} has been added to your total revenue.`
+                                                                : 'Check this box once payment is received to add amount to revenue.'}
+                                                        </p>
                                                     </div>
-                                                    <a
-                                                        href={invoice.pdfUrl}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="btn-outline px-6 py-2 text-xs font-black flex items-center gap-2"
+                                                </label>
+                                            </div>
+
+                                            {/* PDF Link Section */}
+                                            <div className="space-y-2">
+                                                <label className="text-xs font-black text-slate-500 uppercase tracking-widest">Invoice Link (PDF)</label>
+                                                <div className="flex gap-2">
+                                                    <input
+                                                        type="text"
+                                                        className="flex-1 bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-[var(--accent)] outline-none"
+                                                        placeholder="Paste invoice PDF URL here..."
+                                                        defaultValue={invoice.pdfUrl || ''}
+                                                        onChange={(e) => setInvoicePdfUrl(e.target.value)}
+                                                    />
+                                                    <button
+                                                        onClick={saveInvoiceDetails}
+                                                        disabled={isUpdating}
+                                                        className="btn-outline px-6 text-xs font-black flex items-center gap-2"
                                                     >
-                                                        <ExternalLink size={16} />
-                                                        View PDF
-                                                    </a>
+                                                        <Save size={16} />
+                                                        Save
+                                                    </button>
+                                                    {invoice.pdfUrl && (
+                                                        <a
+                                                            href={invoice.pdfUrl}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="btn-outline px-4 text-xs font-black flex items-center gap-2"
+                                                        >
+                                                            <ExternalLink size={16} />
+                                                        </a>
+                                                    )}
                                                 </div>
-                                            )}
+                                            </div>
                                         </div>
                                     </div>
                                 )}
@@ -453,7 +589,7 @@ export default function AdminProjectDetail({ params }: { params: Promise<{ id: s
                                             type="text"
                                             className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-[var(--accent)] outline-none"
                                             placeholder="https://your-preview.vercel.app"
-                                            value={deliverable?.previewUrl || ''}
+                                            defaultValue={deliverable?.previewUrl || ''}
                                         />
                                     </div>
                                     <div className="space-y-2">
@@ -462,7 +598,7 @@ export default function AdminProjectDetail({ params }: { params: Promise<{ id: s
                                             type="text"
                                             className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-[var(--accent)] outline-none"
                                             placeholder="https://dropbox.com/s/..."
-                                            value={deliverable?.filesUrl || ''}
+                                            defaultValue={deliverable?.filesUrl || ''}
                                         />
                                     </div>
                                     <button className="btn-primary px-8 flex items-center gap-2">
@@ -491,10 +627,21 @@ export default function AdminProjectDetail({ params }: { params: Promise<{ id: s
                             <div className="space-y-4">
                                 <div className="flex justify-between items-center">
                                     <span className="text-sm text-slate-400">Timeline Progress</span>
-                                    <span className="text-sm font-bold text-[var(--accent)]">{project.progress}%</span>
+                                    <span className="text-sm font-bold text-[var(--accent)]">
+                                        {stations.length > 0
+                                            ? Math.round((stations.filter(s => s.status === 'completed').length / stations.length) * 100)
+                                            : 0}%
+                                    </span>
                                 </div>
                                 <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
-                                    <div className="h-full bg-[var(--accent)]" style={{ width: `${project.progress}%` }} />
+                                    <div
+                                        className="h-full bg-[var(--accent)] transition-all duration-500"
+                                        style={{
+                                            width: `${stations.length > 0
+                                                ? Math.round((stations.filter(s => s.status === 'completed').length / stations.length) * 100)
+                                                : 0}%`
+                                        }}
+                                    />
                                 </div>
                                 <div className="flex justify-between items-center pt-2">
                                     <span className="text-sm text-slate-400">Invoices Generated</span>

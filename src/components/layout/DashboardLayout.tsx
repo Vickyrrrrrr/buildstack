@@ -53,7 +53,7 @@ export default function DashboardLayout({ children, projectName }: DashboardLayo
             {/* Sidebar - Desktop */}
             <aside className="hidden md:flex flex-col fixed left-0 top-0 bottom-0 w-72 bg-[#111111] border-r border-white/5 z-50">
                 <div className="p-8">
-                    <Link href="/dashboard" className="flex items-center gap-3 group">
+                    <Link href="/" className="flex items-center gap-3 group">
                         <div className="w-10 h-10 bg-[var(--accent)] rounded-xl flex items-center justify-center transition-transform group-hover:rotate-6">
                             <span className="text-black font-black text-xl">B</span>
                         </div>
