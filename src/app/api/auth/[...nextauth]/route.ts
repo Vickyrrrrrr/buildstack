@@ -22,7 +22,8 @@ const handler = NextAuth({
                 try {
                     // Define role based on email - check robustly
                     const normalizedEmail = user.email.toLowerCase().trim();
-                    const role = normalizedEmail === "vickynishad110@gmail.com" ? "admin" : "client";
+                    const adminEmails = ["vickynishad110@gmail.com", "contactme@buildstack.live"];
+                    const role = adminEmails.includes(normalizedEmail) ? "admin" : "client";
 
                     // Sync user to Firestore
                     await setDoc(doc(db, "buildstack_users", user.id), {
@@ -44,7 +45,8 @@ const handler = NextAuth({
                 (session.user as any).id = token.sub;
                 // Add role to session - check robustly
                 const normalizedEmail = session.user.email?.toLowerCase().trim();
-                (session.user as any).role = normalizedEmail === "vickynishad110@gmail.com" ? "admin" : "client";
+                const adminEmails = ["vickynishad110@gmail.com", "contactme@buildstack.live"];
+                (session.user as any).role = adminEmails.includes(normalizedEmail || '') ? "admin" : "client";
             }
             return session;
         },

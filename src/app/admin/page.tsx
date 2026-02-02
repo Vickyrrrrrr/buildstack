@@ -25,6 +25,7 @@ export default function AdminDashboard() {
     const { invoices, loading: invoicesLoading } = useInvoices();
     const [isProcessing, setIsProcessing] = useState<string | null>(null);
     const [showRevenueModal, setShowRevenueModal] = useState(false);
+    const [showPendingModal, setShowPendingModal] = useState(false);
 
     const pendingProjects = projects.filter((p: Project) => p.status === 'pending');
     const activeCount = projects.filter((p: Project) => p.status === 'active').length;
@@ -34,7 +35,8 @@ export default function AdminDashboard() {
     const paidInvoices = invoices.filter((inv: Invoice) => inv.status === 'paid');
     const totalRevenue = paidInvoices.reduce((sum, inv) => sum + (inv.amount || 0), 0);
 
-    const pendingInvoicesCount = invoices.filter((inv: Invoice) => inv.status === 'pending').length;
+    const pendingInvoicesList = invoices.filter((inv: Invoice) => inv.status === 'pending');
+    const pendingInvoicesCount = pendingInvoicesList.length;
 
     const handleApprove = async (project: Project) => {
         setIsProcessing(project.id);
@@ -197,31 +199,9 @@ export default function AdminDashboard() {
                     </div>
 
                     <div className="card p-8">
-                        <h2 className="text-xl font-black mb-6">Quick Actions</h2>
-                        <div className="space-y-4">
-                            <Link href="/contact" className="flex items-center gap-4 p-5 bg-white/5 border border-white/5 rounded-2xl hover:border-[var(--accent-border)] transition-all group">
-                                <div className="w-12 h-12 bg-[var(--accent)] rounded-xl flex items-center justify-center text-black shrink-0">
-                                    <Users size={20} />
-                                </div>
-                                <div>
-                                    <p className="font-bold">New Project</p>
-                                    <p className="text-xs text-slate-500">Create from contact form</p>
-                                </div>
-                                <ArrowRight size={18} className="ml-auto text-slate-500 group-hover:text-[var(--accent)] transition-colors" />
-                            </Link>
-                            <Link href="/admin/clients" className="flex items-center gap-4 p-5 bg-white/5 border border-white/5 rounded-2xl hover:border-[var(--accent-border)] transition-all group">
-                                <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white shrink-0">
-                                    <TrendingUp size={20} />
-                                </div>
-                                <div>
-                                    <p className="font-bold">Project Updates</p>
-                                    <p className="text-xs text-slate-500">Manage build stages</p>
-                                </div>
-                                <ArrowRight size={18} className="ml-auto text-slate-500 group-hover:text-white transition-colors" />
-                            </Link>
-                        </div>
+                        {/* Quick Actions Removed */}
 
-                        <div className={`mt-10 p-6 rounded-[2rem] border transition-colors ${pendingInvoicesCount > 0 ? 'bg-[var(--accent-soft)] border-[var(--accent-border)]' : 'bg-white/5 border-white/5 opacity-50'}`}>
+                        <div className={`p-6 rounded-[2rem] border transition-colors ${pendingInvoicesCount > 0 ? 'bg-[var(--accent-soft)] border-[var(--accent-border)]' : 'bg-white/5 border-white/5 opacity-50'}`}>
                             {pendingInvoicesCount > 0 ? (
                                 <>
                                     <AlertCircle size={24} className="text-[var(--accent)] mb-4" />
@@ -229,7 +209,12 @@ export default function AdminDashboard() {
                                     <p className="text-sm text-slate-400 font-medium mb-6 leading-relaxed">
                                         There are {pendingInvoicesCount} invoices awaiting client payment.
                                     </p>
-                                    <button className="btn-primary w-full text-center py-3 text-sm">Review Invoices</button>
+                                    <button
+                                        onClick={() => setShowPendingModal(true)}
+                                        className="btn-primary w-full text-center py-3 text-sm hover:scale-[1.02] transition-transform"
+                                    >
+                                        Review Invoices
+                                    </button>
                                 </>
                             ) : (
                                 <>
@@ -390,6 +375,68 @@ export default function AdminDashboard() {
                                 <span className="text-sm font-bold text-slate-400">TOTAL REVENUE EARNED</span>
                                 <span className="text-3xl font-black text-[var(--accent)]">₹{totalRevenue.toLocaleString('en-IN')}</span>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Pending Invoices Modal */}
+            {showPendingModal && (
+                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowPendingModal(false)}>
+                    <div className="bg-[#111] border border-white/10 rounded-3xl w-full max-w-2xl max-h-[80vh] overflow-hidden" onClick={(e) => e.stopPropagation()}>
+                        {/* Header */}
+                        <div className="p-6 border-b border-white/10 flex items-center justify-between">
+                            <div>
+                                <h2 className="text-2xl font-black text-yellow-500">Pending Invoices</h2>
+                                <p className="text-sm text-slate-400 mt-1">Outstanding payments requiring attention</p>
+                            </div>
+                            <button onClick={() => setShowPendingModal(false)} className="p-2 hover:bg-white/10 rounded-xl transition-colors">
+                                <X size={24} />
+                            </button>
+                        </div>
+
+                        {/* Content */}
+                        <div className="p-6 overflow-y-auto max-h-[60vh]">
+                            {pendingInvoicesList.length === 0 ? (
+                                <div className="text-center py-12 text-slate-500">
+                                    <CheckCircle2 size={48} className="mx-auto mb-4 opacity-50 text-green-500" />
+                                    <p className="font-bold">All caught up!</p>
+                                    <p className="text-sm mt-2">No pending invoices found.</p>
+                                </div>
+                            ) : (
+                                <div className="space-y-3">
+                                    {pendingInvoicesList.map((inv: Invoice) => {
+                                        const project = projects.find((p: Project) => p.id === inv.projectId);
+                                        return (
+                                            <div key={inv.id} className="flex items-center justify-between p-4 bg-white/5 border border-white/10 rounded-2xl hover:border-yellow-500/30 transition-all group">
+                                                <div className="flex items-center gap-4">
+                                                    <div className="w-10 h-10 bg-yellow-500/20 rounded-xl flex items-center justify-center">
+                                                        <Clock size={20} className="text-yellow-400" />
+                                                    </div>
+                                                    <div>
+                                                        <p className="font-bold">{project?.name || 'Unknown Project'}</p>
+                                                        <p className="text-xs text-slate-400">{project?.email || 'No email'}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="flex items-center gap-6">
+                                                    <div className="text-right">
+                                                        <p className="text-xl font-black text-yellow-400">₹{inv.amount.toLocaleString('en-IN')}</p>
+                                                        <p className="text-xs text-slate-500">Pending</p>
+                                                    </div>
+                                                    {project && (
+                                                        <Link
+                                                            href={`/admin/projects/${project.id}`}
+                                                            className="p-3 bg-white/5 hover:bg-white/10 rounded-xl transition-colors"
+                                                        >
+                                                            <ArrowRight size={18} className="text-slate-400 group-hover:text-white" />
+                                                        </Link>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

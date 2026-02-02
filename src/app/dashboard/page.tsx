@@ -115,7 +115,7 @@ export default function DashboardPage() {
                         <TrendingUp size={40} className="mb-6" />
                         <h3 className="text-2xl font-black tracking-tighter mb-3 leading-tight">Want to add more details?</h3>
                         <p className="font-medium mb-8 leading-relaxed">If you have reference websites or specific features in mind, send them over to us.</p>
-                        <a href={`mailto:hello@buildstack.com?subject=Details for ${project.name}`} className="inline-block bg-black text-white px-8 py-4 rounded-2xl font-black hover:scale-95 transition-transform text-center">
+                        <a href={`mailto:contactme@buildstack.live?subject=Details for ${project.name}`} className="inline-block bg-black text-white px-8 py-4 rounded-2xl font-black hover:scale-95 transition-transform text-center">
                             Email Project Details
                         </a>
                     </div>

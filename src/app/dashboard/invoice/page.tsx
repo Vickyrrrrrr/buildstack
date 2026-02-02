@@ -218,8 +218,8 @@ export default function InvoicePage() {
                                 <div className="card p-4 bg-[var(--accent-soft)] border-[var(--accent-light)]">
                                     <p className="text-sm text-[var(--foreground-muted)]">
                                         <span className="font-medium text-[var(--accent)]">Note:</span> Please share payment confirmation screenshot to{' '}
-                                        <a href="mailto:hello@buildstack.com" className="text-[var(--accent)] hover:underline">
-                                            hello@buildstack.com
+                                        <a href="mailto:contactme@buildstack.live" className="text-[var(--accent)] hover:underline">
+                                            contactme@buildstack.live
                                         </a>
                                     </p>
                                 </div>

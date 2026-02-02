@@ -203,8 +203,8 @@ export default function DeliverablesPage() {
                 <div className="card p-5 bg-[var(--background)] border-dashed">
                     <p className="text-sm text-[var(--foreground-muted)] text-center">
                         Questions about your deliverables? Contact us at{' '}
-                        <a href="mailto:hello@buildstack.com" className="text-[var(--accent)] hover:underline">
-                            hello@buildstack.com
+                        <a href="mailto:contactme@buildstack.live" className="text-[var(--accent)] hover:underline">
+                            contactme@buildstack.live
                         </a>
                     </p>
                 </div>

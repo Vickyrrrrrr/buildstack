@@ -27,7 +27,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
 
-    const isAdmin = user?.email?.toLowerCase().trim() === 'vickynishad110@gmail.com';
+    const adminEmails = ['vickynishad110@gmail.com', 'contactme@buildstack.live'];
+    const isAdmin = user?.email ? adminEmails.includes(user.email.toLowerCase().trim()) : false;
 
     useEffect(() => {
         // Handle redirect result (for mobile/fallback flow)
@@ -41,7 +42,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
             // Sync user to Firestore in background (non-blocking)
             if (firebaseUser) {
-                const role = firebaseUser.email?.toLowerCase().trim() === 'vickynishad110@gmail.com' ? 'admin' : 'client';
+                const email = firebaseUser.email?.toLowerCase().trim() || '';
+                const role = (email === 'vickynishad110@gmail.com' || email === 'contactme@buildstack.live') ? 'admin' : 'client';
                 setDoc(doc(db, 'buildstack_users', firebaseUser.uid), {
                     email: firebaseUser.email,
                     name: firebaseUser.displayName,

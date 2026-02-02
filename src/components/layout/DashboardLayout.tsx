@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { LayoutDashboard, Package, FileDown, Receipt, LogOut, ChevronRight, Settings, ShieldCheck } from 'lucide-react';
 import { useAuth } from '@/components/providers/AuthProvider';
@@ -54,8 +55,13 @@ export default function DashboardLayout({ children, projectName }: DashboardLayo
             <aside className="hidden md:flex flex-col fixed left-0 top-0 bottom-0 w-72 bg-[#111111] border-r border-white/5 z-50">
                 <div className="p-8">
                     <Link href="/" className="flex items-center gap-3 group">
-                        <div className="w-10 h-10 bg-[var(--accent)] rounded-xl flex items-center justify-center transition-transform group-hover:rotate-6">
-                            <span className="text-black font-black text-xl">B</span>
+                        <div className="w-10 h-10 relative transition-transform group-hover:rotate-6">
+                            <Image
+                                src="/logo.png"
+                                alt="Buildstack Logo"
+                                fill
+                                className="object-contain rounded-xl"
+                            />
                         </div>
                         <span className="font-bold text-2xl tracking-tighter">Buildstack</span>
                     </Link>
@@ -109,8 +115,13 @@ export default function DashboardLayout({ children, projectName }: DashboardLayo
             <header className="fixed top-0 left-0 right-0 md:left-72 z-40 bg-black/50 backdrop-blur-xl border-b border-white/5">
                 <div className="flex items-center justify-between h-20 px-6 md:px-10">
                     <div className="flex items-center gap-4 lg:hidden">
-                        <Link href="/dashboard" className="w-8 h-8 bg-[var(--accent)] rounded-lg flex items-center justify-center">
-                            <span className="text-black font-black text-sm">B</span>
+                        <Link href="/dashboard" className="w-8 h-8 relative block">
+                            <Image
+                                src="/logo.png"
+                                alt="Buildstack Logo"
+                                fill
+                                className="object-contain rounded-lg"
+                            />
                         </Link>
                     </div>
 

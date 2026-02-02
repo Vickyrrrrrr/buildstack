@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { LayoutDashboard, Users, Settings, LogOut, ChevronRight, Plus, Sparkles } from 'lucide-react';
 import { useAuth } from '@/components/providers/AuthProvider';
@@ -60,7 +61,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                     <h1 className="text-3xl font-black tracking-tighter">Access Denied</h1>
                     <p className="text-slate-400 font-medium leading-relaxed">
                         The email <span className="text-white font-bold">{user?.email}</span> is not authorized to access the Admin Panel.
-                        Only <span className="text-[var(--accent)] font-bold">vickynishad110@gmail.com</span> has administrative privileges.
+                        Only authorized administrators (<span className="text-[var(--accent)] font-bold">contactme@buildstack.live</span>) have access.
                     </p>
                     <p className="text-sm text-slate-500">Redirecting to project dashboard...</p>
                     <Link href="/dashboard" className="btn-primary inline-flex mt-4 px-8 py-3">
@@ -80,9 +81,14 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
             {/* Sidebar - Desktop */}
             <aside className="hidden md:flex flex-col fixed left-0 top-0 bottom-0 w-72 bg-[#111111] border-r border-white/5 z-50">
                 <div className="p-8">
-                    <Link href="/admin" className="flex items-center gap-3 group">
-                        <div className="w-10 h-10 bg-[var(--accent)] rounded-xl flex items-center justify-center transition-transform group-hover:rotate-12">
-                            <span className="text-black font-black text-xl">B</span>
+                    <Link href="/" className="flex items-center gap-3 group">
+                        <div className="w-10 h-10 relative transition-transform group-hover:rotate-12">
+                            <Image
+                                src="/logo.png"
+                                alt="Admin Logo"
+                                fill
+                                className="object-contain rounded-xl"
+                            />
                         </div>
                         <span className="font-bold text-2xl tracking-tighter">Admin</span>
                     </Link>
@@ -125,8 +131,13 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
             <header className="fixed top-0 left-0 right-0 md:left-72 z-40 bg-black/50 backdrop-blur-xl border-b border-white/5">
                 <div className="flex items-center justify-between h-20 px-6 md:px-10">
                     <div className="flex items-center gap-4 lg:hidden">
-                        <Link href="/admin" className="w-8 h-8 bg-[var(--accent)] rounded-lg flex items-center justify-center">
-                            <span className="text-black font-black text-sm">B</span>
+                        <Link href="/" className="w-8 h-8 relative block">
+                            <Image
+                                src="/logo.png"
+                                alt="Admin Logo"
+                                fill
+                                className="object-contain rounded-lg"
+                            />
                         </Link>
                     </div>
 
