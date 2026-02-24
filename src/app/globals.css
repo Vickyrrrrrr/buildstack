@@ -37,6 +37,7 @@
 
   /* Typography */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'STIX Two Text', 'Georgia', 'Times New Roman', serif;
 
   /* Radius */
   --radius-lg: 0.75rem;
@@ -70,7 +71,8 @@ h2,
 h3,
 h4 {
   color: #ffffff;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
+  font-family: var(--font-serif);
 }
 
 /* Premium Card */
@@ -204,6 +206,35 @@ h4 {
 
 .animate-pulse-slow {
   animation: pulse-slow 8s ease-in-out infinite;
+}
+
+@keyframes flicker {
+
+  0%,
+  19.999%,
+  22%,
+  62.999%,
+  64%,
+  64.999%,
+  70%,
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 10px rgba(190, 242, 100, 0.4), 0 0 20px rgba(190, 242, 100, 0.2);
+  }
+
+  20%,
+  21.999%,
+  63%,
+  63.999%,
+  65%,
+  69.999% {
+    opacity: 0.5;
+    text-shadow: none;
+  }
+}
+
+.animate-flicker {
+  animation: flicker 3s linear infinite;
 }
 
 .animate-fade-in {
