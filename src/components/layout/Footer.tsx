@@ -9,6 +9,7 @@ const footerLinks = {
     ],
     company: [
         { href: '/how-it-works', label: 'How It Works' },
+        { href: '/agentic', label: 'AgentIC' },
         { href: '/contact', label: 'Contact' },
         { href: '/login', label: 'Client Login' },
     ],

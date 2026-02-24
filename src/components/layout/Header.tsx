@@ -9,6 +9,7 @@ import { useAuth } from '@/components/providers/AuthProvider';
 const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/services', label: 'Services' },
+    { href: '/agentic', label: 'AgentIC' },
     { href: '/#portfolio', label: 'Portfolio' },
     { href: '/how-it-works', label: 'How It Works' },
     { href: '/contact', label: 'Contact' },
