@@ -1,69 +1,58 @@
 import Link from 'next/link';
-import { Mail, Phone, ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, Shield } from 'lucide-react';
 
 const footerLinks = {
-    services: [
-        { href: '/services#business', label: 'Business Website' },
-        { href: '/services#portfolio', label: 'Portfolio Website' },
-        { href: '/services#landing', label: 'Landing Page' },
+    products: [
+        { href: '/agentic', label: 'VLSI Methodology' },
+        { href: '#', label: 'RTL Synthesis' },
+        { href: '#', label: 'GDSII Export' },
     ],
-    company: [
-        { href: '/how-it-works', label: 'How It Works' },
-        { href: '/agentic', label: 'AgentIC' },
-        { href: '/contact', label: 'Contact' },
-        { href: '/login', label: 'Client Login' },
+    technical: [
+        { href: '#', label: 'Skywater 130nm PDK' },
+        { href: '#', label: 'OpenLane Flow' },
+        { href: '#', label: 'DRC/LVS Sign-off' },
+    ],
+    lab: [
+        { href: '/contact', label: 'Laboratory Inquiry' },
+        { href: '/login', label: 'Member Console' },
     ],
 };
 
 export default function Footer() {
     return (
-        <footer className="bg-black text-white border-t border-white/5">
-            <div className="container py-20">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-16">
-                    {/* Brand */}
+        <footer className="bg-[#080809] text-white border-t border-white/[0.04]">
+            <div className="container mx-auto px-6 py-20">
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-16 md:gap-12">
+                    {/* Brand / Lab Identity */}
                     <div className="md:col-span-2">
                         <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 bg-[var(--accent)] rounded-xl flex items-center justify-center">
-                                <span className="text-black font-black text-xl">B</span>
-                            </div>
-                            <span className="font-bold text-2xl tracking-tighter">Buildstack</span>
+                            <span className="font-semibold text-lg tracking-tight text-white uppercase italic">Buildstack Laboratory</span>
                         </div>
-                        <p className="text-slate-400 max-w-sm mb-8 leading-relaxed">
-                            Premium digital experiences built with precision. Track your progress in real-time with our high-fidelity dashboard.
+                        <p className="text-slate-500 max-w-sm mb-10 leading-relaxed text-sm font-light">
+                            Advanced Semiconductor Automation. We build autonomous pipelines for verifiable hardware synthesis, bridging natural language intent with physical silicon layouts.
                         </p>
-                        <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-6">
                             <a
                                 href="mailto:contactme@buildstack.live"
-                                className="flex items-center gap-3 text-slate-400 hover:text-[var(--accent)] transition-colors"
+                                className="flex items-center gap-4 text-slate-500 hover:text-white transition-colors group"
                             >
-                                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
-                                    <Mail size={16} />
-                                </div>
-                                <span>contactme@buildstack.live</span>
-                            </a>
-                            <a
-                                href="https://wa.me/917905388194"
-                                className="flex items-center gap-3 text-slate-400 hover:text-[var(--accent)] transition-colors"
-                            >
-                                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
-                                    <Phone size={16} />
-                                </div>
-                                <span>+91 79053 88194</span>
+                                <Mail size={14} className="opacity-40 group-hover:opacity-100" />
+                                <span className="text-[10px] font-mono uppercase tracking-[0.25em]">Direct Comms</span>
                             </a>
                         </div>
                     </div>
 
-                    {/* Services */}
+                    {/* Synthesis Pipeline */}
                     <div>
-                        <h4 className="text-xs font-bold uppercase tracking-[0.2em] mb-8 text-white/40">
-                            Services
+                        <h4 className="text-[10px] font-mono font-semibold uppercase tracking-[0.25em] mb-10 text-slate-700">
+                            Synthesis
                         </h4>
-                        <ul className="space-y-4">
-                            {footerLinks.services.map((link) => (
-                                <li key={link.href}>
+                        <ul className="space-y-5">
+                            {footerLinks.products.map((link) => (
+                                <li key={link.label}>
                                     <Link
                                         href={link.href}
-                                        className="text-slate-400 hover:text-[var(--accent)] transition-colors"
+                                        className="text-slate-500 hover:text-white transition-colors text-[11px] font-mono uppercase tracking-widest"
                                     >
                                         {link.label}
                                     </Link>
@@ -72,17 +61,33 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* Company */}
+                    {/* Technical PDK */}
                     <div>
-                        <h4 className="text-xs font-bold uppercase tracking-[0.2em] mb-8 text-white/40">
-                            Company
+                        <h4 className="text-[10px] font-mono font-semibold uppercase tracking-[0.25em] mb-10 text-slate-700">
+                            PDK / Flow
                         </h4>
-                        <ul className="space-y-4">
-                            {footerLinks.company.map((link) => (
-                                <li key={link.href}>
+                        <ul className="space-y-5">
+                            {footerLinks.technical.map((link) => (
+                                <li key={link.label}>
+                                    <span className="text-slate-600 text-[11px] font-mono uppercase tracking-widest">
+                                        {link.label}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Lab Console */}
+                    <div>
+                        <h4 className="text-[10px] font-mono font-semibold uppercase tracking-[0.25em] mb-10 text-slate-700">
+                            Lab
+                        </h4>
+                        <ul className="space-y-5">
+                            {footerLinks.lab.map((link) => (
+                                <li key={link.label}>
                                     <Link
                                         href={link.href}
-                                        className="text-slate-400 hover:text-[var(--accent)] transition-colors"
+                                        className="text-slate-500 hover:text-white transition-colors text-[11px] font-mono uppercase tracking-widest"
                                     >
                                         {link.label}
                                     </Link>
@@ -92,14 +97,17 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* Bottom Bar */}
-                <div className="mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p className="text-slate-500 text-sm">
-                        © {new Date().getFullYear()} Buildstack. All rights reserved.
-                    </p>
-                    <div className="flex gap-8">
-                        <Link href="#" className="text-slate-500 hover:text-white text-sm">Privacy Policy</Link>
-                        <Link href="#" className="text-slate-500 hover:text-white text-sm">Terms of Service</Link>
+                {/* Footnote */}
+                <div className="mt-24 pt-8 border-t border-white/[0.04] flex flex-col md:flex-row justify-between items-center gap-8">
+                    <div className="flex items-center gap-3">
+                        <Shield size={12} className="text-slate-800" />
+                        <p className="text-slate-800 text-[9px] font-mono uppercase tracking-[0.3em]">
+                            End-to-End Verifiable Hardware Pipeline
+                        </p>
+                    </div>
+                    <div className="flex gap-10">
+                        <Link href="#" className="text-slate-800 hover:text-slate-500 text-[9px] font-mono uppercase tracking-[0.3em] transition-colors">Legal</Link>
+                        <Link href="#" className="text-slate-800 hover:text-slate-500 text-[9px] font-mono uppercase tracking-[0.3em] transition-colors">Privacy</Link>
                     </div>
                 </div>
             </div>

@@ -1,263 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,wght@0,100..900;1,100..900&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap');
 @import "tailwindcss";
 
-/* ========================================
-   BUILDSTACK DESIGN SYSTEM V2
-   Premium Dark • Lime Accent • Professional
-   ======================================== */
-
-/* Design Tokens */
 :root {
-  /* Colors - Dark Agency Aesthetic */
-  --background: #0a0a0a;
-  --background-elevated: #141414;
-  --background-card: #1c1c1c;
-  --foreground: #ffffff;
+  --background: #060608;
+  --background-elevated: #0d0d12;
+  --background-alt: #0a0a0c;
+  --background-low: #080809;
+  --background-high: #121217;
+
+  --foreground: #f8fafc;
   --foreground-muted: #94a3b8;
-  --foreground-subtle: #475569;
+  --foreground-dim: #64748b;
 
-  /* Accent - Lime Green (High Energy) */
-  --accent: #bef264;
-  --accent-hover: #a3e635;
-  --accent-soft: rgba(190, 242, 100, 0.1);
-  --accent-border: rgba(190, 242, 100, 0.2);
+  --accent-primary: #ffffff;
+  --accent-secondary: #cbd5e1;
+  --accent-muted: #475569;
 
-  /* Status Colors */
-  --success: #10b981;
-  --warning: #f59e0b;
-  --error: #ef4444;
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --border-strong: rgba(255, 255, 255, 0.08);
 
-  /* Borders & Shadows */
-  --border: rgba(255, 255, 255, 0.08);
-  --border-focus: var(--accent);
-  --shadow-premium: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --font-serif: 'STIX Two Text', serif;
 
-  /* Spacing */
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
-
-  /* Typography */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-serif: 'STIX Two Text', 'Georgia', 'Times New Roman', serif;
-
-  /* Radius */
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-  --radius-2xl: 1.5rem;
+  /* --- Claude-Like Motion --- */
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fluid: all 0.7s var(--ease-smooth);
 }
 
-@theme inline {
+@theme {
   --color-background: var(--background);
+  --color-background-alt: var(--background-alt);
+  --color-background-low: var(--background-low);
+  --color-background-high: var(--background-high);
+  
   --color-foreground: var(--foreground);
-  --color-accent: var(--accent);
-  --color-muted: var(--foreground-muted);
-  --color-border: var(--border);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-dim: var(--foreground-dim);
+
+  --color-accent: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-muted: var(--accent-muted);
+
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+
   --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
+
+  --ease-out-smooth: var(--ease-smooth);
 }
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  * {
+    @apply border-border-subtle;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-timing-function: var(--ease-smooth);
+    transition-duration: 500ms;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: white;
+    color: black;
+  }
+
+  /* Elegant minimal scrollbar */
+  ::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--foreground-dim);
+  }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-}
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-10 py-4 bg-white text-black text-[11px] font-mono font-bold uppercase tracking-[0.25em] transition-all duration-700 ease-[var(--ease-smooth)] hover:bg-slate-200 active:scale-[0.98];
+  }
 
-/* Typography Overrides */
-h1,
-h2,
-h3,
-h4 {
-  color: #ffffff;
-  letter-spacing: -0.02em;
-  font-family: var(--font-serif);
-}
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-10 py-4 bg-transparent text-white text-[11px] font-mono font-bold uppercase tracking-[0.25em] border border-white/10 transition-all duration-700 ease-[var(--ease-smooth)] hover:bg-white/5 active:scale-[0.98];
+  }
 
-/* Premium Card */
-.card {
-  background: var(--background-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-premium);
-  transition: all 0.3s ease;
-}
+  .text-academic-body {
+    @apply text-[1.125rem] leading-[1.7] font-light text-slate-400 max-w-2xl;
+    font-family: var(--font-sans);
+  }
 
-.card:hover {
-  border-color: var(--accent-border);
-}
+  .text-mono-label {
+    @apply text-[10px] font-mono uppercase tracking-[0.4em] text-slate-600 font-semibold;
+  }
 
-/* Lime Button */
-.btn-primary {
-  background: var(--accent);
-  color: #000000;
-  font-weight: 600;
-  border-radius: var(--radius-full);
-  padding: 0.75rem 1.5rem;
-  transition: all 0.2s ease;
-}
+  .card-monaco {
+    @apply bg-background-alt border border-white/[0.04] p-8 rounded-sm transition-all duration-700 ease-[var(--ease-smooth)] hover:border-white/[0.1] hover:bg-white/[0.01];
+  }
 
-.btn-primary:hover {
-  background: var(--accent-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(190, 242, 100, 0.3);
-}
-
-.btn-outline {
-  border: 1px solid var(--border);
-  color: #ffffff;
-  background: transparent;
-}
-
-.btn-outline:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-/* Layout Container */
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-/* Section */
-.section-premium {
-  padding: 6rem 0;
-}
-
-/* Dashboard Sidebar Item */
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  border-radius: var(--radius-lg);
-  color: var(--foreground-muted);
-  transition: all 0.2s ease;
-}
-
-.nav-item:hover,
-.nav-item.active {
-  background: var(--accent-soft);
-  color: var(--accent);
-}
-
-/* Glass Effect */
-.glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 10px;
+  .terminal-block {
+    @apply font-mono text-[13px] bg-black/50 p-10 border border-white/[0.03] rounded-sm shadow-2xl;
+  }
 }
 
 /* Animations */
 @keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes marquee2 {
-  0% {
-    transform: translateX(100%);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes pulse-slow {
-
-  0%,
-  100% {
-    opacity: 0.2;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.3;
-    transform: scale(1.1);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .animate-marquee {
-  animation: marquee 25s linear infinite;
-}
-
-.animate-marquee2 {
-  animation: marquee2 25s linear infinite;
-}
-
-.animate-pulse-slow {
-  animation: pulse-slow 8s ease-in-out infinite;
-}
-
-@keyframes flicker {
-
-  0%,
-  19.999%,
-  22%,
-  62.999%,
-  64%,
-  64.999%,
-  70%,
-  100% {
-    opacity: 1;
-    text-shadow: 0 0 10px rgba(190, 242, 100, 0.4), 0 0 20px rgba(190, 242, 100, 0.2);
-  }
-
-  20%,
-  21.999%,
-  63%,
-  63.999%,
-  65%,
-  69.999% {
-    opacity: 0.5;
-    text-shadow: none;
-  }
-}
-
-.animate-flicker {
-  animation: flicker 3s linear infinite;
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.stagger-1 {
-  animation-delay: 0.1s;
-}
-
-.stagger-2 {
-  animation-delay: 0.2s;
-}
-
-.stagger-3 {
-  animation-delay: 0.3s;
+  animation: marquee 100s linear infinite;
 }

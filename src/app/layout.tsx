@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/components/providers/AuthProvider";
 
@@ -9,14 +9,21 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
+  variable: "--font-mono",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://buildstack.live'),
   title: {
-    default: "Buildstack | We Build Websites. You Track Progress.",
+    default: "Buildstack | Semiconductor Automation Lab",
     template: "%s | Buildstack"
   },
-  description: "Professional website development with transparent progress tracking. Submit your requirements, track delivery like a parcel, and receive your completed website.",
-  keywords: ["website development", "web design", "business website", "portfolio website", "landing page", "next.js", "react", "tailwindcss"],
+  description: "Buildstack is a Semiconductor Automation Lab. Our flagship product AgentIC converts natural language into GDSII chip layouts using OpenLane and Sky130 PDK. We also build premium digital experiences.",
+  keywords: ["semiconductor automation", "VLSI", "GDSII", "AgentIC", "chip design", "OpenLane", "Sky130", "RTL", "EDA", "AI chip design", "website development", "next.js"],
   authors: [{ name: "Buildstack" }],
   creator: "Utkarsh Singh",
   publisher: "Buildstack",
@@ -34,8 +41,8 @@ export const metadata: Metadata = {
     apple: '/logo.png',
   },
   openGraph: {
-    title: "Buildstack | We Build Websites. You Track Progress.",
-    description: "Professional website development with transparent progress tracking.",
+    title: "Buildstack | Semiconductor Automation Lab — AgentIC",
+    description: "Buildstack automates the silicon frontier. AgentIC converts natural language to GDSII chip layouts. We also build premium digital experiences.",
     url: 'https://buildstack.live',
     siteName: 'Buildstack',
     locale: 'en_US',
@@ -45,14 +52,14 @@ export const metadata: Metadata = {
         url: '/logo.png',
         width: 800,
         height: 600,
-        alt: 'Buildstack Logo',
+        alt: 'Buildstack Semiconductor Automation Lab',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Buildstack | We Build Websites. You Track Progress.",
-    description: "Professional website development with transparent progress tracking.",
+    title: "Buildstack | Semiconductor Automation Lab",
+    description: "AgentIC: Natural language to GDSII chip layouts. Powered by OpenLane & Sky130 PDK.",
     images: ['/logo.png'],
     creator: '@buildstack',
   },
@@ -75,7 +82,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${inter.variable} ${spaceMono.variable}`}>
       <body className="antialiased">
         <AuthProvider>
           {children}

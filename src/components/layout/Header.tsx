@@ -3,16 +3,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import { Menu, X, User } from 'lucide-react';
+import { Menu, X, User, ExternalLink, Cpu } from 'lucide-react';
 import { useAuth } from '@/components/providers/AuthProvider';
 
 const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/services', label: 'Services' },
-    { href: '/agentic', label: 'AgentIC' },
-    { href: '/#portfolio', label: 'Portfolio' },
-    { href: '/how-it-works', label: 'How It Works' },
-    { href: '/contact', label: 'Contact' },
+    { href: '/', label: 'Synthesizer' },
+    { href: '/agentic', label: 'Methodology' },
 ];
 
 export default function Header() {
@@ -20,139 +16,120 @@ export default function Header() {
     const { user, loading, signOut, isAdmin } = useAuth();
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-xl border-b border-white/5">
-            <div className="container">
-                <nav className="flex items-center justify-between h-20">
-                    {/* Logo */}
-                    <Link href="/" className="flex items-center gap-3 group">
-                        <div className="relative w-10 h-10 transition-transform group-hover:rotate-6">
+        <header className="fixed top-0 left-0 right-0 z-50 bg-[#080809]/80 backdrop-blur-md border-b border-white/[0.04]">
+            <div className="container mx-auto px-6">
+                <nav className="flex items-center justify-between h-16 md:h-20">
+                    {/* Logo / Brand */}
+                    <Link href="/" className="flex items-center gap-3 group shrink-0">
+                        <div className="relative w-7 h-7 transition-opacity group-hover:opacity-80">
                             <Image
                                 src="/logo.png"
                                 alt="Buildstack Logo"
                                 fill
-                                className="object-contain"
+                                className="object-contain grayscale contrast-125 invert"
                             />
                         </div>
-                        <span className="font-bold text-2xl tracking-tighter text-white">Buildstack</span>
+                        <div className="flex flex-col leading-tight">
+                            <span className="font-semibold text-base tracking-tight text-white uppercase">Buildstack Lab</span>
+                        </div>
                     </Link>
 
-                    {/* Desktop Nav */}
-                    <div className="hidden md:flex items-center gap-10">
+                    {/* Desktop Nav: AgentIC Only */}
+                    <div className="hidden md:flex items-center gap-12">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className="text-sm font-medium text-slate-400 hover:text-[var(--accent)] transition-colors"
+                                className="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 hover:text-white transition-colors"
                             >
                                 {link.label}
                             </Link>
                         ))}
                     </div>
 
-                    {/* CTA */}
-                    <div className="hidden md:flex items-center gap-6">
+                    {/* Right Side: Auth + Launch Console */}
+                    <div className="hidden md:flex items-center gap-8">
                         {!loading && user ? (
-                            <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-8">
                                 <Link
                                     href="/dashboard"
-                                    className="text-sm font-semibold text-white hover:text-[var(--accent)] transition-colors flex items-center gap-2"
+                                    className="text-xs font-mono uppercase tracking-[0.2em] text-slate-400 hover:text-white transition-colors flex items-center gap-2"
                                 >
                                     {user.photoURL ? (
-                                        <img src={user.photoURL} alt={user.displayName || 'User'} className="w-8 h-8 rounded-full border border-white/10" />
+                                        <img src={user.photoURL} alt={user.displayName || 'User'} className="w-5 h-5 rounded-sm opacity-80" />
                                     ) : (
-                                        <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
-                                            <User size={16} />
-                                        </div>
+                                        <User size={12} className="opacity-60" />
                                     )}
-                                    <span>Dashboard</span>
+                                    <span>Console</span>
                                 </Link>
-                                {isAdmin && (
-                                    <Link
-                                        href="/admin"
-                                        className="text-xs font-black uppercase tracking-widest text-[var(--accent)] bg-[var(--accent)]/10 px-3 py-1.5 rounded-lg border border-[var(--accent)]/20 hover:bg-[var(--accent)] hover:text-black transition-all"
-                                    >
-                                        Admin
-                                    </Link>
-                                )}
                                 <button
                                     onClick={() => signOut()}
-                                    className="text-sm font-medium text-slate-500 hover:text-white transition-colors"
+                                    className="text-[10px] font-mono text-slate-700 hover:text-white transition-colors uppercase tracking-widest"
                                 >
-                                    Sign Out
+                                    Exit
                                 </button>
                             </div>
                         ) : (
-                            <>
-                                <Link href="/login" className="text-sm font-semibold text-white hover:text-[var(--accent)] transition-colors">
-                                    Client Login
-                                </Link>
-                                <Link href="/contact" className="btn-primary">
-                                    Get Started
-                                </Link>
-                            </>
+                            <Link href="/login" className="text-xs font-mono uppercase tracking-[0.2em] text-slate-600 hover:text-white transition-colors">
+                                Auth
+                            </Link>
                         )}
-                    </div>
 
+                        <a
+                            href="https://agentic.buildstack.live"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-primary !px-6 !py-2 !text-[10px] uppercase tracking-widest font-bold"
+                        >
+                            Launch AgentIC
+                        </a>
+                    </div>
 
                     {/* Mobile Menu Button */}
                     <button
-                        className="md:hidden text-white p-2"
+                        className="md:hidden text-white p-1"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     >
-                        {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                        {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
                     </button>
                 </nav>
+            </div>
 
-                {/* Mobile Menu */}
-                {mobileMenuOpen && (
-                    <div className="md:hidden py-6 bg-black border-t border-white/10 animate-fade-in absolute top-20 left-0 w-full px-6">
-                        <div className="flex flex-col gap-4">
-                            {navLinks.map((link, i) => (
-                                <Link
-                                    key={link.href}
-                                    href={link.href}
-                                    className="text-xl font-bold text-white hover:text-[var(--accent)] animate-fade-in"
-                                    style={{ animationDelay: `${i * 0.1}s` }}
-                                    onClick={() => setMobileMenuOpen(false)}
-                                >
-                                    {link.label}
-                                </Link>
-                            ))}
-                            <div className="mt-6 pt-6 border-t border-white/10 flex flex-col gap-4">
-                                {!loading && user ? (
-                                    <>
-                                        {isAdmin && (
-                                            <Link href="/admin" className="btn-outline text-center py-4 rounded-full font-bold border-[var(--accent)] text-[var(--accent)]" onClick={() => setMobileMenuOpen(false)}>
-                                                Admin Panel
-                                            </Link>
-                                        )}
-                                        <Link href="/dashboard" className="btn-primary text-center py-4 rounded-full font-bold" onClick={() => setMobileMenuOpen(false)}>
-                                            Dashboard
-                                        </Link>
-                                        <button
-                                            onClick={() => { signOut(); setMobileMenuOpen(false); }}
-                                            className="btn-outline text-center py-4 rounded-full font-bold"
-                                        >
-                                            Sign Out
-                                        </button>
-                                    </>
-                                ) : (
-                                    <>
-                                        <Link href="/login" className="btn-outline text-center py-4 rounded-full font-bold" onClick={() => setMobileMenuOpen(false)}>
-                                            Client Login
-                                        </Link>
-                                        <Link href="/contact" className="btn-primary text-center py-4 rounded-full font-bold" onClick={() => setMobileMenuOpen(false)}>
-                                            Get Started
-                                        </Link>
-                                    </>
-                                )}
-                            </div>
-
-                        </div>
+            {/* Mobile Menu: Simplified */}
+            {mobileMenuOpen && (
+                <div className="md:hidden animate-ready fixed inset-0 top-16 bg-[#080809] z-40 p-8 flex flex-col gap-10 border-t border-white/[0.04]">
+                    <div className="flex flex-col gap-8">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="text-3xl font-light text-slate-400 hover:text-white"
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
                     </div>
-                )
-                }
-            </div >
-        </header >
+                    
+                    <div className="mt-auto flex flex-col gap-6">
+                        <a
+                            href="https://agentic.buildstack.live"
+                            className="btn-primary w-full py-5 text-center uppercase tracking-widest font-bold text-sm"
+                        >
+                            Launch AgentIC
+                        </a>
+                        {!loading && !user && (
+                            <Link
+                                href="/login"
+                                className="text-center py-4 text-slate-600 uppercase tracking-[0.3em] text-[10px] font-mono"
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
+                                Auth Required
+                            </Link>
+                        )}
+                    </div>
+                </div>
+            )}
+        </header>
     );
 }
