@@ -13,7 +13,8 @@ export function SplashScreen() {
     // Check if they've already passed the gate in this session to prevent annoyance
     const hasSeenSplash = sessionStorage.getItem("buildstack_splash_seen");
     if (hasSeenSplash) {
-      setIsVisible(false);
+      const timeoutId = setTimeout(() => setIsVisible(false), 0);
+      return () => clearTimeout(timeoutId);
     } else {
       document.body.style.overflow = "hidden"; // Lock scrolling while splash is active
     }

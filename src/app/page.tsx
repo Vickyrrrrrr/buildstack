@@ -11,17 +11,22 @@ import Technology from "@/components/Technology";
 import LaunchCTA from "@/components/LaunchCTA";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
+import LiveTerminal from "@/components/LiveTerminal";
+import CodeDiffViewer from "@/components/CodeDiffViewer";
+import RoutingBackground from "@/components/RoutingBackground";
 
 export default function HomePage() {
   return (
     <LenisProvider>
-      <div className="page-shell">
-
+      <div className="page-shell relative">
+        <RoutingBackground />
+        
         <Navigation />
 
-        <main>
+        <main className="relative z-10">
           <Hero />
           <StatsBar />
+          <LiveTerminal />
 
           <section id="products" className="section-shell">
             <Reveal className="container space-y-10">
@@ -44,6 +49,7 @@ export default function HomePage() {
           </section>
 
           <RepairLoop />
+          <CodeDiffViewer />
           <HowItWorks />
           <Technology />
           <LaunchCTA />
