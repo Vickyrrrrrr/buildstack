@@ -29,7 +29,7 @@ export function CodeDiffViewer() {
           </p>
           <h2 className="section-title">Zero-Touch DRC Resolutions.</h2>
           <p className="body-copy text-lg">
-            AgentIC doesn't just flag errors; it surgically patches your RTL and Netlists. 
+            AgentIC doesn&apos;t just flag errors; it surgically patches your RTL and Netlists. 
             Review diffs, approve branches, and push to production with confidence.
           </p>
         </div>

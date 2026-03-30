@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Syne } from "next/font/google";
-import { AuthProvider } from "@/components/providers/AuthProvider";
 import { SplashScreen } from "@/components/SplashScreen";
 import "./globals.css";
 
@@ -55,7 +54,7 @@ export default function RootLayout({
     >
       <body className="bg-bg-base font-sans text-text-primary antialiased">
         <SplashScreen />
-        <AuthProvider>{children}</AuthProvider>
+        {children}
       </body>
     </html>
   );
