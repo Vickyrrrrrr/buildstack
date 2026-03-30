@@ -109,7 +109,7 @@ export function LiveTerminal() {
             <p className="body-copy text-lg">
               Stop debugging thousands of lines of Yosys outputs. Watch AgentIC ingest
               your EDA logs, identify critical pathways, and autonomously inject fixes—live.
-              ' Command coming soon '
+              CLI Coming Soon .
             </p>
             <div className="pt-4 flex items-center gap-4">
                <div className="inline-flex h-11 items-center rounded-lg border border-border bg-bg-surface px-4 font-mono text-sm text-text-muted shadow-sm">
