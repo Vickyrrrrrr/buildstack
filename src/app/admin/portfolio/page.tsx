@@ -1,6 +1,7 @@
 'use client';
 
 import AdminLayout from '@/components/layout/AdminLayout';
+import Image from 'next/image';
 import { usePortfolio } from '@/lib/firestore-hooks';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, deleteDoc, doc, serverTimestamp } from 'firebase/firestore';
@@ -161,7 +162,14 @@ export default function PortfolioManagerPage() {
                         <div key={item.id} className="card group overflow-hidden bg-[#111]">
                             <div className="h-48 bg-black relative">
                                 {item.imageUrl ? (
-                                    <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+                                    <Image
+                                        src={item.imageUrl}
+                                        alt={item.name}
+                                        fill
+                                        unoptimized
+                                        loader={({ src }) => src}
+                                        className="object-cover opacity-60 transition-opacity duration-500 group-hover:opacity-100"
+                                    />
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center text-slate-700">
                                         <ImageIcon size={48} />

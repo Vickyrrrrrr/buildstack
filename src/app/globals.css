@@ -1,128 +1,188 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:ital,wght@0,100..900;1,100..900&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap');
+@config "../../tailwind.config.ts";
 @import "tailwindcss";
 
 :root {
-  --background: #060608;
-  --background-elevated: #0d0d12;
-  --background-alt: #0a0a0c;
-  --background-low: #080809;
-  --background-high: #121217;
-
-  --foreground: #f8fafc;
-  --foreground-muted: #94a3b8;
-  --foreground-dim: #64748b;
-
-  --accent-primary: #ffffff;
-  --accent-secondary: #cbd5e1;
-  --accent-muted: #475569;
-
-  --border-subtle: rgba(255, 255, 255, 0.04);
-  --border-strong: rgba(255, 255, 255, 0.08);
-
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-mono: 'Space Mono', monospace;
-  --font-serif: 'STIX Two Text', serif;
-
-  /* --- Claude-Like Motion --- */
-  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-fluid: all 0.7s var(--ease-smooth);
+  color-scheme: light;
+  --bg-base: #f7f3ee;
+  --bg-surface: #efe7dc;
+  --bg-elevated: #e7ddd0;
+  --bg-terminal: #2a221c;
+  --accent-primary: #d97745;
+  --accent-secondary: #b08968;
+  --accent-error: #b94c3a;
+  --accent-repair: #c7934f;
+  --text-primary: #2a221c;
+  --text-muted: #7d6e60;
+  --border: #d8cab8;
+  --trace: #d9774520;
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+  --header-height: 5.5rem;
 }
 
-@theme {
-  --color-background: var(--background);
-  --color-background-alt: var(--background-alt);
-  --color-background-low: var(--background-low);
-  --color-background-high: var(--background-high);
-  
-  --color-foreground: var(--foreground);
-  --color-foreground-muted: var(--foreground-muted);
-  --color-foreground-dim: var(--foreground-dim);
-
-  --color-accent: var(--accent-primary);
+@theme inline {
+  --color-bg-base: var(--bg-base);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-terminal: var(--bg-terminal);
+  --color-accent-primary: var(--accent-primary);
   --color-accent-secondary: var(--accent-secondary);
-  --color-accent-muted: var(--accent-muted);
-
-  --color-border-subtle: var(--border-subtle);
-  --color-border-strong: var(--border-strong);
-
-  --font-sans: var(--font-sans);
+  --color-accent-error: var(--accent-error);
+  --color-accent-repair: var(--accent-repair);
+  --color-text-primary: var(--text-primary);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-trace: var(--trace);
+  --font-sans: var(--font-display);
   --font-mono: var(--font-mono);
-  --font-serif: var(--font-serif);
+}
 
-  --ease-out-smooth: var(--ease-smooth);
+html {
+  background: var(--bg-base);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at top, rgba(217, 119, 69, 0.08), transparent 30%),
+    linear-gradient(180deg, rgba(255, 250, 245, 0.65), rgba(255, 255, 255, 0)),
+    var(--bg-base);
+  color: var(--text-primary);
+  font-feature-settings: "ss01" 1, "ss03" 1, "cv11" 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  border-color: var(--border);
+}
+
+::selection {
+  background: rgba(217, 119, 69, 0.2);
+  color: var(--text-primary);
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: rgba(125, 110, 96, 0.35);
+  background-clip: padding-box;
 }
 
 @layer base {
-  * {
-    @apply border-border-subtle;
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-    transition-timing-function: var(--ease-smooth);
-    transition-duration: 500ms;
-    scrollbar-width: thin;
-    scrollbar-color: var(--border-strong) transparent;
-  }
-  
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-feature-settings: "ss01", "ss02", "cv01", "cv11";
-    -webkit-font-smoothing: antialiased;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
   }
 
-  ::selection {
-    background-color: white;
-    color: black;
+  p {
+    text-wrap: pretty;
   }
 
-  /* Elegant minimal scrollbar */
-  ::-webkit-scrollbar {
-    width: 3px;
-    height: 3px;
-  }
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: var(--border-strong);
-    border-radius: 10px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--foreground-dim);
-  }
+
 }
 
 @layer components {
-  .btn-primary {
-    @apply inline-flex items-center justify-center px-10 py-4 bg-white text-black text-[11px] font-mono font-bold uppercase tracking-[0.25em] transition-all duration-700 ease-[var(--ease-smooth)] hover:bg-slate-200 active:scale-[0.98];
+  .page-shell {
+    @apply relative min-h-screen overflow-x-clip bg-bg-base text-text-primary;
   }
 
-  .btn-secondary {
-    @apply inline-flex items-center justify-center px-10 py-4 bg-transparent text-white text-[11px] font-mono font-bold uppercase tracking-[0.25em] border border-white/10 transition-all duration-700 ease-[var(--ease-smooth)] hover:bg-white/5 active:scale-[0.98];
+  .section-shell {
+    @apply relative py-20 md:py-28;
   }
 
-  .text-academic-body {
-    @apply text-[1.125rem] leading-[1.7] font-light text-slate-400 max-w-2xl;
-    font-family: var(--font-sans);
+  .section-grid {
+    @apply container grid grid-cols-12 gap-6;
   }
 
-  .text-mono-label {
-    @apply text-[10px] font-mono uppercase tracking-[0.4em] text-slate-600 font-semibold;
+  .surface-panel {
+    @apply rounded-[1.5rem] border border-border bg-bg-surface/80 shadow-surface backdrop-blur-sm;
   }
 
-  .card-monaco {
-    @apply bg-background-alt border border-white/[0.04] p-8 rounded-sm transition-all duration-700 ease-[var(--ease-smooth)] hover:border-white/[0.1] hover:bg-white/[0.01];
+  .elevated-panel {
+    @apply rounded-[1.5rem] border border-border bg-bg-elevated/90 shadow-surface backdrop-blur-sm;
   }
 
-  .terminal-block {
-    @apply font-mono text-[13px] bg-black/50 p-10 border border-white/[0.03] rounded-sm shadow-2xl;
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.15em] text-text-muted;
+  }
+
+  .display-title {
+    font-size: clamp(2.5rem, 4.5vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .body-copy {
+    @apply text-base leading-[1.7] text-text-muted;
+  }
+
+  .trace-outline {
+    box-shadow:
+      inset 0 0 0 1px rgba(217, 119, 69, 0.08),
+      0 0 0 1px rgba(217, 119, 69, 0.05),
+      0 24px 80px rgba(77, 50, 33, 0.12);
+  }
+
+  .trace-pattern {
+    background-image:
+      linear-gradient(to right, rgba(217, 119, 69, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(217, 119, 69, 0.06) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .circuit-tile {
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(217, 119, 69, 0.18) 1px, transparent 0),
+      linear-gradient(to right, rgba(217, 119, 69, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(217, 119, 69, 0.06) 1px, transparent 1px);
+    background-size: 18px 18px, 72px 72px, 72px 72px;
+  }
+
+  .terminal-scroll {
+    scrollbar-width: none;
+  }
+
+  .terminal-scroll::-webkit-scrollbar {
+    display: none;
   }
 }
 
-/* Animations */
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-  animation: marquee 100s linear infinite;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

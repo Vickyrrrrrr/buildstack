@@ -25,14 +25,18 @@ export default function LoginPage() {
         }
     }, [user, loading, router]);
 
+    const getErrorMessage = (error: unknown, fallback: string) => {
+        return error instanceof Error ? error.message : fallback;
+    };
+
     const handleGoogleSignIn = async () => {
         setIsLoading(true);
         setError('');
         try {
             await signInWithGoogle();
             router.push('/dashboard');
-        } catch (err: any) {
-            setError(err.message || 'Failed to sign in with Google');
+        } catch (error: unknown) {
+            setError(getErrorMessage(error, 'Failed to sign in with Google'));
         } finally {
             setIsLoading(false);
         }
@@ -257,4 +261,3 @@ export default function LoginPage() {
         </div>
     );
 }
-

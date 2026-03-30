@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import { LayoutDashboard, Users, Settings, LogOut, ChevronRight, Plus, Sparkles } from 'lucide-react';
+import { LayoutDashboard, Users, Settings, LogOut, Sparkles } from 'lucide-react';
 import { useAuth } from '@/components/providers/AuthProvider';
 
 interface AdminLayoutProps {

@@ -10,7 +10,6 @@ import {
     CheckCircle2,
     DollarSign,
     AlertCircle,
-    FileText,
     X
 } from 'lucide-react';
 import Link from 'next/link';

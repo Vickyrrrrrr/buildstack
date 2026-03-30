@@ -4,7 +4,7 @@ import DashboardLayout from '@/components/layout/DashboardLayout';
 import { Clock, Layout, TrendingUp, Package, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { formatDate } from '@/lib/utils';
-import { useProject, useStations, useProjects } from '@/lib/firestore-hooks';
+import { useStations, useProjects } from '@/lib/firestore-hooks';
 import { useAuth } from '@/components/providers/AuthProvider';
 
 export default function DashboardPage() {
@@ -33,10 +33,10 @@ export default function DashboardPage() {
                     </div>
 
                     <h1 className="text-4xl md:text-5xl font-black tracking-tighter mb-6">
-                        Let's build something <span className="text-[var(--accent)]">great.</span>
+                        Let&apos;s build something <span className="text-[var(--accent)]">great.</span>
                     </h1>
                     <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-                        You don't have any active projects yet. Select a service below to start your digital journey with Buildstack.
+                        You don&apos;t have any active projects yet. Select a service below to start your digital journey with Buildstack.
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
@@ -78,7 +78,7 @@ export default function DashboardPage() {
                                 Request Received 📥
                             </h1>
                             <p className="text-slate-400 font-medium max-w-lg">
-                                We've received your <span className="text-white font-bold">{project.websiteType}</span> request. We're reviewing the details and will get back to you shortly.
+                                We&apos;ve received your <span className="text-white font-bold">{project.websiteType}</span> request. We&apos;re reviewing the details and will get back to you shortly.
                             </p>
                         </div>
                     </div>

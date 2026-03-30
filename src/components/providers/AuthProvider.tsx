@@ -60,15 +60,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return () => unsubscribe();
     }, []);
 
+    const isFirebaseError = (error: unknown): error is { code?: string } => {
+        return typeof error === 'object' && error !== null && 'code' in error;
+    };
+
     const signInWithGoogle = async () => {
         const provider = new GoogleAuthProvider();
         try {
             await signInWithPopup(auth, provider);
-        } catch (error: any) {
+        } catch (error: unknown) {
             console.warn('Google popup sign-in failed, attempting redirect fallback:', error);
             // Fallback to redirect if popup fails (e.g., blocked, mobile)
             // Don't redirect if the user explicitly closed the popup
-            if (error.code !== 'auth/popup-closed-by-user') {
+            if (!isFirebaseError(error) || error.code !== 'auth/popup-closed-by-user') {
                 try {
                     await signInWithRedirect(auth, provider);
                 } catch (redirectError) {

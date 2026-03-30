@@ -63,7 +63,7 @@ export default function InvoicePage() {
                         <h2 className="text-2xl font-bold mb-3">Invoice Pending</h2>
                         <p className="text-slate-400 max-w-md mx-auto">
                             Your invoice will be generated once the project details are finalized.
-                            You'll be notified when it's ready.
+                            You&apos;ll be notified when it&apos;s ready.
                         </p>
                         <div className="flex items-center justify-center gap-2 mt-6 text-sm text-[var(--accent)]">
                             <div className="w-2 h-2 bg-[var(--accent)] rounded-full animate-pulse" />

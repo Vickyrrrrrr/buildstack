@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import { LayoutDashboard, Package, FileDown, Receipt, LogOut, ChevronRight, Settings, ShieldCheck } from 'lucide-react';
+import { LayoutDashboard, Package, FileDown, Receipt, LogOut, Settings, ShieldCheck } from 'lucide-react';
 import { useAuth } from '@/components/providers/AuthProvider';
 
 interface DashboardLayoutProps {

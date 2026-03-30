@@ -1,7 +1,8 @@
 'use client';
 
 import DashboardLayout from '@/components/layout/DashboardLayout';
-import { User, Mail, Building, Globe, Shield, Save } from 'lucide-react';
+import Image from 'next/image';
+import { User, Mail, Building, Globe, Save } from 'lucide-react';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { useState, useEffect } from 'react';
 import { useUserProfile } from '@/lib/firestore-hooks';
@@ -96,7 +97,15 @@ export default function SettingsPage() {
                                 <div className="flex items-center gap-6">
                                     <div className="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center text-2xl font-black">
                                         {user?.photoURL ? (
-                                            <img src={user.photoURL} alt="Profile" className="w-full h-full rounded-full object-cover" />
+                                            <Image
+                                                src={user.photoURL}
+                                                alt="Profile"
+                                                width={80}
+                                                height={80}
+                                                unoptimized
+                                                loader={({ src }) => src}
+                                                className="h-full w-full rounded-full object-cover"
+                                            />
                                         ) : (
                                             user?.displayName?.charAt(0).toUpperCase() || 'U'
                                         )}
@@ -174,9 +183,9 @@ export default function SettingsPage() {
 
                         {/* Save Button */}
                         <div className="flex justify-end pt-4">
-                            <button onClick={handleSave} className="btn-primary px-8 flex items-center gap-2">
+                            <button onClick={handleSave} disabled={isSaving} className="btn-primary px-8 flex items-center gap-2 disabled:opacity-60">
                                 <Save size={18} />
-                                Save Changes
+                                {isSaving ? 'Saving...' : 'Save Changes'}
                             </button>
                         </div>
                     </div>

@@ -1,4 +1,8 @@
+import type { Timestamp } from 'firebase/firestore';
+
 // Types for Buildstack
+
+type FirestoreDateValue = Date | Timestamp | null;
 
 export interface User {
     id: string;
@@ -16,7 +20,7 @@ export interface UserProfile {
     businessName?: string;
     description?: string;
     referenceUrls?: string[];
-    createdAt: any;
+    createdAt: FirestoreDateValue;
 }
 
 export interface Client {
@@ -35,12 +39,12 @@ export interface Project {
     clientId: string;
     name: string;
     websiteType: 'business' | 'portfolio' | 'landing' | 'ecommerce';
-    startDate: any;
-    estimatedDeliveryDate: any;
+    startDate: FirestoreDateValue;
+    estimatedDeliveryDate: FirestoreDateValue;
     currentStage: string;
     progress: number;
     status: 'active' | 'completed' | 'on-hold' | 'pending';
-    createdAt: any;
+    createdAt: FirestoreDateValue;
     email?: string;
     company?: string;
     message?: string;
@@ -55,7 +59,7 @@ export interface Station {
     status: 'pending' | 'active' | 'completed';
     updateNote?: string;
     order: number;
-    updatedAt: any;
+    updatedAt: FirestoreDateValue;
 }
 
 export interface Deliverable {
@@ -83,7 +87,7 @@ export interface PortfolioItem {
     link: string;
     category: string;
     imageUrl?: string;
-    createdAt: any;
+    createdAt: FirestoreDateValue;
 }
 
 // Station names (fixed order)

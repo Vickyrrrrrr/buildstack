@@ -1,50 +1,64 @@
 // Utility functions
 
-import { type ClassValue, clsx } from 'clsx';
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+type FirestoreLikeDate = {
+  toDate: () => Date;
+};
+
+function resolveDateValue(date: unknown): Date {
+  if (
+    typeof date === "object" &&
+    date !== null &&
+    "toDate" in date &&
+    typeof (date as FirestoreLikeDate).toDate === "function"
+  ) {
+    return (date as FirestoreLikeDate).toDate();
+  }
+
+  return new Date(date as string | number | Date);
+}
 
 export function cn(...inputs: ClassValue[]) {
-    return clsx(inputs);
+  return twMerge(clsx(inputs));
 }
 
-export function formatDate(date: any): string {
-    if (!date) return 'N/A';
+export function formatDate(date: unknown): string {
+  if (!date) return "N/A";
 
-    // Handle Firestore Timestamp
-    const dateObj = date.toDate ? date.toDate() : new Date(date);
+  const dateObj = resolveDateValue(date);
 
-    // Check if valid date
-    if (isNaN(dateObj.getTime())) return 'Invalid Date';
+  if (Number.isNaN(dateObj.getTime())) return "Invalid Date";
 
-    return new Intl.DateTimeFormat('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-    }).format(dateObj);
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(dateObj);
 }
 
-export function formatDateTime(date: any): string {
-    if (!date) return 'N/A';
+export function formatDateTime(date: unknown): string {
+  if (!date) return "N/A";
 
-    // Handle Firestore Timestamp
-    const dateObj = date.toDate ? date.toDate() : new Date(date);
+  const dateObj = resolveDateValue(date);
 
-    // Check if valid date
-    if (isNaN(dateObj.getTime())) return 'Invalid Date';
+  if (Number.isNaN(dateObj.getTime())) return "Invalid Date";
 
-    return new Intl.DateTimeFormat('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: '2-digit',
-    }).format(dateObj);
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  }).format(dateObj);
 }
 
 export function getInitials(name: string): string {
-    return name
-        .split(' ')
-        .map((word) => word[0])
-        .join('')
-        .toUpperCase()
-        .slice(0, 2);
+  return name
+    .split(" ")
+    .map((word) => word[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 2);
 }

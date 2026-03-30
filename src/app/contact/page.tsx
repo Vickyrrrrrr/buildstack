@@ -1,10 +1,10 @@
 'use client';
 
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 import { Mail, Phone, MapPin, Send, ArrowRight, Lock, Sparkles, MessageSquare } from 'lucide-react';
 import { useState, useEffect, Suspense } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useAuth } from '@/components/providers/AuthProvider';
 import Link from 'next/link';
 import { db } from '@/lib/firebase';
@@ -12,7 +12,6 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 function ContactContent() {
     const searchParams = useSearchParams();
-    const router = useRouter();
     const { user, loading, signInWithGoogle } = useAuth();
     const serviceParam = searchParams.get('service');
 
@@ -321,7 +320,7 @@ function ContactContent() {
 export default function ContactPage() {
     return (
         <Suspense fallback={<div className="bg-black min-h-screen pt-24 pb-12" />}>
-            <Header />
+            <Navigation />
             <ContactContent />
             <Footer />
         </Suspense>

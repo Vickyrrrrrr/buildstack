@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 // Firestore Seed Script
 // Run this with: npx ts-node scripts/seed-firestore.ts
 
