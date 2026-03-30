@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Syne } from "next/font/google";
 import { AuthProvider } from "@/components/providers/AuthProvider";
+import { SplashScreen } from "@/components/SplashScreen";
 import "./globals.css";
 
 const syne = Syne({
@@ -53,6 +54,7 @@ export default function RootLayout({
       className={`${syne.variable} ${jetbrainsMono.variable}`}
     >
       <body className="bg-bg-base font-sans text-text-primary antialiased">
+        <SplashScreen />
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
