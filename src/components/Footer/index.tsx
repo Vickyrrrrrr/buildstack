@@ -6,7 +6,7 @@ import { navItems } from "@/lib/buildstack-content";
 export function Footer() {
   return (
     <footer id="about" className="border-t border-border bg-bg-surface/70">
-      <div className="container grid gap-10 py-12 md:grid-cols-3">
+      <div className="container grid gap-10 py-12 md:grid-cols-4">
         <div className="space-y-4">
           <Wordmark />
           <p className="body-copy max-w-xs">Where Silicon Meets Intent</p>
@@ -22,6 +22,15 @@ export function Footer() {
             <a href="https://github.com" target="_blank" rel="noreferrer">
               GitHub
             </a>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <p className="eyebrow">Legal</p>
+          <div className="grid gap-2 text-sm text-text-primary">
+            <Link href="/terms">Terms of Service</Link>
+            <Link href="/privacy">Privacy Policy</Link>
+            <Link href="/refund">Refund Policy</Link>
           </div>
         </div>
 
@@ -43,9 +52,14 @@ export function Footer() {
       </div>
 
       <div className="border-t border-border py-4">
-        <p className="container font-mono text-[11px] uppercase tracking-[0.15em] text-text-muted">
-          Built with OpenLane | Sky130 | React Three Fiber | GSAP | Self-Healing Repair Engine
-        </p>
+        <div className="container flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] uppercase tracking-[0.15em] text-text-muted">
+          <span>Built with OpenLane | Sky130 | React Three Fiber | GSAP | Self-Healing Repair Engine</span>
+          <span className="flex gap-4">
+            <Link href="/terms" className="hover:text-accent-primary transition-colors">Terms</Link>
+            <Link href="/privacy" className="hover:text-accent-primary transition-colors">Privacy</Link>
+            <Link href="/refund" className="hover:text-accent-primary transition-colors">Refunds</Link>
+          </span>
+        </div>
       </div>
     </footer>
   );

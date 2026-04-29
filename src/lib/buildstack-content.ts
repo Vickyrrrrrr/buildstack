@@ -53,12 +53,8 @@ export const technologyTerminalLines: TerminalLine[] = [
 
 export const futureTools = [
   {
-    name: "NetScope",
-    description: "Visual netlist analysis and timing path explorer",
-  },
-  {
-    name: "SynthAI",
-    description: "ML-driven synthesis optimization for area/power",
+    name: "Autonomous PCB Builder",
+    description: "AI-driven schematic-to-layout automation for complex boards",
   },
 ] as const;
 
