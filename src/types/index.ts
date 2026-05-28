@@ -1,8 +1,6 @@
-import type { Timestamp } from 'firebase/firestore';
-
 // Types for Buildstack
 
-type FirestoreDateValue = Date | Timestamp | null;
+export type FirestoreDateValue = Date | null;
 
 export interface User {
     id: string;

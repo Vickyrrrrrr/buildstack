@@ -3,20 +3,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-type FirestoreLikeDate = {
-  toDate: () => Date;
-};
-
 function resolveDateValue(date: unknown): Date {
-  if (
-    typeof date === "object" &&
-    date !== null &&
-    "toDate" in date &&
-    typeof (date as FirestoreLikeDate).toDate === "function"
-  ) {
-    return (date as FirestoreLikeDate).toDate();
-  }
-
   return new Date(date as string | number | Date);
 }
 
