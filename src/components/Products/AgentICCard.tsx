@@ -50,15 +50,13 @@ export function AgentICCard() {
               AgentIC
             </h3>
             <p className="text-xl text-text-primary">
-              Autonomous VLSI Pipeline with Self-Healing Error Loop
+              Autonomous Hardware Synthesizer · v3.0
             </p>
             <p className="body-copy max-w-2xl">
-              AgentIC doesn&apos;t just run your design through OpenLane. It watches,
-              diagnoses, and heals. When DRC violations, LVS mismatches, or synthesis
-              failures occur, AgentIC&apos;s autonomous repair loop intercepts the error
-              log, identifies the root cause, patches the RTL or constraints, and
-              re-runs the failing stage without human intervention. It loops until the
-              design is clean.
+              Synthesize synthesizable silicon. Natural language in, GDSII out.
+              Describe a custom CPU, peripheral, or logic gate array in plain language.
+              AgentIC handles formal bounds checking, self-healing timing verification,
+              and physical standard cell placement.
             </p>
           </div>
 

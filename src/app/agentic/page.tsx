@@ -27,18 +27,18 @@ export default function AgentICPage() {
                   AgentIC - Live
                 </Badge>
                 <div className="space-y-4">
-                  <p className="eyebrow">Autonomous VLSI Pipeline</p>
-                  <h1 className="section-title">Zero human interventions. Verified silicon.</h1>
+                  <p className="eyebrow">Autonomous Hardware Synthesizer · v3.0</p>
+                  <h1 className="section-title">Synthesize synthesizable silicon.<br />Natural language in, GDSII out.</h1>
                   <p className="body-copy text-lg">
-                    AgentIC translates design intent into a clean GDSII target using
-                    OpenLane v2 and Sky130, then keeps repairing until DRC, LVS, and
-                    sign-off are green.
+                    Describe a custom CPU, peripheral, or logic gate array in plain language.
+                    AgentIC handles formal bounds checking, self-healing timing verification,
+                    and physical standard cell placement.
                   </p>
                 </div>
                 <div className="flex flex-col gap-4 sm:flex-row">
                   <Button asChild size="lg">
                     <a href="https://agentic.buildstack.live" target="_blank" rel="noreferrer">
-                      Launch Console
+                      Join Waitlist / Launch AgentIC
                       <ArrowRight className="h-4 w-4" />
                     </a>
                   </Button>
