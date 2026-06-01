@@ -4,10 +4,11 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { OpenDesktopButton } from "./OpenDesktopButton";
 
 const nextSteps = [
-  "Open AgentIC Desktop and sign in with the account used at checkout.",
-  "Click Recheck License if the app is already open.",
+  "Choose Open AgentIC Desktop and approve the browser handoff when prompted.",
+  "Sign in with the same account used at checkout.",
   "Configure your BYOK model provider, then start your local workspace run.",
 ] as const;
 
@@ -30,11 +31,13 @@ export default function AgentICSuccessPage() {
                     <h1 className="section-title">Your AgentIC license is being activated.</h1>
                     <p className="body-copy text-lg">
                       Lemon Squeezy sends a purchase webhook to Buildstack automatically.
-                      In most cases the desktop app unlocks as soon as you recheck the license.
+                      Open the desktop app from here, then AgentIC will recheck your signed
+                      entitlement without sending chip source, prompts, logs, or artifacts to cloud.
                     </p>
                   </div>
+                  <OpenDesktopButton />
                   <div className="flex flex-col justify-center gap-4 sm:flex-row">
-                    <Button asChild size="lg">
+                    <Button asChild variant="ghost" size="lg">
                       <Link href="/agentic/download">
                         <MonitorDown className="h-4 w-4" />
                         Download Desktop
