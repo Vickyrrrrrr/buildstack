@@ -1,10 +1,10 @@
 import type { TerminalLine } from "@/types/terminal";
 
 export const navItems = [
-  { label: "Products", href: "/#products" },
+  { label: "AgentIC", href: "/agentic" },
+  { label: "Pricing", href: "/agentic/pricing" },
   { label: "Technology", href: "/#technology" },
-  { label: "Methodology", href: "/#methodology" },
-  { label: "About", href: "/#about" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const heroTickerItems = [
@@ -20,27 +20,23 @@ export const heroTickerItems = [
 ] as const;
 
 export const agenticTerminalLines: TerminalLine[] = [
-  { text: '$ agentic run --intent "32-bit RISC-V ALU, Sky130"', type: "output", delay: 200 },
+  { text: '$ agentic desktop', type: "output", delay: 200 },
   { text: "", type: "info", delay: 80 },
-  { text: "[OK] Parsing design intent...", type: "success" },
-  { text: "[OK] Generating RTL (Verilog)...", type: "success" },
-  { text: "[OK] Running Yosys synthesis...", type: "success" },
-  { text: "[OK] OpenLane P&R initiated...", type: "success" },
+  { text: "[OK] License verified", type: "success" },
+  { text: "[OK] Model key configured locally", type: "success" },
+  { text: "[OK] Discovering EDA tools and PDKs", type: "success" },
+  { text: "[OK] Creating RTL and testbench files", type: "success" },
   { text: "", type: "info", delay: 80 },
-  { text: "[FAIL] DRC FAILED - 3 violations detected", type: "error" },
-  { text: "    -> M2 spacing violation at (142, 88)", type: "error" },
-  { text: "    -> Via enclosure error at (203, 71)", type: "error" },
+  { text: "[RUN] Simulating with local tools", type: "output" },
+  { text: "[WARN] Compile issue found", type: "error" },
   { text: "", type: "info", delay: 80 },
-  { text: "[FIX] Repair Agent activated...", type: "repair" },
-  { text: "[FIX] Analyzing violation trace...", type: "repair" },
-  { text: "[FIX] Patching floorplan constraints...", type: "repair" },
-  { text: "[FIX] Re-running affected routing stage...", type: "repair" },
+  { text: "[FIX] Reading project context", type: "repair" },
+  { text: "[FIX] Patching source and constraints", type: "repair" },
+  { text: "[FIX] Re-running verification", type: "repair" },
   { text: "", type: "info", delay: 80 },
-  { text: "[OK] DRC: 0 violations - Clean", type: "success" },
-  { text: "[OK] LVS: Matched", type: "success" },
-  { text: "[OK] Formal Sign-off: PASS", type: "success" },
-  { text: "-> GDSII written to /output/riscv_alu.gds", type: "output" },
-  { text: "-> Total loops: 2 | Human interventions: 0", type: "output" },
+  { text: "[OK] Build artifacts refreshed", type: "success" },
+  { text: "-> Files stay under AgentIC-workspace", type: "output" },
+  { text: "-> Cloud sees license + usage counts only", type: "output" },
 ];
 
 export const technologyTerminalLines: TerminalLine[] = [
@@ -59,12 +55,12 @@ export const futureTools = [
 ] as const;
 
 export const technologyStack = [
-  "OpenLane v2 (Apache 2.0)",
-  "SkyWater Sky130 PDK",
-  "Yosys RTL Synthesis",
-  "Magic VLSI Layout Tool",
-  "KLayout for GDSII verification",
-  "Autonomous Repair Engine (proprietary - Buildstack)",
+  "Local Electron desktop runtime",
+  "FastAPI executor on localhost",
+  "OpenAI-compatible BYOK model providers",
+  "Native, Docker, WSL, and proprietary EDA flows",
+  "Workspace-scoped file and command tools",
+  "Signed cloud entitlement verification",
 ] as const;
 
 export const openLaneConfig = `{

@@ -10,11 +10,11 @@ import { Button } from "@/components/ui/button";
 import { agenticTerminalLines } from "@/lib/buildstack-content";
 
 const featurePills = [
-  "RTL Generation",
-  "Automated P&R",
-  "DRC Auto-Fix",
-  "LVS Repair Loop",
-  "Formal Sign-off",
+  "Local-first desktop",
+  "BYOK models",
+  "EDA tool discovery",
+  "RTL and verification",
+  "IP stays local",
 ] as const;
 
 export function AgentICCard() {
@@ -50,13 +50,13 @@ export function AgentICCard() {
               AgentIC
             </h3>
             <p className="text-xl text-text-primary">
-              Autonomous Hardware Synthesizer · v3.0
+              Codex for Silicon · Desktop VLSI agent
             </p>
             <p className="body-copy max-w-2xl">
-              Synthesize synthesizable silicon. Natural language in, GDSII out.
-              Describe a custom CPU, peripheral, or logic gate array in plain language.
-              AgentIC handles formal bounds checking, self-healing timing verification,
-              and physical standard cell placement.
+              Describe a CPU, accelerator, peripheral, or verification task in plain
+              language. AgentIC works inside your local workspace, uses your available
+              EDA tools and PDKs, then iterates through RTL, tests, synthesis, and
+              artifacts without sending your source code to Buildstack.
             </p>
           </div>
 
@@ -75,7 +75,7 @@ export function AgentICCard() {
             onClick={() => setIsLaunching(true)}
             data-cursor="interactive"
           >
-            Launch AgentIC
+            Explore AgentIC
             <ArrowRight className="h-4 w-4" />
           </Button>
         </div>

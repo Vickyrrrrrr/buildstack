@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Github, MessageSquare, Twitter } from "lucide-react";
 import Wordmark from "@/components/Wordmark";
-import { navItems } from "@/lib/buildstack-content";
 
 export function Footer() {
   return (
@@ -17,8 +16,9 @@ export function Footer() {
           <p className="eyebrow">Navigation</p>
           <div className="grid gap-2 text-sm text-text-primary">
             <Link href="/agentic">AgentIC</Link>
-            <Link href={navItems[2].href}>Methodology</Link>
-            <Link href={navItems[1].href}>Technology</Link>
+            <Link href="/agentic/pricing">Pricing</Link>
+            <Link href="/agentic/download">Download</Link>
+            <Link href="/contact">Contact</Link>
             <a href="https://github.com" target="_blank" rel="noreferrer">
               GitHub
             </a>
@@ -53,7 +53,7 @@ export function Footer() {
 
       <div className="border-t border-border py-4">
         <div className="container flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] uppercase tracking-[0.15em] text-text-muted">
-          <span>Built with OpenLane | Sky130 | React Three Fiber | GSAP | Self-Healing Repair Engine</span>
+          <span>Local-first desktop EDA automation | BYOK models | Workspace-scoped execution</span>
           <span className="flex gap-4">
             <Link href="/terms" className="hover:text-accent-primary transition-colors">Terms</Link>
             <Link href="/privacy" className="hover:text-accent-primary transition-colors">Privacy</Link>
