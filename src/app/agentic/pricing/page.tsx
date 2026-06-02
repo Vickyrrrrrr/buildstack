@@ -1,18 +1,24 @@
-import Link from "next/link";
 import { ArrowRight, CheckCircle2, ShieldCheck } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
+const licenseServerUrl = (
+  process.env.NEXT_PUBLIC_AGENTIC_LICENSE_URL || "https://api.buildstack.live"
+).replace(/\/$/, "");
+
+const purchaseHref = (plan: "starter" | "pro") =>
+  `${licenseServerUrl}/purchase/start?plan=${plan}`;
+
 const plans = [
   {
     name: "Builder",
+    plan: "starter",
     price: "$20",
     cadence: "per month",
     description: "For individual engineers exploring local autonomous RTL and verification workflows.",
     cta: "Start Builder",
-    href: "/agentic/download",
     highlighted: false,
     features: [
       "AgentIC desktop app",
@@ -24,11 +30,11 @@ const plans = [
   },
   {
     name: "Studio",
+    plan: "pro",
     price: "$200",
     cadence: "per month",
     description: "For serious chip projects that need higher build limits and priority support.",
     cta: "Start Studio",
-    href: "/agentic/download",
     highlighted: true,
     features: [
       "Everything in Builder",
@@ -91,10 +97,10 @@ export default function AgentICPricingPage() {
                   <p className="body-copy mt-5 min-h-[4.25rem]">{plan.description}</p>
 
                   <Button asChild size="lg" className="mt-7 w-full justify-between">
-                    <Link href={plan.href}>
+                    <a href={purchaseHref(plan.plan)}>
                       {plan.cta}
                       <ArrowRight className="h-4 w-4" />
-                    </Link>
+                    </a>
                   </Button>
 
                   <div className="mt-7 space-y-3">
