@@ -1,4 +1,5 @@
-import { ArrowRight, CheckCircle2, ShieldCheck } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, CheckCircle2, Download, ShieldCheck } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
@@ -69,6 +70,14 @@ export default function AgentICPricingPage() {
                 Choose a plan, complete checkout through Lemon Squeezy, then sign in
                 to AgentIC Desktop with the same account to unlock the local agent.
               </p>
+              <div className="flex flex-col justify-center gap-3 pt-2 sm:flex-row">
+                <Button asChild variant="ghost" size="lg">
+                  <Link href="/agentic/download">
+                    <Download className="h-4 w-4" />
+                    Download Desktop
+                  </Link>
+                </Button>
+              </div>
             </div>
 
             <div className="mt-12 grid gap-6 lg:grid-cols-2">
