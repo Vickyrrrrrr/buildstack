@@ -99,7 +99,7 @@ export function DownloadButtons() {
             </a>
           </Button>
         ) : (
-          <Button asChild size="lg">
+          <Button asChild size="lg" className="w-full sm:w-auto">
             <a href={AGENTIC_ALL_DOWNLOADS_URL} target="_blank" rel="noreferrer">
               <Download className="h-4 w-4" />
               Download AgentIC Desktop

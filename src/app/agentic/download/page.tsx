@@ -1,5 +1,24 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, KeyRound, MonitorDown, RefreshCw } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Download AgentIC Desktop | Buildstack",
+  description: "Download the AgentIC Desktop app for Windows, macOS, or Linux. The local-first autonomous chip design agent.",
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "AgentIC Desktop",
+  operatingSystem: "Windows, macOS, Linux",
+  applicationCategory: "DeveloperApplication",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD"
+  }
+};
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { DownloadButtons } from "@/components/DownloadButtons";
@@ -27,6 +46,10 @@ const steps = [
 export default function AgentICDownloadPage() {
   return (
     <div className="page-shell">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navigation />
 
       <main className="pt-28">

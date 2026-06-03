@@ -27,6 +27,23 @@ export async function generateMetadata(): Promise<Metadata> {
       url: "https://buildstack.live",
       siteName: "Buildstack",
       type: "website",
+      images: [
+        {
+          url: "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: "Buildstack — Semiconductor EDA Automation Lab",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Buildstack — Semiconductor EDA Automation Lab",
+      description: "Buildstack builds agentic EDA tools for the semiconductor industry. AgentIC converts design intent into DRC-clean GDSII with autonomous error repair.",
+      images: ["/og-image.png"],
+    },
+    alternates: {
+      canonical: "https://buildstack.live",
     },
     keywords: [
       "Buildstack",

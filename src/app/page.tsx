@@ -1,5 +1,20 @@
+import type { Metadata } from "next";
 import LenisProvider from "@/components/LenisProvider";
 import Navigation from "@/components/Navigation";
+
+export const metadata: Metadata = {
+  title: "Buildstack — Autonomous Semiconductor EDA",
+  description: "Buildstack builds agentic EDA tools for the semiconductor industry. Automate design intent into DRC-clean GDSII with AI.",
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Buildstack",
+  url: "https://buildstack.live",
+  logo: "https://buildstack.live/icon.png",
+  description: "Buildstack builds agentic EDA tools for the semiconductor industry.",
+};
 
 import Hero from "@/components/Hero";
 import StatsBar from "@/components/StatsBar";
@@ -20,6 +35,10 @@ export default function HomePage() {
     <LenisProvider>
       <div className="page-shell relative">
         <RoutingBackground />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         
         <Navigation />
 

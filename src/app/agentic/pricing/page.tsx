@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Download, ShieldCheck } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Pricing — AgentIC | Buildstack",
+  description: "AgentIC pricing plans. Buy the desktop agent and keep your silicon local. BYOK model path with secure, local-first execution.",
+};
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
