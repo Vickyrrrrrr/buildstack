@@ -130,19 +130,18 @@ export function DownloadButtons() {
                     : "surface-panel relative space-y-4 p-6"
                 }
               >
-                {isDetected ? (
-                  <Badge
-                    variant="accent"
-                    className="absolute right-4 top-4 shrink-0"
-                  >
-                    Recommended
-                  </Badge>
-                ) : null}
-                <div className="flex items-center gap-3 pr-24">
-                  <PlatformIcon platform={platform} />
-                  <h3 className="font-semibold tracking-[-0.01em] text-text-primary">
-                    {data.name}
-                  </h3>
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <PlatformIcon platform={platform} />
+                    <h3 className="font-semibold tracking-[-0.01em] text-text-primary">
+                      {data.name}
+                    </h3>
+                  </div>
+                  {isDetected ? (
+                    <Badge variant="accent" className="shrink-0">
+                      Recommended
+                    </Badge>
+                  ) : null}
                 </div>
 
                 <div className="space-y-2">
