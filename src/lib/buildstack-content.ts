@@ -8,15 +8,15 @@ export const navItems = [
 ] as const;
 
 export const heroTickerItems = [
-  "SKYWATER_130NM",
-  "OPENLANE_V2",
+  "ANY_PDK",
+  "ANY_HARDENING_TOOL",
   "RTL_SYNTHESIS",
   "GDSII_TAPEOUT",
   "DRC_AUTO_FIX",
   "LVS_REPAIR_LOOP",
   "FORMAL_SIGNOFF",
   "PLACE_AND_ROUTE",
-  "ZERO_HUMAN_INTERVENTIONS",
+  "WORKS_WITH_YOU",
 ] as const;
 
 export const agenticTerminalLines: TerminalLine[] = [

@@ -135,10 +135,9 @@ export function RepairLoop() {
       <Reveal className="container space-y-10">
         <div className="max-w-2xl space-y-4">
           <p className="eyebrow">Repair Loop</p>
-          <h2 className="section-title">It Fixes Itself.</h2>
+          <h2 className="section-title">It doesn&apos;t just write code. It finishes the job.</h2>
           <p className="body-copy text-lg">
-            Most EDA pipelines stop at the first violation. AgentIC treats every error as
-            an input.
+            When synthesis or place-and-route fails, AgentIC reads the real errors, inspects your PDK, and patches the design autonomously. It&apos;s the resilience of a senior engineer, at the speed of software.
           </p>
         </div>
 

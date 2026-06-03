@@ -11,10 +11,9 @@ export function LaunchCTA() {
           <div className="circuit-tile absolute inset-0 opacity-[0.04]" />
           <div className="relative mx-auto max-w-3xl space-y-6">
             <p className="eyebrow">Launch</p>
-            <h2 className="section-title">Ready to run the silicon agent locally?</h2>
+            <h2 className="section-title">Start building your next chip today.</h2>
             <p className="body-copy text-lg">
-              AgentIC is a desktop app for chip teams that want automation without
-              uploading their source code, PDKs, or generated artifacts to Buildstack.
+              Run the autonomous EDA agent locally. Keep your IP entirely on your own machine.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button asChild size="lg">

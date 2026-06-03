@@ -22,7 +22,7 @@ const plans = [
   {
     name: "Builder",
     plan: "starter",
-    price: "$20",
+    price: "₹899",
     cadence: "per month",
     description: "For individual engineers exploring local autonomous RTL and verification workflows.",
     cta: "Start Builder",
@@ -38,7 +38,7 @@ const plans = [
   {
     name: "Studio",
     plan: "pro",
-    price: "$200",
+    price: "₹1899",
     cadence: "per month",
     description: "For serious chip projects that need higher build limits and priority support.",
     cta: "Start Studio",

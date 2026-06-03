@@ -51,10 +51,9 @@ export default function HomePage() {
             <Reveal className="container space-y-10">
               <div className="max-w-3xl space-y-4">
                 <p className="eyebrow">Products</p>
-                <h2 className="section-title">What We&apos;re Building</h2>
+                <h2 className="section-title">Meet AgentIC.</h2>
                 <p className="body-copy text-lg">
-                  Each tool in the Buildstack ecosystem solves one hard problem in chip
-                  design automation.
+                  We are rethinking electronic design automation from the ground up. Stop jumping between terminal windows and let AI handle the flow orchestration.
                 </p>
               </div>
 

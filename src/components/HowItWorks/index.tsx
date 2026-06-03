@@ -93,9 +93,9 @@ export function HowItWorks() {
       <Reveal className="container space-y-12">
         <div className="max-w-3xl space-y-4">
           <p className="eyebrow">Methodology</p>
-          <h2 className="section-title">From Intent to Silicon</h2>
+          <h2 className="section-title">From idea to GDSII.</h2>
           <p className="body-copy text-lg">
-            The Buildstack methodology distilled into four precise stages.
+            We distilled the entire EDA flow into four autonomous steps.
           </p>
         </div>
 

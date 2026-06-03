@@ -20,8 +20,8 @@ export function Hero() {
 
   const textLines = useMemo(
     () => [
-      "Synthesize Silicon",
-      "With Intent.",
+      "The AI agent",
+      "for silicon.",
     ],
     [],
   );
@@ -83,7 +83,7 @@ export function Hero() {
 
           {/* Right Side: Text Context */}
           <Reveal className="max-w-xl text-left">
-            <p className="eyebrow mb-6">BUILDSTACK EDA LAB - v2.0</p>
+            <p className="eyebrow mb-6">BUILDSTACK EDA LAB - v1.0</p>
 
           <h1 ref={headingRef} className="display-title">
             <span className="block">
@@ -109,15 +109,12 @@ export function Hero() {
                   {wordIndex < arr.length - 1 && <span className="inline-block">&nbsp;</span>}
                 </span>
               ))}
-              {/* Typewriter cursor */}
-              <span className="inline-block animate-pulse opacity-70">_</span>
             </span>
           </h1>
 
           <p className="body-copy mt-8 max-w-[32rem] text-balance text-lg">
-            Buildstack is a semiconductor automation lab building agentic tools for the
-            next generation of chip design. No manual EDA. No boilerplate constraints. No
-            failed DRC loops. Just intent to silicon.
+            From plain English to a fabrication-ready layout—entirely on your own machine.
+            AgentIC builds your chips autonomously while your IP stays completely secure.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
