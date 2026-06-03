@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { ArrowRight, Download, KeyRound, MonitorDown, RefreshCw } from "lucide-react";
+import { ArrowRight, KeyRound, MonitorDown, RefreshCw } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { DownloadButtons } from "@/components/DownloadButtons";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -44,12 +45,6 @@ export default function AgentICDownloadPage() {
                 </p>
               </div>
               <div className="flex flex-col gap-4 sm:flex-row">
-                <Button asChild size="lg">
-                  <a href="https://agentic.buildstack.live" target="_blank" rel="noreferrer">
-                    <Download className="h-4 w-4" />
-                    Download Latest
-                  </a>
-                </Button>
                 <Button asChild variant="ghost" size="lg">
                   <Link href="/agentic/pricing">
                     View Pricing
@@ -57,6 +52,7 @@ export default function AgentICDownloadPage() {
                   </Link>
                 </Button>
               </div>
+              <DownloadButtons />
             </div>
 
             <div className="elevated-panel overflow-hidden">

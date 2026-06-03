@@ -118,8 +118,7 @@ export default function PrivacyPage() {
                   <section id="web" className="space-y-4">
                     <h2 className="text-2xl font-semibold text-text-primary">3. Web Application — What We Collect</h2>
                     <p>
-                      When you use the AgentIC web console at agentic.buildstack.live or
-                      buildstack.live:
+                      When you use the AgentIC web console at buildstack.live:
                     </p>
                     <ul className="list-disc pl-6 space-y-2">
                       <li>
