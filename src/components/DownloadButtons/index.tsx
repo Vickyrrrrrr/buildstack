@@ -126,20 +126,23 @@ export function DownloadButtons() {
                 key={platform}
                 className={
                   isDetected
-                    ? "elevated-panel trace-outline space-y-4 p-6"
-                    : "surface-panel space-y-4 p-6"
+                    ? "elevated-panel trace-outline relative space-y-4 p-6"
+                    : "surface-panel relative space-y-4 p-6"
                 }
               >
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <PlatformIcon platform={platform} />
-                    <h3 className="font-semibold tracking-[-0.01em] text-text-primary">
-                      {data.name}
-                    </h3>
-                  </div>
-                  {isDetected ? (
-                    <Badge variant="accent">Recommended</Badge>
-                  ) : null}
+                {isDetected ? (
+                  <Badge
+                    variant="accent"
+                    className="absolute right-4 top-4 shrink-0"
+                  >
+                    Recommended
+                  </Badge>
+                ) : null}
+                <div className="flex items-center gap-3 pr-24">
+                  <PlatformIcon platform={platform} />
+                  <h3 className="font-semibold tracking-[-0.01em] text-text-primary">
+                    {data.name}
+                  </h3>
                 </div>
 
                 <div className="space-y-2">
