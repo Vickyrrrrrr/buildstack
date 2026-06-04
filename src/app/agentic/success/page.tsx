@@ -19,7 +19,8 @@ export default function AgentICSuccessPage() {
   useEffect(() => {
     // Lemon Squeezy automatically appends ?orderId=XYZ to the return URL.
     // If it's missing, the user didn't just complete a checkout.
-    if (!window.location.search.includes("orderId=")) {
+    const url = window.location.href.toLowerCase();
+    if (!url.includes("orderid") && !url.includes("order_id")) {
       window.location.href = "/";
     }
   }, []);
