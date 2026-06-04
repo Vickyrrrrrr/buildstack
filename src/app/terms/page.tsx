@@ -133,6 +133,17 @@ export default function TermsPage() {
                       and are non-refundable except as provided in our Refund Policy.
                     </p>
                     <p>
+                      <strong>Subscription &amp; Cancellation:</strong> If you purchase a subscription plan,
+                      you will be billed automatically in advance on a recurring cycle (monthly or annually)
+                      corresponding to your plan. You may cancel your subscription at any time through the
+                      Lemon Squeezy customer portal (linked in your receipt email) or by contacting us at{" "}
+                      <a href="mailto:contactme@buildstack.live" className="text-accent-primary hover:underline">
+                        contactme@buildstack.live
+                      </a>.
+                      Upon cancellation, your subscription will remain active until the end of your current
+                      paid billing period, at which point it will expire and your license key will be deactivated.
+                    </p>
+                    <p>
                       Lemon Squeezy is the merchant of record for all transactions. Your payment
                       relationship, including chargebacks and disputes, is governed by
                       Lemon Squeezy&apos;s terms and the policies of your payment method.
