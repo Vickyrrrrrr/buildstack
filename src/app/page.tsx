@@ -7,14 +7,23 @@ export const metadata: Metadata = {
   description: "Buildstack builds agentic EDA tools for the semiconductor industry. Automate design intent into DRC-clean GDSII with AI.",
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Buildstack",
-  url: "https://buildstack.live",
-  logo: "https://buildstack.live/icon.png",
-  description: "Buildstack builds agentic EDA tools for the semiconductor industry.",
-};
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Buildstack EDA Lab",
+    url: "https://buildstack.live",
+    logo: "https://buildstack.live/icon.png",
+    description: "Buildstack builds agentic EDA tools for the semiconductor industry.",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Buildstack EDA Lab",
+    alternateName: "Buildstack",
+    url: "https://buildstack.live",
+  }
+];
 
 import Hero from "@/components/Hero";
 import StatsBar from "@/components/StatsBar";

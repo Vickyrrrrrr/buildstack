@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, MonitorDown, RefreshCw } from "lucide-react";
 import Navigation from "@/components/Navigation";
@@ -8,11 +11,19 @@ import { OpenDesktopButton } from "./OpenDesktopButton";
 
 const nextSteps = [
   "Choose Open AgentIC Desktop and approve the browser handoff when prompted.",
-  "Sign in with the same account used at checkout.",
+  "IMPORTANT: Sign in to the desktop app using the exact same Google email you just verified before purchasing on Lemon Squeezy.",
   "Configure your BYOK model provider, then start your local workspace run.",
 ] as const;
 
 export default function AgentICSuccessPage() {
+  useEffect(() => {
+    // Lemon Squeezy automatically appends ?orderId=XYZ to the return URL.
+    // If it's missing, the user didn't just complete a checkout.
+    if (!window.location.search.includes("orderId=")) {
+      window.location.href = "/";
+    }
+  }, []);
+
   return (
     <div className="page-shell">
       <Navigation />
@@ -28,11 +39,9 @@ export default function AgentICSuccessPage() {
                   </Badge>
                   <CheckCircle2 className="mx-auto h-12 w-12 text-accent-primary" />
                   <div className="space-y-4">
-                    <h1 className="section-title">Your AgentIC license is being activated.</h1>
+                    <h1 className="section-title">Your purchase is complete.</h1>
                     <p className="body-copy text-lg">
-                      Lemon Squeezy sends a purchase webhook to Buildstack automatically.
-                      Open the desktop app from here, then AgentIC will recheck your signed
-                      entitlement without sending chip source, prompts, logs, or artifacts to cloud.
+                      Your AgentIC license has been saved successfully. If you already have the desktop app installed, click the button below to open it. Otherwise, you can download it to get started.
                     </p>
                   </div>
                   <OpenDesktopButton />

@@ -25,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "Buildstack EDA Lab",
       description: "Intent → Silicon. Autonomous.",
       url: "https://buildstack.live",
-      siteName: "Buildstack",
+      siteName: "Buildstack EDA Lab",
       type: "website",
       images: [
         {
