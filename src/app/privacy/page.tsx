@@ -5,9 +5,9 @@ import Footer from "@/components/Footer";
 
 const sections = [
   { id: "overview", label: "1. Overview" },
-  { id: "cli", label: "2. CLI Tool Data" },
-  { id: "web", label: "3. Web Application Data" },
-  { id: "usage", label: "4. How We Use Data" },
+  { id: "cli", label: "2. CLI Tool — What It Does Not Collect" },
+  { id: "web", label: "3. Web Application — What We Collect" },
+  { id: "usage", label: "4. How We Use Your Data" },
   { id: "third-party", label: "5. Third-Party Services" },
   { id: "storage", label: "6. Data Storage & Security" },
   { id: "cookies", label: "7. Cookies" },
@@ -59,13 +59,13 @@ export default function PrivacyPage() {
                     <h2 className="text-2xl font-semibold text-text-primary">1. Overview</h2>
                     <p>
                       Buildstack Lab (&ldquo;Buildstack,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;)
-                      develops AgentIC, an autonomous silicon compiler available as both a
-                      command-line tool and a web application. This Privacy Policy describes
-                      what information we collect, how we use it, and what rights you have
+                      develops AgentIC, an autonomous silicon compiler available as a desktop
+                      application, command-line interface (CLI) tool, and web application. This Privacy
+                      Policy describes what information we collect, how we use it, and what rights you have
                       regarding your data.
                     </p>
                     <p>
-                      Our approach is simple: <strong>the CLI tool collects nothing.</strong> The
+                      Our approach is simple: <strong>the desktop and CLI tools collect nothing.</strong> The
                       web application collects only what is necessary to provide authentication
                       and build history.
                     </p>

@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 
 const sections = [
-  { id: "acceptance", label: "1. Acceptance" },
+  { id: "acceptance", label: "1. Acceptance of Terms" },
   { id: "license", label: "2. License Grant" },
   { id: "ownership", label: "3. Intellectual Property" },
   { id: "restrictions", label: "4. Restrictions" },
@@ -14,7 +14,7 @@ const sections = [
   { id: "warranty", label: "7. Warranty Disclaimer" },
   { id: "liability", label: "8. Limitation of Liability" },
   { id: "termination", label: "9. Termination" },
-  { id: "governing", label: "10. Governing Law" },
+  { id: "governing", label: "10. Governing Law & Disputes" },
 ];
 
 export default function TermsPage() {
@@ -66,9 +66,9 @@ export default function TermsPage() {
                       (&ldquo;Terms&rdquo;), you may not access or use the Software.
                     </p>
                     <p>
-                      These Terms govern your use of the AgentIC command-line tool and any related
-                      documentation, updates, or support services provided by Buildstack. Your use of
-                      the Software is also subject to our Privacy Policy and Refund Policy.
+                      These Terms govern your use of the AgentIC desktop application, command-line interface
+                      (CLI) tool, and any related documentation, updates, or support services provided by
+                      Buildstack. Your use of the Software is also subject to our Privacy Policy and Refund Policy.
                     </p>
                   </section>
 
@@ -159,10 +159,10 @@ export default function TermsPage() {
                   <section id="warranty" className="space-y-4">
                     <h2 className="text-2xl font-semibold text-text-primary">7. Warranty Disclaimer</h2>
                     <p>
-                      THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo; AND &ldquo;AS AVAILABLE,&rdquo;
-                      WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
-                      THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
-                      TITLE, AND NON-INFRINGEMENT.
+                      The Software is provided &ldquo;as is&rdquo; and &ldquo;as available,&rdquo;
+                      without warranty of any kind, express or implied, including but not limited to
+                      the implied warranties of merchantability, fitness for a particular purpose,
+                      title, and non-infringement.
                     </p>
                     <p>
                       Buildstack does not warrant that the Software will be error-free, uninterrupted,
@@ -179,19 +179,19 @@ export default function TermsPage() {
                   <section id="liability" className="space-y-4">
                     <h2 className="text-2xl font-semibold text-text-primary">8. Limitation of Liability</h2>
                     <p>
-                      TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL
-                      BUILDSTACK LAB, ITS AFFILIATES, DIRECTORS, EMPLOYEES, OR LICENSORS BE LIABLE
-                      FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES,
-                      INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, USE, GOODWILL, OR BUSINESS
-                      INTERRUPTION, ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF THE SOFTWARE,
-                      WHETHER BASED ON WARRANTY, CONTRACT, TORT (INCLUDING NEGLIGENCE), OR ANY
-                      OTHER LEGAL THEORY, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+                      To the maximum extent permitted by applicable law, in no event shall
+                      Buildstack Lab, its affiliates, directors, employees, or licensors be liable
+                      for any indirect, incidental, special, consequential, or punitive damages,
+                      including but not limited to loss of profits, data, use, goodwill, or business
+                      interruption, arising out of or in connection with your use of the Software,
+                      whether based on warranty, contract, tort (including negligence), or any
+                      other legal theory, even if advised of the possibility of such damages.
                     </p>
                     <p>
-                      BUILDSTACK&apos;S TOTAL AGGREGATE LIABILITY FOR ANY CLAIMS ARISING OUT OF OR
-                      RELATING TO THESE TERMS OR THE SOFTWARE SHALL NOT EXCEED THE AMOUNT YOU PAID
-                      FOR THE SOFTWARE IN THE TWELVE (12) MONTHS PRECEDING THE CLAIM. THE FOREGOING
-                      LIMITATIONS SHALL APPLY EVEN IF THE REMEDY FAILS OF ITS ESSENTIAL PURPOSE.
+                      Buildstack&apos;s total aggregate liability for any claims arising out of or
+                      relating to these Terms or the Software shall not exceed the amount you paid
+                      for the Software in the twelve (12) months preceding the claim. The foregoing
+                      limitations shall apply even if the remedy fails of its essential purpose.
                     </p>
                   </section>
 
