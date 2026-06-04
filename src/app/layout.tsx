@@ -18,6 +18,9 @@ const jetbrainsMono = JetBrains_Mono({
 export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: new URL("https://buildstack.live"),
+    verification: {
+      google: "U_iMXuGTMqG085ffGj7yltV-naajy-P1M5vu86RyCvA",
+    },
     title: "Buildstack — Semiconductor EDA Automation Lab",
     description:
       "Buildstack builds agentic EDA tools for the semiconductor industry. AgentIC converts design intent into DRC-clean GDSII with autonomous error repair.",
