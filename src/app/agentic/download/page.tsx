@@ -6,24 +6,12 @@ export const metadata: Metadata = {
   title: "Download AgentIC Desktop | Buildstack",
   description: "Download the AgentIC Desktop app for Windows, macOS, or Linux. The local-first autonomous chip design agent.",
 };
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "AgentIC Desktop",
-  operatingSystem: "Windows, macOS, Linux",
-  applicationCategory: "DeveloperApplication",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD"
-  }
-};
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { DownloadButtons } from "@/components/DownloadButtons";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { fetchLatestRelease, AGENTIC_VERSION } from "@/lib/downloads";
 
 const steps = [
   {
@@ -43,7 +31,26 @@ const steps = [
   },
 ] as const;
 
-export default function AgentICDownloadPage() {
+export default async function AgentICDownloadPage() {
+  const releaseData = await fetchLatestRelease();
+  const currentVersion = releaseData?.version ?? AGENTIC_VERSION;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "AgentIC Desktop",
+    "operatingSystem": "Windows, macOS, Linux",
+    "applicationCategory": "DeveloperApplication",
+    "softwareVersion": currentVersion,
+    "downloadUrl": "https://buildstack.ai/agentic/download",
+    "description": "Download the AgentIC Desktop app for Windows, macOS, or Linux. The local-first autonomous chip design agent.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  };
+
   return (
     <div className="page-shell">
       <script
@@ -60,7 +67,7 @@ export default function AgentICDownloadPage() {
                 Desktop Download
               </Badge>
               <div className="space-y-4">
-                <h1 className="section-title">Install AgentIC where your EDA tools already live.</h1>
+                <h1 className="section-title">Download AgentIC Desktop for local-first EDA automation.</h1>
                 <p className="body-copy text-lg">
                   The desktop app runs the agent loop, file operations, and EDA commands
                   locally. After installation, sign in, configure your model provider,
@@ -75,7 +82,7 @@ export default function AgentICDownloadPage() {
                   </Link>
                 </Button>
               </div>
-              <DownloadButtons />
+              <DownloadButtons initialData={releaseData || undefined} />
             </div>
 
             <div className="elevated-panel overflow-hidden">

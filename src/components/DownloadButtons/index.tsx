@@ -20,6 +20,9 @@ import {
   AGENTIC_REPO_URL,
   AGENTIC_VERSION,
   PlatformKey,
+  PlatformDownloads,
+  ReleaseData,
+  DownloadAsset,
   downloadUrl,
 } from "@/lib/downloads";
 
@@ -59,12 +62,20 @@ function PrimaryIcon({ platform }: { platform: PlatformKey }) {
   return <Terminal className="h-4 w-4" />;
 }
 
-function pickPrimaryAsset(platform: PlatformKey) {
-  const assets = AGENTIC_DOWNLOADS[platform].assets;
+function pickPrimaryAsset(
+  platform: PlatformKey,
+  downloads: Record<PlatformKey, PlatformDownloads>
+) {
+  const assets = downloads[platform].assets;
   return assets.find((a) => a.primary) ?? assets[0];
 }
 
-export function DownloadButtons() {
+export function DownloadButtons({ initialData }: { initialData?: ReleaseData }) {
+  const version = initialData?.version ?? AGENTIC_VERSION;
+  const downloads = initialData?.downloads ?? AGENTIC_DOWNLOADS;
+  const releaseNotesUrl = initialData?.releaseNotesUrl ?? AGENTIC_RELEASE_NOTES_URL;
+  const allDownloadsUrl = initialData?.allDownloadsUrl ?? AGENTIC_ALL_DOWNLOADS_URL;
+
   const [detected, setDetected] = useState<{ platform: Platform; arch: Arch }>({
     platform: "unknown",
     arch: "unknown",
@@ -83,9 +94,9 @@ export function DownloadButtons() {
 
   const primaryPlatform: PlatformKey | null =
     detected.platform !== "unknown" ? detected.platform : null;
-  const primaryAsset = primaryPlatform ? pickPrimaryAsset(primaryPlatform) : null;
+  const primaryAsset = primaryPlatform ? pickPrimaryAsset(primaryPlatform, downloads) : null;
   const primaryPlatformName = primaryPlatform
-    ? AGENTIC_DOWNLOADS[primaryPlatform].name
+    ? downloads[primaryPlatform].name
     : null;
 
   return (
@@ -93,21 +104,21 @@ export function DownloadButtons() {
       <div className="space-y-4">
         {primaryAsset && primaryPlatformName && primaryPlatform ? (
           <Button asChild size="lg" className="w-full sm:w-auto">
-            <a href={downloadUrl(primaryAsset.file)}>
+            <a id="download-link-primary" href={primaryAsset.url || downloadUrl(primaryAsset.file)}>
               <PrimaryIcon platform={primaryPlatform} />
               Download for {primaryPlatformName} ({primaryAsset.label})
             </a>
           </Button>
         ) : (
           <Button asChild size="lg" className="w-full sm:w-auto">
-            <a href={AGENTIC_ALL_DOWNLOADS_URL} target="_blank" rel="noreferrer">
+            <a id="download-link-primary-fallback" href={allDownloadsUrl} target="_blank" rel="noreferrer">
               <Download className="h-4 w-4" />
               Download AgentIC Desktop
             </a>
           </Button>
         )}
         <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-text-muted">
-          {primaryAsset ? `${primaryAsset.size} • ${AGENTIC_VERSION}` : AGENTIC_VERSION}
+          {primaryAsset ? `${primaryAsset.size} • ${version}` : version}
           {mounted && primaryPlatformName ? ` • Detected ${primaryPlatformName}` : ""}
         </p>
       </div>
@@ -119,7 +130,7 @@ export function DownloadButtons() {
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {AGENTIC_PLATFORMS.map((platform) => {
-            const data = AGENTIC_DOWNLOADS[platform];
+            const data = downloads[platform];
             const isDetected = mounted && detected.platform === platform;
             return (
               <div
@@ -147,10 +158,12 @@ export function DownloadButtons() {
                 <div className="space-y-2">
                   {data.assets.map((asset) => {
                     const isPrimary = asset.primary;
+                    const fileExt = asset.file.split(".").pop() || "unknown";
                     return (
                       <a
+                        id={`download-link-${platform}-${asset.arch}-${fileExt}`}
                         key={asset.file}
-                        href={downloadUrl(asset.file)}
+                        href={asset.url || downloadUrl(asset.file)}
                         className="group flex items-center justify-between gap-3 rounded-xl border border-border bg-bg-surface/60 px-4 py-3 transition hover:border-accent-primary hover:bg-accent-primary/5"
                       >
                         <div className="space-y-1">
@@ -161,7 +174,7 @@ export function DownloadButtons() {
                             ) : null}
                           </p>
                           <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted">
-                            {asset.size} • .{asset.file.split(".").pop()}
+                            {asset.size} • .{fileExt}
                           </p>
                         </div>
                         <ChevronRight className="h-4 w-4 text-text-muted transition group-hover:text-accent-primary" />
@@ -177,7 +190,8 @@ export function DownloadButtons() {
 
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[11px] uppercase tracking-[0.15em] text-text-muted">
         <a
-          href={AGENTIC_RELEASE_NOTES_URL}
+          id="link-release-notes"
+          href={releaseNotesUrl}
           target="_blank"
           rel="noreferrer"
           className="transition hover:text-accent-primary"
@@ -186,7 +200,8 @@ export function DownloadButtons() {
         </a>
         <span className="text-text-muted/40">·</span>
         <a
-          href={AGENTIC_ALL_DOWNLOADS_URL}
+          id="link-all-downloads"
+          href={allDownloadsUrl}
           target="_blank"
           rel="noreferrer"
           className="transition hover:text-accent-primary"
@@ -195,6 +210,7 @@ export function DownloadButtons() {
         </a>
         <span className="text-text-muted/40">·</span>
         <a
+          id="link-source-code"
           href={AGENTIC_REPO_URL}
           target="_blank"
           rel="noreferrer"
