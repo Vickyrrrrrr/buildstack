@@ -21,11 +21,11 @@ export async function generateMetadata(): Promise<Metadata> {
     verification: {
       google: "U_iMXuGTMqG085ffGj7yltV-naajy-P1M5vu86RyCvA",
     },
-    title: "Buildstack — Semiconductor EDA Automation Lab",
+    title: "Buildstack EDA Lab — Semiconductor EDA Automation",
     description:
-      "Buildstack builds agentic EDA tools for the semiconductor industry. AgentIC converts design intent into DRC-clean GDSII with autonomous error repair.",
+      "Buildstack EDA Lab builds agentic EDA tools for the semiconductor industry. AgentIC converts design intent into DRC-clean GDSII with autonomous error repair.",
     openGraph: {
-      title: "Buildstack EDA Lab",
+      title: "Buildstack EDA Lab — Semiconductor EDA Automation",
       description: "Intent → Silicon. Autonomous.",
       url: "https://buildstack.live",
       siteName: "Buildstack EDA Lab",
@@ -35,14 +35,14 @@ export async function generateMetadata(): Promise<Metadata> {
           url: "/og-image.png",
           width: 1200,
           height: 630,
-          alt: "Buildstack — Semiconductor EDA Automation Lab",
+          alt: "Buildstack EDA Lab — Semiconductor EDA Automation",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Buildstack — Semiconductor EDA Automation Lab",
-      description: "Buildstack builds agentic EDA tools for the semiconductor industry. AgentIC converts design intent into DRC-clean GDSII with autonomous error repair.",
+      title: "Buildstack EDA Lab — Semiconductor EDA Automation",
+      description: "Buildstack EDA Lab builds agentic EDA tools for the semiconductor industry. AgentIC converts design intent into DRC-clean GDSII with autonomous error repair.",
       images: ["/og-image.png"],
     },
     alternates: {

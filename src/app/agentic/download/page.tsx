@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, KeyRound, MonitorDown, RefreshCw } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Download AgentIC Desktop | Buildstack",
+  title: "Download AgentIC Desktop | Buildstack EDA Lab",
   description: "Download the AgentIC Desktop app for Windows, macOS, or Linux. The local-first autonomous chip design agent.",
 };
 import Navigation from "@/components/Navigation";

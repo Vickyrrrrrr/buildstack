@@ -3,8 +3,8 @@ import LenisProvider from "@/components/LenisProvider";
 import Navigation from "@/components/Navigation";
 
 export const metadata: Metadata = {
-  title: "Buildstack — Autonomous Semiconductor EDA",
-  description: "Buildstack builds agentic EDA tools for the semiconductor industry. Automate design intent into DRC-clean GDSII with AI.",
+  title: "Buildstack EDA Lab — Autonomous Semiconductor EDA",
+  description: "Buildstack EDA Lab builds agentic EDA tools for the semiconductor industry. Automate design intent into DRC-clean GDSII with AI.",
 };
 
 const jsonLd = [
@@ -14,13 +14,13 @@ const jsonLd = [
     name: "Buildstack EDA Lab",
     url: "https://buildstack.live",
     logo: "https://buildstack.live/icon.png",
-    description: "Buildstack builds agentic EDA tools for the semiconductor industry.",
+    description: "Buildstack EDA Lab builds agentic EDA tools for the semiconductor industry.",
   },
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Buildstack EDA Lab",
-    alternateName: "Buildstack",
+    alternateName: ["Buildstack Lab", "Buildstack"],
     url: "https://buildstack.live",
   }
 ];
