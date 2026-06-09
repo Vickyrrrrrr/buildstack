@@ -73,7 +73,7 @@ export default function RootLayout({
       className={`${syne.variable} ${jetbrainsMono.variable}`}
     >
       <body className="bg-bg-base font-sans text-text-primary antialiased">
-        <SplashScreen />
+        {/* <SplashScreen /> */}
         {children}
       </body>
     </html>
