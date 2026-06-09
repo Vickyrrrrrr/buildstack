@@ -72,7 +72,7 @@ export function Hero() {
         <div className="trace-pattern absolute inset-0 z-10 opacity-25 [mask-image:radial-gradient(circle_at_center,black_40%,transparent_88%)] pointer-events-none" />
       </div>
 
-      <div className="container relative z-10 flex flex-col pt-10">
+      <div className="container relative z-10 flex flex-col pt-10 pb-16">
         <div className="grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-2">
           {/* Left Side: 3D Scene */}
           <div className="relative h-[450px] w-full lg:h-[650px]">
@@ -130,18 +130,19 @@ export function Hero() {
           </div>
         </Reveal>
         </div>
+      </div>
 
-        <div className="mt-16 w-full overflow-hidden rounded-full border border-border bg-bg-surface/65 px-0 py-3">
-          <div
-            ref={tickerRef}
-            className="flex w-[200%] shrink-0 font-mono text-[11px] uppercase tracking-[0.15em] text-text-muted"
-          >
-            {[...heroTickerItems, ...heroTickerItems].map((item, index) => (
-              <span key={`${item}-${index}`} className="mx-4 whitespace-nowrap">
-                {item}
-              </span>
-            ))}
-          </div>
+      {/* Full-width ticker — sits outside the container so it spans edge to edge */}
+      <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden border-y border-border bg-bg-surface/65 py-3">
+        <div
+          ref={tickerRef}
+          className="flex w-[200%] shrink-0 font-mono text-[11px] sm:text-xs uppercase tracking-[0.15em] text-text-muted"
+        >
+          {[...heroTickerItems, ...heroTickerItems].map((item, index) => (
+            <span key={`${item}-${index}`} className="mx-4 sm:mx-6 whitespace-nowrap">
+              {item}
+            </span>
+          ))}
         </div>
       </div>
     </section>
