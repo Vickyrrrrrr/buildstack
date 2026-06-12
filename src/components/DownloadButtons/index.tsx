@@ -22,7 +22,6 @@ import {
   PlatformKey,
   PlatformDownloads,
   ReleaseData,
-  DownloadAsset,
   downloadUrl,
 } from "@/lib/downloads";
 

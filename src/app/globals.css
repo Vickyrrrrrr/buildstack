@@ -50,7 +50,6 @@ body {
     linear-gradient(180deg, rgba(255, 250, 245, 0.65), rgba(255, 255, 255, 0)),
     var(--bg-base);
   color: var(--text-primary);
-  font-feature-settings: "ss01" 1, "ss03" 1, "cv11" 1;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

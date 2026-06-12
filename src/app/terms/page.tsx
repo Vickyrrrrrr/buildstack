@@ -2,7 +2,6 @@
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import Link from "next/link";
 
 const sections = [
   { id: "acceptance", label: "1. Acceptance of Terms" },

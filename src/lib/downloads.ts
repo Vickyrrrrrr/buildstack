@@ -174,7 +174,7 @@ export async function fetchLatestRelease(): Promise<ReleaseData | null> {
     }
     
     // Sort assets to ensure correct ordering if returned randomly
-    macosAssets.sort((a, b) => (a.arch === "arm64" ? -1 : 1));
+    macosAssets.sort((a, b) => (a.arch === "arm64" ? -1 : b.arch === "arm64" ? 1 : 0));
     linuxAssets.sort((a, b) => {
       if (a.primary) return -1;
       if (b.primary) return 1;
