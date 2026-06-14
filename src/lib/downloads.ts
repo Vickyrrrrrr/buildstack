@@ -1,4 +1,4 @@
-export const AGENTIC_VERSION = "v1.0.5";
+export const AGENTIC_VERSION = "v1.0.13";
 export const AGENTIC_RELEASE_BASE = `https://github.com/Vickyrrrrrr/buildstack/releases/download/${AGENTIC_VERSION}`;
 
 export const AGENTIC_RELEASE_NOTES_URL = `https://github.com/Vickyrrrrrr/buildstack/releases/tag/${AGENTIC_VERSION}`;
@@ -46,8 +46,8 @@ export const AGENTIC_DOWNLOADS: Record<PlatformKey, PlatformDownloads> = {
     assets: [
       {
         label: "Installer (x64)",
-        file: "AgentIC-Setup-1.0.5.exe",
-        size: "144 MB",
+        file: "agentic-desktop-win-x64.exe",
+        size: "155 MB",
         arch: "x64",
         primary: true,
       },
@@ -58,15 +58,15 @@ export const AGENTIC_DOWNLOADS: Record<PlatformKey, PlatformDownloads> = {
     assets: [
       {
         label: "Apple Silicon",
-        file: "AgentIC-1.0.5-arm64.dmg",
-        size: "158 MB",
+        file: "agentic-desktop-mac-arm64.dmg",
+        size: "150 MB",
         arch: "arm64",
         primary: true,
       },
       {
         label: "Intel",
-        file: "AgentIC-1.0.5-x64.dmg",
-        size: "161 MB",
+        file: "agentic-desktop-mac-x64.dmg",
+        size: "155 MB",
         arch: "x64",
       },
     ],
@@ -76,21 +76,21 @@ export const AGENTIC_DOWNLOADS: Record<PlatformKey, PlatformDownloads> = {
     assets: [
       {
         label: "AppImage (x86_64)",
-        file: "AgentIC-1.0.5-x86_64.AppImage",
-        size: "164 MB",
+        file: "agentic-desktop-linux-x86_64.AppImage",
+        size: "171 MB",
         arch: "x64",
         primary: true,
       },
       {
         label: "AppImage (arm64)",
-        file: "AgentIC-1.0.5-arm64.AppImage",
-        size: "159 MB",
+        file: "agentic-desktop-linux-arm64.AppImage",
+        size: "165 MB",
         arch: "arm64",
       },
       {
         label: ".deb (Debian / Ubuntu)",
-        file: "agentic-desktop_1.0.5_amd64.deb",
-        size: "200 MB",
+        file: "agentic-desktop-linux-x64.deb",
+        size: "160 MB",
         arch: "x64",
       },
     ],

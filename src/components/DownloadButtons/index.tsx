@@ -23,6 +23,7 @@ import {
   PlatformDownloads,
   ReleaseData,
   downloadUrl,
+  fetchLatestRelease,
 } from "@/lib/downloads";
 
 type Platform = PlatformKey | "unknown";
@@ -70,10 +71,12 @@ function pickPrimaryAsset(
 }
 
 export function DownloadButtons({ initialData }: { initialData?: ReleaseData }) {
-  const version = initialData?.version ?? AGENTIC_VERSION;
-  const downloads = initialData?.downloads ?? AGENTIC_DOWNLOADS;
-  const releaseNotesUrl = initialData?.releaseNotesUrl ?? AGENTIC_RELEASE_NOTES_URL;
-  const allDownloadsUrl = initialData?.allDownloadsUrl ?? AGENTIC_ALL_DOWNLOADS_URL;
+  const [releaseData, setReleaseData] = useState<ReleaseData | null>(initialData || null);
+
+  const version = releaseData?.version ?? AGENTIC_VERSION;
+  const downloads = releaseData?.downloads ?? AGENTIC_DOWNLOADS;
+  const releaseNotesUrl = releaseData?.releaseNotesUrl ?? AGENTIC_RELEASE_NOTES_URL;
+  const allDownloadsUrl = releaseData?.allDownloadsUrl ?? AGENTIC_ALL_DOWNLOADS_URL;
 
   const [detected, setDetected] = useState<{ platform: Platform; arch: Arch }>({
     platform: "unknown",
@@ -89,6 +92,11 @@ export function DownloadButtons({ initialData }: { initialData?: ReleaseData }) 
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setDetected(detectPlatform());
     setMounted(true);
+
+    // Fetch latest release details on client side dynamically to bypass Vercel server rate limits
+    fetchLatestRelease().then((data) => {
+      if (data) setReleaseData(data);
+    });
   }, []);
 
   const primaryPlatform: PlatformKey | null =
