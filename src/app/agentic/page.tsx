@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import AgentICClientPage from "./client";
 
 export const metadata: Metadata = {
-  title: "AgentIC — AI-Powered EDA Tool | Buildstack EDA Lab",
-  description: "AgentIC is a paid desktop app for autonomous chip design. It connects your intent to GDSII using your local EDA tools, PDKs, and model provider.",
+  title: "AgentIC — Autonomous VLSI Design Agent | Buildstack EDA Lab",
+  description: "AgentIC is a local-first desktop workspace for autonomous chip design. Connect your local EDA tools, PDKs, and models to run closed-loop Verilog repair, STA timing, and DRC checks.",
 };
 
 export default function AgentICPage() {

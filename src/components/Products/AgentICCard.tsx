@@ -10,11 +10,12 @@ import { Button } from "@/components/ui/button";
 import { agenticTerminalLines } from "@/lib/buildstack-content";
 
 const featurePills = [
-  "Local-first desktop",
-  "BYOK models",
-  "EDA tool discovery",
-  "RTL and verification",
-  "IP stays local",
+  "Local-first Desktop",
+  "BYOK Models",
+  "Commercial & OSS EDA",
+  "RTL Linter & Repair",
+  "STA Timing Parsers",
+  "DRC/LVS Auto-Fix",
 ] as const;
 
 export function AgentICCard() {
@@ -49,14 +50,8 @@ export function AgentICCard() {
             <h3 className="text-[clamp(2rem,4vw,3.5rem)] font-semibold tracking-[-0.04em]">
               AgentIC
             </h3>
-            <p className="text-xl text-text-primary">
-              Codex for Silicon · Desktop VLSI agent
-            </p>
             <p className="body-copy max-w-2xl">
-              Describe a CPU, accelerator, peripheral, or verification task in plain
-              language. AgentIC works inside your local workspace, uses your available
-              EDA tools and PDKs, then iterates through RTL, tests, synthesis, and
-              artifacts without sending your source code to Buildstack.
+              An autonomous local co-pilot for chip design. AgentIC discovers your tools and PDKs—supporting both OSS and commercial stacks (Synopsys, Cadence, Siemens)—to run closed-loop repair on timing and DRC/LVS violations.
             </p>
           </div>
 

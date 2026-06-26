@@ -13,31 +13,31 @@ import { Button } from "@/components/ui/button";
 const trustSignals = [
   {
     icon: LockKeyhole,
-    title: "IP stays local",
-    copy: "RTL, PDK files, prompts, logs, and artifacts remain on the user's machine.",
+    title: "Zero-Trust Local Workspaces",
+    copy: "RTL, PDK files, synthesis scripts, logs, and evidence graphs remain strictly on your machine. Your source code is never uploaded to the cloud.",
   },
   {
     icon: KeyRound,
-    title: "BYOK model path",
-    copy: "Teams connect an OpenAI-compatible provider with their own key and model.",
+    title: "Enterprise BYOK Path",
+    copy: "Securely connect your own model provider keys (OpenAI, Anthropic, Gemini, or local models). You pay only for raw tokens.",
   },
   {
     icon: Cpu,
-    title: "Uses your EDA stack",
-    copy: "AgentIC discovers native tools, Docker flows, WSL, PDK paths, and proprietary adapters.",
+    title: "Broad EDA & PDK Support",
+    copy: "Works with your existing stack. AgentIC auto-discovers and drives both open-source tools (Yosys, Verilator, OpenROAD) and industry-standard commercial tools (Synopsys, Cadence, Siemens) and PDKs.",
   },
   {
     icon: TerminalSquare,
-    title: "OpenCode-style loop",
-    copy: "The local backend reads, writes, edits, searches, and runs approved workspace commands.",
+    title: "Durable State Checkpoints",
+    copy: "Maintains filesystem snapshots and state databases. The agent can back-track to previous stages if synthesis or routing fails.",
   },
 ] as const;
 
 const workflow = [
-  "Describe the block, target flow, constraints, and success criteria.",
-  "AgentIC inspects the workspace and detects available EDA capabilities.",
-  "It creates RTL, tests, scripts, reports, and artifacts under AgentIC-workspace.",
-  "If tools are missing, it asks whether to install, configure, or skip that step.",
+  "RTL Quality & Linter Loops",
+  "Static Timing Analysis (STA) Parsing",
+  "Physical DRC & LVS Verification",
+  "Human-in-the-Loop Verification",
 ] as const;
 
 export default function AgentICClientPage() {
@@ -57,13 +57,13 @@ export default function AgentICClientPage() {
                   AgentIC Desktop
                 </Badge>
                 <div className="space-y-4">
-                  <p className="eyebrow">Local-first VLSI design agent</p>
-                  <h1 className="section-title">Codex for Silicon, running on your workstation.</h1>
+                  <p className="eyebrow">Closed-Loop Semiconductor Automation</p>
+                  <h1 className="section-title">RTL to Signoff. Driven by AI, Run Locally.</h1>
                   <p className="body-copy text-lg">
-                    AgentIC is a paid desktop app for autonomous chip design. It uses
-                    your local EDA tools, your PDKs, and your own model provider key.
-                    Buildstack cloud handles only account login, license verification,
-                    and count-only usage reporting.
+                    An autonomous, local-first desktop workspace built for chip design. 
+                    AgentIC auto-discovers and drives your local EDA tools and PDKs—supporting both open-source 
+                    and commercial stacks (Synopsys, Cadence, Siemens)—running closed-loop verification 
+                    and checkpointed repair loops until your design is signoff-clean.
                   </p>
                 </div>
                 <div className="flex flex-col gap-4 sm:flex-row">
@@ -94,7 +94,7 @@ export default function AgentICClientPage() {
             {trustSignals.map((item) => (
               <div key={item.title} className="surface-panel p-6">
                 <item.icon className="mb-5 h-6 w-6 text-accent-primary" />
-                <h2 className="mb-3 text-xl font-semibold tracking-[-0.02em]">{item.title}</h2>
+                <h3 className="mb-3 text-xl font-semibold tracking-[-0.02em]">{item.title}</h3>
                 <p className="body-copy text-sm">{item.copy}</p>
               </div>
             ))}
@@ -123,12 +123,12 @@ export default function AgentICClientPage() {
                     <p className="font-semibold text-text-primary">{step}</p>
                     <p className="body-copy text-sm">
                       {index === 0
-                        ? "The original user intent remains part of the run context so later fixes stay aligned."
+                        ? "Runs local compilers/linters (Verilator, Questa, Yosys, Design Compiler), identifies syntax or synthesis issues, and surgically patches source code."
                         : index === 1
-                          ? "No hardcoded EDA path is required; discovery and adapters decide what is usable."
+                          ? "Parses timing logs (OpenSTA, PrimeTime, Tempus), calculates setup/hold slack, and optimizes constraints without bloating context limits."
                           : index === 2
-                            ? "Generated code and reports are workspace-scoped and never posted to Buildstack."
-                            : "Missing capability decisions stay conversational and require user approval."}
+                            ? "Reads physical verification reports (DRC/LVS from Calibre, OpenROAD, Magic) to pin down layout mismatches at specific coordinates."
+                            : "Proposes terminal commands and file edits through visual diffs, executing only after your explicit approval."}
                     </p>
                   </div>
                 </div>
