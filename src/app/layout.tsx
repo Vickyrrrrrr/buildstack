@@ -73,6 +73,57 @@ export default function RootLayout({
       className={`${syne.variable} ${jetbrainsMono.variable}`}
     >
       <body className="bg-bg-base font-sans text-text-primary antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              name: "AgentIC",
+              applicationCategory: "DeveloperApplication",
+              operatingSystem: "Windows, Linux, macOS",
+              description:
+                "AgentIC is an AI-powered VLSI design agent that automates RTL-to-GDSII chip design flows using local EDA tools and PDKs. It bridges large language models with local Electronic Design Automation tools for autonomous silicon design.",
+              url: "https://buildstack.live/agentic",
+              downloadUrl: "https://buildstack.live/agentic/download",
+              publisher: {
+                "@type": "Organization",
+                name: "Buildstack EDA Lab",
+                url: "https://buildstack.live",
+              },
+              featureList: [
+                "RTL writing, linting, and auto-repair (Verilog/SystemVerilog)",
+                "Synthesis (Yosys, Design Compiler, Genus)",
+                "Simulation (Verilator, iverilog, VCS, Xcelium)",
+                "Static Timing Analysis (OpenSTA, PrimeTime, Tempus)",
+                "Physical Design (OpenROAD, Innovus, ICC2)",
+                "Physical Verification / DRC / LVS (Magic, KLayout, Netgen, Calibre)",
+                "Analog / Mixed-Signal SPICE flow (ngspice, xschem, Spectre, Eldo)",
+                "Interactive Yosys schematics, waveform viewer, PDK catalog",
+                "Auto-checkpoint engine with structured EDA log parsing",
+                "Design-state ledger and capability graph for grounding",
+              ],
+              offers: [
+                {
+                  "@type": "Offer",
+                  name: "Starter",
+                  priceCurrency: "USD",
+                  url: "https://buildstack.live/agentic/pricing",
+                },
+                {
+                  "@type": "Offer",
+                  name: "Pro",
+                  priceCurrency: "USD",
+                  url: "https://buildstack.live/agentic/pricing",
+                },
+              ],
+              audience: {
+                "@type": "Audience",
+                audienceType: "Digital IC Design Engineers, Hardware Prototypers, EDA & CAD Developers",
+              },
+            }),
+          }}
+        />
         <SplashScreen />
         {children}
       </body>

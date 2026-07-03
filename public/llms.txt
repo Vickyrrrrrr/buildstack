@@ -1,0 +1,36 @@
+# AgentIC
+
+AgentIC is an AI-powered VLSI design agent that automates RTL-to-GDSII chip design flows using local EDA tools and Process Design Kits (PDKs). It bridges large language models with local Electronic Design Automation tools for autonomous silicon design.
+
+## What it does
+- Writes, lints, and auto-repairs Verilog/SystemVerilog RTL
+- Runs synthesis (Yosys, Design Compiler, Genus), simulation (Verilator, iverilog, VCS, Xcelium), and STA (OpenSTA, PrimeTime, Tempus)
+- Executes physical design (OpenROAD, Innovus, ICC2) and physical verification (Magic, KLayout, Netgen, Calibre)
+- Supports analog/mixed-signal SPICE flow (ngspice, xschem, Spectre, Eldo)
+- Generates interactive Yosys schematics, waveform viewers, PDK catalog, DRC/LVS dashboards
+- Auto-checkpoint engine parses EDA logs and returns structured pass/fail verdicts
+- Maintains a durable design-state ledger and capability graph for grounding
+
+## Supported PDKs
+- SkyWater Sky130 (open source, via volare/Open_PDKs)
+- GlobalFoundries GF180MCU (open source)
+- ASAP7 (open source research)
+- Nangate45 (open source reference)
+- Any proprietary PDK (TSMC, Intel, Samsung) via local installation
+
+## Platforms
+- Windows (via WSL for EDA tools), Linux, macOS
+- Desktop app (Electron-based) with local Python backend
+- Local-first: chip source code and IP never leave the user machine
+
+## Pricing
+- Starter and Pro plans via subscription
+- License verification through signed entitlements
+- Download at https://buildstack.live/agentic/download
+
+## Links
+- Website: https://buildstack.live/agentic
+- Download: https://buildstack.live/agentic/download
+- Pricing: https://buildstack.live/agentic/pricing
+- FAQ: https://buildstack.live/agentic/faq
+- GitHub releases: https://github.com/Vickyrrrrrr/buildstack/releases
