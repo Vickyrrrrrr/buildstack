@@ -13,30 +13,33 @@ export async function GET() {
           flexDirection: 'column',
           alignItems: 'flex-start',
           justifyContent: 'space-between',
-          backgroundColor: '#09090b',
+          backgroundColor: '#1b1410',
+          backgroundImage:
+            'radial-gradient(circle at 85% 15%, rgba(217, 119, 69, 0.18) 0%, transparent 45%), radial-gradient(circle at 15% 85%, rgba(199, 147, 79, 0.12) 0%, transparent 45%)',
           padding: '80px',
-          color: '#ffffff',
+          color: '#f7f3ee',
           fontFamily: 'system-ui, -apple-system, sans-serif',
           boxSizing: 'border-box',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
+          border: '1px solid rgba(217, 119, 69, 0.25)',
         }}
       >
         {/* Brand Header */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
           <div
             style={{
-              width: '10px',
-              height: '10px',
+              width: '12px',
+              height: '12px',
               borderRadius: '50%',
-              backgroundColor: '#38bdf8',
+              backgroundColor: '#d97745',
+              boxShadow: '0 0 14px rgba(217, 119, 69, 0.8)',
             }}
           />
           <span
             style={{
-              fontSize: '18px',
-              letterSpacing: '0.25em',
+              fontSize: '20px',
+              letterSpacing: '0.22em',
               fontWeight: 700,
-              color: '#94a3b8',
+              color: '#d8cab8',
               textTransform: 'uppercase',
             }}
           >
@@ -44,63 +47,115 @@ export async function GET() {
           </span>
         </div>
 
-        {/* Headline & Subtitle */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+        {/* Core Content */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          {/* AgentIC badge */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+            }}
+          >
+            <span
+              style={{
+                fontSize: '14px',
+                letterSpacing: '0.18em',
+                fontWeight: 700,
+                color: '#d97745',
+                textTransform: 'uppercase',
+                backgroundColor: 'rgba(217, 119, 69, 0.12)',
+                border: '1px solid rgba(217, 119, 69, 0.35)',
+                padding: '6px 14px',
+                borderRadius: '4px',
+              }}
+            >
+              LIVE · v1.0
+            </span>
+            <span
+              style={{
+                fontSize: '28px',
+                fontWeight: 800,
+                color: '#d97745',
+                letterSpacing: '-0.02em',
+              }}
+            >
+              AgentIC
+            </span>
+          </div>
+
+          {/* Headline */}
           <h1
             style={{
-              fontSize: '58px',
+              fontSize: '54px',
               fontWeight: 800,
               letterSpacing: '-0.025em',
               lineHeight: 1.1,
               margin: 0,
-              color: '#fafafa',
+              color: '#f7f3ee',
             }}
           >
-            Semiconductor EDA Automation
+            Autonomous VLSI Design Agent
           </h1>
+
+          {/* Subtitle */}
           <p
             style={{
-              fontSize: '25px',
-              color: '#a1a1aa',
+              fontSize: '24px',
+              color: '#b08968',
               margin: 0,
               maxWidth: '900px',
               lineHeight: 1.45,
               fontWeight: 400,
             }}
           >
-            Intent → Silicon. Autonomous error repair & DRC-clean GDSII generation.
+            Intent → Silicon. RTL to DRC-clean GDSII with autonomous error repair — entirely on your machine.
           </p>
         </div>
 
-        {/* Footer Bar */}
+        {/* Footer */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             width: '100%',
-            borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+            borderTop: '1px solid rgba(217, 119, 69, 0.2)',
             paddingTop: '28px',
           }}
         >
-          <span style={{ fontSize: '22px', color: '#38bdf8', fontWeight: 600, letterSpacing: '-0.01em' }}>
-            buildstack.live
-          </span>
           <span
             style={{
-              fontSize: '15px',
-              letterSpacing: '0.08em',
-              color: '#d4d4d8',
-              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-              padding: '8px 16px',
-              borderRadius: '6px',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              textTransform: 'uppercase',
-              fontWeight: 600,
+              fontSize: '22px',
+              color: '#d97745',
+              fontWeight: 700,
+              letterSpacing: '-0.01em',
             }}
           >
-            AgentIC Powered
+            buildstack.live
           </span>
+
+          {/* Feature pills */}
+          <div style={{ display: 'flex', gap: '10px' }}>
+            {['Sky130', 'OpenROAD', 'Local-first'].map((label) => (
+              <span
+                key={label}
+                style={{
+                  fontSize: '13px',
+                  letterSpacing: '0.06em',
+                  color: '#d8cab8',
+                  backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                  padding: '8px 14px',
+                  borderRadius: '6px',
+                  border: '1px solid rgba(217, 119, 69, 0.2)',
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                }}
+              >
+                {label}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     ),
