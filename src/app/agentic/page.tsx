@@ -36,6 +36,20 @@ export const metadata: Metadata = {
       "AI-powered chip design agent. Writes Verilog, runs synthesis, simulation, STA, PnR, and DRC/LVS autonomously. Local-first. Supports Sky130, ASAP7, gf180mcu.",
     url: "https://buildstack.live/agentic",
     type: "website",
+    images: [
+      {
+        url: "https://www.buildstack.live/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "AgentIC — Autonomous VLSI Design Agent | Buildstack EDA Lab",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AgentIC — Autonomous VLSI Design Agent | Buildstack EDA Lab",
+    description: "AI-powered chip design agent. Writes Verilog, runs synthesis, simulation, STA, PnR, and DRC/LVS autonomously. Local-first.",
+    images: ["https://www.buildstack.live/og-image.png"],
   },
 };
 
