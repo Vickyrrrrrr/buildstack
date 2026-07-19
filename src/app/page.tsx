@@ -1,19 +1,13 @@
-import type { Metadata } from "next";
 import LenisProvider from "@/components/LenisProvider";
 import Navigation from "@/components/Navigation";
-
-export const metadata: Metadata = {
-  title: "Buildstack EDA Lab — Autonomous Semiconductor EDA",
-  description: "Buildstack EDA Lab builds agentic EDA tools for the semiconductor industry. Automate design intent into DRC-clean GDSII with AI.",
-};
 
 const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Buildstack EDA Lab",
-    url: "https://buildstack.live",
-    logo: "https://buildstack.live/icon.png",
+    url: "https://www.buildstack.live",
+    logo: "https://www.buildstack.live/logo.png",
     description: "Buildstack EDA Lab builds agentic EDA tools for the semiconductor industry.",
   },
   {
@@ -21,8 +15,8 @@ const jsonLd = [
     "@type": "WebSite",
     name: "Buildstack EDA Lab",
     alternateName: ["Buildstack Lab", "Buildstack"],
-    url: "https://buildstack.live",
-  }
+    url: "https://www.buildstack.live",
+  },
 ];
 
 import Hero from "@/components/Hero";

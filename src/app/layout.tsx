@@ -27,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description:
       "Buildstack EDA Lab builds agentic EDA tools for the semiconductor industry. AgentIC converts design intent into DRC-clean GDSII with autonomous error repair.",
-    authors: [{ name: "Buildstack EDA Lab", url: "https://buildstack.live" }],
+    authors: [{ name: "Buildstack EDA Lab", url: "https://www.buildstack.live" }],
     creator: "Buildstack EDA Lab",
     publisher: "Buildstack EDA Lab",
     category: "Technology",
@@ -116,12 +116,12 @@ export default function RootLayout({
               operatingSystem: "Windows, Linux, macOS",
               description:
                 "AgentIC is an AI-powered VLSI design agent that automates RTL-to-GDSII chip design flows using local EDA tools and PDKs. It bridges large language models with local Electronic Design Automation tools for autonomous silicon design.",
-              url: "https://buildstack.live/agentic",
-              downloadUrl: "https://buildstack.live/agentic/download",
+              url: "https://www.buildstack.live/agentic",
+              downloadUrl: "https://www.buildstack.live/agentic/download",
               publisher: {
                 "@type": "Organization",
                 name: "Buildstack EDA Lab",
-                url: "https://buildstack.live",
+                url: "https://www.buildstack.live",
               },
               featureList: [
                 "RTL writing, linting, and auto-repair (Verilog/SystemVerilog)",
@@ -140,13 +140,13 @@ export default function RootLayout({
                   "@type": "Offer",
                   name: "Starter",
                   priceCurrency: "USD",
-                  url: "https://buildstack.live/agentic/pricing",
+                  url: "https://www.buildstack.live/agentic/pricing",
                 },
                 {
                   "@type": "Offer",
                   name: "Pro",
                   priceCurrency: "USD",
-                  url: "https://buildstack.live/agentic/pricing",
+                  url: "https://www.buildstack.live/agentic/pricing",
                 },
               ],
               audience: {
