@@ -17,7 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    metadataBase: new URL("https://buildstack.live"),
+    metadataBase: new URL("https://www.buildstack.live"),
     verification: {
       google: "U_iMXuGTMqG085ffGj7yltV-naajy-P1M5vu86RyCvA",
     },
@@ -53,7 +53,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: "Buildstack EDA Lab — Semiconductor EDA Automation",
       description: "Intent → Silicon. Autonomous error repair & DRC-clean GDSII generation.",
-      url: "https://buildstack.live",
+      url: "https://www.buildstack.live",
       siteName: "Buildstack EDA Lab",
       locale: "en_US",
       type: "website",
@@ -73,7 +73,7 @@ export async function generateMetadata(): Promise<Metadata> {
       images: ["/api/og"],
     },
     alternates: {
-      canonical: "https://buildstack.live",
+      canonical: "https://www.buildstack.live",
     },
     keywords: [
       "Buildstack",
