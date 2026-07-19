@@ -21,18 +21,45 @@ export async function generateMetadata(): Promise<Metadata> {
     verification: {
       google: "U_iMXuGTMqG085ffGj7yltV-naajy-P1M5vu86RyCvA",
     },
-    title: "Buildstack EDA Lab — Semiconductor EDA Automation",
+    title: {
+      default: "Buildstack EDA Lab — Semiconductor EDA Automation",
+      template: "%s | Buildstack EDA Lab",
+    },
     description:
       "Buildstack EDA Lab builds agentic EDA tools for the semiconductor industry. AgentIC converts design intent into DRC-clean GDSII with autonomous error repair.",
+    authors: [{ name: "Buildstack EDA Lab", url: "https://buildstack.live" }],
+    creator: "Buildstack EDA Lab",
+    publisher: "Buildstack EDA Lab",
+    category: "Technology",
+    icons: {
+      icon: [
+        { url: "/logo.png", type: "image/png" },
+      ],
+      apple: [
+        { url: "/logo.png", sizes: "180x180", type: "image/png" },
+      ],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
     openGraph: {
       title: "Buildstack EDA Lab — Semiconductor EDA Automation",
-      description: "Intent → Silicon. Autonomous.",
+      description: "Intent → Silicon. Autonomous error repair & DRC-clean GDSII generation.",
       url: "https://buildstack.live",
       siteName: "Buildstack EDA Lab",
+      locale: "en_US",
       type: "website",
       images: [
         {
-          url: "/og-image.png",
+          url: "/api/og",
           width: 1200,
           height: 630,
           alt: "Buildstack EDA Lab — Semiconductor EDA Automation",
@@ -43,7 +70,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "Buildstack EDA Lab — Semiconductor EDA Automation",
       description: "Buildstack EDA Lab builds agentic EDA tools for the semiconductor industry. AgentIC converts design intent into DRC-clean GDSII with autonomous error repair.",
-      images: ["/og-image.png"],
+      images: ["/api/og"],
     },
     alternates: {
       canonical: "https://buildstack.live",
@@ -57,6 +84,11 @@ export async function generateMetadata(): Promise<Metadata> {
       "GDSII",
       "VLSI pipeline",
       "semiconductor automation",
+      "RTL to GDSII",
+      "Yosys synthesis",
+      "OpenROAD PnR",
+      "ASAP7 PDK",
+      "GF180MCU PDK",
     ],
   };
 }
