@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import LenisProvider from "@/components/LenisProvider";
 import Navigation from "@/components/Navigation";
+
+export const metadata: Metadata = {
+  title: "Buildstack EDA Lab — Autonomous Semiconductor EDA",
+  description: "Buildstack EDA Lab builds agentic EDA tools for the semiconductor industry. Automate design intent into DRC-clean GDSII with AI.",
+};
 
 const jsonLd = [
   {
