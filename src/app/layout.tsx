@@ -122,6 +122,7 @@ export default function RootLayout({
                 "@type": "Organization",
                 name: "Buildstack EDA Lab",
                 url: "https://buildstack.live",
+                sameAs: ["https://github.com/Vickyrrrrrr/buildstack"],
               },
               featureList: [
                 "RTL writing, linting, and auto-repair (Verilog/SystemVerilog)",

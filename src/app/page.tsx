@@ -15,6 +15,7 @@ const jsonLd = [
     url: "https://buildstack.live",
     logo: "https://buildstack.live/logo.png",
     description: "Buildstack EDA Lab builds agentic EDA tools for the semiconductor industry.",
+    sameAs: ["https://github.com/Vickyrrrrrr/buildstack"],
   },
   {
     "@context": "https://schema.org",
