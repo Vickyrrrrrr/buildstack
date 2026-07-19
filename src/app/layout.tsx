@@ -59,7 +59,7 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
       images: [
         {
-          url: "/api/og",
+          url: "/og-image.png",
           width: 1200,
           height: 630,
           alt: "Buildstack EDA Lab — Semiconductor EDA Automation",
@@ -70,7 +70,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "Buildstack EDA Lab — Semiconductor EDA Automation",
       description: "Buildstack EDA Lab builds agentic EDA tools for the semiconductor industry. AgentIC converts design intent into DRC-clean GDSII with autonomous error repair.",
-      images: ["/api/og"],
+      images: ["/og-image.png"],
     },
     alternates: {
       canonical: "https://www.buildstack.live",
