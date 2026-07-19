@@ -6,8 +6,8 @@ const jsonLd = [
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Buildstack EDA Lab",
-    url: "https://www.buildstack.live",
-    logo: "https://www.buildstack.live/logo.png",
+    url: "https://buildstack.live",
+    logo: "https://buildstack.live/logo.png",
     description: "Buildstack EDA Lab builds agentic EDA tools for the semiconductor industry.",
   },
   {
@@ -15,7 +15,7 @@ const jsonLd = [
     "@type": "WebSite",
     name: "Buildstack EDA Lab",
     alternateName: ["Buildstack Lab", "Buildstack"],
-    url: "https://www.buildstack.live",
+    url: "https://buildstack.live",
   },
 ];
 

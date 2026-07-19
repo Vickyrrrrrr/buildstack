@@ -17,7 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    metadataBase: new URL("https://www.buildstack.live"),
+    metadataBase: new URL("https://buildstack.live"),
     verification: {
       google: "U_iMXuGTMqG085ffGj7yltV-naajy-P1M5vu86RyCvA",
     },
@@ -27,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description:
       "Buildstack EDA Lab builds agentic EDA tools for the semiconductor industry. AgentIC converts design intent into DRC-clean GDSII with autonomous error repair.",
-    authors: [{ name: "Buildstack EDA Lab", url: "https://www.buildstack.live" }],
+    authors: [{ name: "Buildstack EDA Lab", url: "https://buildstack.live" }],
     creator: "Buildstack EDA Lab",
     publisher: "Buildstack EDA Lab",
     category: "Technology",
@@ -53,13 +53,13 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: "Buildstack EDA Lab — Semiconductor EDA Automation",
       description: "Intent → Silicon. Autonomous error repair & DRC-clean GDSII generation.",
-      url: "https://www.buildstack.live",
+      url: "https://buildstack.live",
       siteName: "Buildstack EDA Lab",
       locale: "en_US",
       type: "website",
       images: [
         {
-          url: "/og-image.png",
+          url: "https://www.buildstack.live/og-image.png",
           width: 1200,
           height: 630,
           alt: "Buildstack EDA Lab — Semiconductor EDA Automation",
@@ -70,10 +70,10 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "Buildstack EDA Lab — Semiconductor EDA Automation",
       description: "Buildstack EDA Lab builds agentic EDA tools for the semiconductor industry. AgentIC converts design intent into DRC-clean GDSII with autonomous error repair.",
-      images: ["/og-image.png"],
+      images: ["https://www.buildstack.live/og-image.png"],
     },
     alternates: {
-      canonical: "https://www.buildstack.live",
+      canonical: "https://buildstack.live",
     },
     keywords: [
       "Buildstack",
@@ -116,12 +116,12 @@ export default function RootLayout({
               operatingSystem: "Windows, Linux, macOS",
               description:
                 "AgentIC is an AI-powered VLSI design agent that automates RTL-to-GDSII chip design flows using local EDA tools and PDKs. It bridges large language models with local Electronic Design Automation tools for autonomous silicon design.",
-              url: "https://www.buildstack.live/agentic",
-              downloadUrl: "https://www.buildstack.live/agentic/download",
+              url: "https://buildstack.live/agentic",
+              downloadUrl: "https://buildstack.live/agentic/download",
               publisher: {
                 "@type": "Organization",
                 name: "Buildstack EDA Lab",
-                url: "https://www.buildstack.live",
+                url: "https://buildstack.live",
               },
               featureList: [
                 "RTL writing, linting, and auto-repair (Verilog/SystemVerilog)",
@@ -140,13 +140,13 @@ export default function RootLayout({
                   "@type": "Offer",
                   name: "Starter",
                   priceCurrency: "USD",
-                  url: "https://www.buildstack.live/agentic/pricing",
+                  url: "https://buildstack.live/agentic/pricing",
                 },
                 {
                   "@type": "Offer",
                   name: "Pro",
                   priceCurrency: "USD",
-                  url: "https://www.buildstack.live/agentic/pricing",
+                  url: "https://buildstack.live/agentic/pricing",
                 },
               ],
               audience: {
