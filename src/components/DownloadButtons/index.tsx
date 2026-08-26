@@ -6,7 +6,6 @@ import {
   ChevronRight,
   Download,
   Github,
-  Monitor,
   Star,
   Terminal,
 } from "lucide-react";
@@ -40,10 +39,8 @@ function detectPlatform(): { platform: Platform; arch: Arch } {
   const platformHint = uaData?.platform?.toLowerCase() ?? "";
 
   if (platformHint.includes("mac")) return { platform: "macos", arch: "unknown" };
-  if (platformHint.includes("win")) return { platform: "windows", arch: "unknown" };
   if (platformHint.includes("linux")) return { platform: "linux", arch: "unknown" };
 
-  if (/Windows/i.test(ua)) return { platform: "windows", arch: "unknown" };
   if (/Mac OS X|macOS/i.test(ua)) return { platform: "macos", arch: "unknown" };
   if (/Linux/i.test(ua)) return { platform: "linux", arch: "unknown" };
 
@@ -51,13 +48,11 @@ function detectPlatform(): { platform: Platform; arch: Arch } {
 }
 
 function PlatformIcon({ platform }: { platform: PlatformKey }) {
-  if (platform === "windows") return <Monitor className="h-5 w-5 text-accent-primary" />;
   if (platform === "macos") return <Apple className="h-5 w-5 text-accent-primary" />;
   return <Terminal className="h-5 w-5 text-accent-primary" />;
 }
 
 function PrimaryIcon({ platform }: { platform: PlatformKey }) {
-  if (platform === "windows") return <Monitor className="h-4 w-4" />;
   if (platform === "macos") return <Apple className="h-4 w-4" />;
   return <Terminal className="h-4 w-4" />;
 }
@@ -99,8 +94,12 @@ export function DownloadButtons({ initialData }: { initialData?: ReleaseData }) 
     });
   }, []);
 
+  function isPlatformKey(platform: string): platform is PlatformKey {
+    return (AGENTIC_PLATFORMS as string[]).includes(platform);
+  }
+
   const primaryPlatform: PlatformKey | null =
-    detected.platform !== "unknown" ? detected.platform : null;
+    isPlatformKey(detected.platform) ? detected.platform : null;
   const primaryAsset = primaryPlatform ? pickPrimaryAsset(primaryPlatform, downloads) : null;
   const primaryPlatformName = primaryPlatform
     ? downloads[primaryPlatform].name
@@ -135,7 +134,7 @@ export function DownloadButtons({ initialData }: { initialData?: ReleaseData }) 
           <span className="eyebrow">Or pick your platform</span>
           <span className="h-px flex-1 bg-border" />
         </div>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2">
           {AGENTIC_PLATFORMS.map((platform) => {
             const data = downloads[platform];
             const isDetected = mounted && detected.platform === platform;

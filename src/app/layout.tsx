@@ -113,7 +113,7 @@ export default function RootLayout({
               "@type": "SoftwareApplication",
               name: "AgentIC",
               applicationCategory: "DeveloperApplication",
-              operatingSystem: "Windows, Linux, macOS",
+              operatingSystem: "macOS, Linux",
               description:
                 "AgentIC is an AI-powered VLSI design agent that automates RTL-to-GDSII chip design flows using local EDA tools and PDKs. It bridges large language models with local Electronic Design Automation tools for autonomous silicon design.",
               url: "https://buildstack.live/agentic",
@@ -139,14 +139,9 @@ export default function RootLayout({
               offers: [
                 {
                   "@type": "Offer",
-                  name: "Starter",
-                  priceCurrency: "USD",
-                  url: "https://buildstack.live/agentic/pricing",
-                },
-                {
-                  "@type": "Offer",
-                  name: "Pro",
-                  priceCurrency: "USD",
+                  name: "AgentIC Pro",
+                  price: "299",
+                  priceCurrency: "INR",
                   url: "https://buildstack.live/agentic/pricing",
                 },
               ],

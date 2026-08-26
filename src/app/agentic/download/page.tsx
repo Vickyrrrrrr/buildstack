@@ -4,7 +4,7 @@ import { ArrowRight, KeyRound, MonitorDown, RefreshCw } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Download AgentIC Desktop | Buildstack EDA Lab",
-  description: "Download the AgentIC Desktop app for Windows, macOS, or Linux. The local-first autonomous chip design agent.",
+  description: "Download the AgentIC Desktop app for macOS or Linux. The local-first autonomous chip design agent.",
 };
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -39,11 +39,11 @@ export default async function AgentICDownloadPage() {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "AgentIC Desktop",
-    "operatingSystem": "Windows, macOS, Linux",
+    "operatingSystem": "macOS, Linux",
     "applicationCategory": "DeveloperApplication",
     "softwareVersion": currentVersion,
     "downloadUrl": "https://buildstack.ai/agentic/download",
-    "description": "Download the AgentIC Desktop app for Windows, macOS, or Linux. The local-first autonomous chip design agent.",
+    "description": "Download the AgentIC Desktop app for macOS or Linux. The local-first autonomous chip design agent.",
     "offers": {
       "@type": "Offer",
       "price": "0",

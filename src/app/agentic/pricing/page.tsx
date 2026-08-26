@@ -20,35 +20,20 @@ const purchaseHref = (plan: "starter" | "pro") =>
 
 const plans = [
   {
-    name: "Builder",
-    plan: "starter",
-    price: "₹899",
-    cadence: "per month",
-    description: "For individual engineers exploring local autonomous RTL and verification workflows.",
-    cta: "Start Builder",
-    highlighted: false,
-    features: [
-      "AgentIC desktop app",
-      "BYOK model configuration",
-      "Local workspace execution",
-      "EDA tool discovery",
-      "Community support",
-    ],
-  },
-  {
-    name: "Studio",
+    name: "AgentIC Pro",
     plan: "pro",
-    price: "₹1899",
+    price: "₹299",
     cadence: "per month",
-    description: "For serious chip projects that need higher build limits and priority support.",
-    cta: "Start Studio",
+    description: "Full access to AgentIC Desktop workspace for Linux & macOS with local execution & BYOK models.",
+    cta: "Subscribe Now — ₹299/mo",
     highlighted: true,
     features: [
-      "Everything in Builder",
-      "Higher monthly build allowance",
-      "Priority troubleshooting",
-      "Proprietary EDA adapter guidance",
-      "Commercial project use",
+      "AgentIC desktop app (Linux & macOS)",
+      "BYOK model configuration (OpenAI, Anthropic, Gemini, Ollama)",
+      "Local-first workspace & execution environment",
+      "Full OSS & commercial EDA tool discovery",
+      "Durable state checkpoints & automated error repair",
+      "Priority support & updates",
     ],
   },
 ] as const;
@@ -73,8 +58,7 @@ export default function AgentICPricingPage() {
               </Badge>
               <h1 className="section-title">Buy the desktop agent. Keep the silicon local.</h1>
               <p className="body-copy text-lg">
-                Choose a plan, complete checkout through Lemon Squeezy, then sign in
-                to AgentIC Desktop with the same account to unlock the local agent.
+                Complete checkout, then sign in to AgentIC Desktop with the same account to unlock your local agent.
               </p>
               <div className="flex flex-col justify-center gap-3 pt-2 sm:flex-row">
                 <Button asChild variant="ghost" size="lg">
@@ -86,15 +70,11 @@ export default function AgentICPricingPage() {
               </div>
             </div>
 
-            <div className="mt-12 grid gap-6 lg:grid-cols-2">
+            <div className="mt-12 mx-auto max-w-xl">
               {plans.map((plan) => (
                 <article
                   key={plan.name}
-                  className={
-                    plan.highlighted
-                      ? "elevated-panel trace-outline p-6 md:p-8"
-                      : "surface-panel p-6 md:p-8"
-                  }
+                  className="elevated-panel trace-outline p-6 md:p-8"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-4">
                     <div>
@@ -106,10 +86,10 @@ export default function AgentICPricingPage() {
                         <span className="pb-2 text-sm text-text-muted">{plan.cadence}</span>
                       </div>
                     </div>
-                    {plan.highlighted ? <Badge variant="accent">Recommended</Badge> : null}
+                    <Badge variant="accent">All-Inclusive Plan</Badge>
                   </div>
 
-                  <p className="body-copy mt-5 min-h-[4.25rem]">{plan.description}</p>
+                  <p className="body-copy mt-5 min-h-[3rem]">{plan.description}</p>
 
                   <Button asChild size="lg" className="mt-7 w-full justify-between">
                     <a href={purchaseHref(plan.plan)}>

@@ -1,4 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "AgentIC FAQ — Frequently Asked Questions | Buildstack",
@@ -28,9 +33,9 @@ const faqs = [
       "AgentIC works with both open-source and proprietary EDA tools. Open-source: Yosys (synthesis), Verilator/iverilog (simulation), OpenROAD (physical design), OpenSTA (timing), Magic/KLayout/Netgen (DRC/LVS), ngspice (SPICE simulation). Proprietary: VCS, Xcelium, Questa (simulation), Design Compiler/Genus (synthesis), Innovus/ICC2 (PnR), PrimeTime/Tempus (STA), Calibre (DRC/LVS).",
   },
   {
-    question: "Does AgentIC run on Windows?",
+    question: "What operating systems does AgentIC support?",
     answer:
-      "Yes. AgentIC runs on Windows (via WSL for EDA tools), Linux, and macOS. The desktop app is Electron-based with a local Python backend. On Windows, EDA tools run inside WSL (Windows Subsystem for Linux) and the app connects to them over localhost.",
+      "AgentIC natively supports Linux and macOS (Apple Silicon & Intel). The desktop app is Electron-based with a local Python backend that interacts directly with your local EDA tools and PDKs.",
   },
   {
     question: "Is my chip design data sent to the cloud?",
@@ -60,12 +65,12 @@ const faqs = [
   {
     question: "How much does AgentIC cost?",
     answer:
-      "AgentIC offers Starter and Pro subscription plans. License verification uses signed entitlements (RSA public key cryptography). See the pricing page at https://buildstack.live/agentic/pricing for current rates.",
+      "AgentIC costs ₹299 per month for a complete Pro subscription. License verification uses signed entitlements (RSA public key cryptography). See the pricing page at https://buildstack.live/agentic/pricing for details.",
   },
   {
     question: "Where can I download AgentIC?",
     answer:
-      "AgentIC can be downloaded from https://buildstack.live/agentic/download. Builds are available for Windows (NSIS installer), Linux (AppImage, deb), and macOS (dmg).",
+      "AgentIC can be downloaded from https://buildstack.live/agentic/download. Builds are available for macOS (.dmg) and Linux (.AppImage, .deb).",
   },
 ];
 
@@ -84,43 +89,50 @@ export default function FAQPage() {
   };
 
   return (
-    <main className="min-h-screen bg-bg-base pt-24 pb-20">
+    <div className="page-shell">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <div className="mx-auto max-w-3xl px-6">
-        <h1 className="font-display text-4xl font-bold text-text-primary mb-4">
-          AgentIC FAQ
-        </h1>
-        <p className="text-text-secondary text-lg mb-12">
-          Frequently asked questions about AgentIC, the AI-powered VLSI design agent.
-        </p>
-        <div className="space-y-8">
-          {faqs.map((faq, index) => (
-            <div key={index} className="border-b border-border-base pb-6">
-              <h2 className="font-display text-xl font-semibold text-text-primary mb-3">
-                {faq.question}
-              </h2>
-              <p className="text-text-secondary leading-relaxed">{faq.answer}</p>
+      <Navigation />
+
+      <main className="pt-28 pb-20">
+        <section className="section-shell">
+          <div className="container max-w-4xl space-y-10">
+            <div className="space-y-4">
+              <Badge variant="accent" className="w-fit">
+                AgentIC FAQ
+              </Badge>
+              <h1 className="section-title">Frequently Asked Questions</h1>
+              <p className="body-copy text-lg">
+                Everything you need to know about AgentIC, local EDA automation, supported PDKs, and pricing.
+              </p>
             </div>
-          ))}
-        </div>
-        <div className="mt-12 flex flex-col sm:flex-row gap-4">
-          <a
-            href="/agentic/download"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-accent text-white font-semibold hover:opacity-90 transition-opacity"
-          >
-            Download AgentIC
-          </a>
-          <a
-            href="/agentic/pricing"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-border-base text-text-primary font-semibold hover:bg-surface-hover transition-colors"
-          >
-            View Pricing
-          </a>
-        </div>
-      </div>
-    </main>
+
+            <div className="space-y-4">
+              {faqs.map((faq, index) => (
+                <div key={index} className="surface-panel p-6 md:p-8 space-y-3">
+                  <h2 className="text-xl font-semibold tracking-[-0.01em] text-text-primary">
+                    {faq.question}
+                  </h2>
+                  <p className="body-copy text-sm leading-relaxed">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <Button asChild size="lg">
+                <Link href="/agentic/download">Download AgentIC</Link>
+              </Button>
+              <Button asChild variant="ghost" size="lg">
+                <Link href="/agentic/pricing">View Pricing</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
   );
 }

@@ -5,7 +5,7 @@ export const AGENTIC_RELEASE_NOTES_URL = `https://github.com/Vickyrrrrrr/buildst
 export const AGENTIC_ALL_DOWNLOADS_URL = `https://github.com/Vickyrrrrrr/buildstack/releases/expanded_assets/${AGENTIC_VERSION}`;
 export const AGENTIC_REPO_URL = "https://github.com/Vickyrrrrrr/buildstack";
 
-export type PlatformKey = "windows" | "macos" | "linux";
+export type PlatformKey = "macos" | "linux";
 
 export type DownloadAsset = {
   label: string;
@@ -41,18 +41,6 @@ export type ReleaseData = {
 };
 
 export const AGENTIC_DOWNLOADS: Record<PlatformKey, PlatformDownloads> = {
-  windows: {
-    name: "Windows",
-    assets: [
-      {
-        label: "Installer (x64)",
-        file: "agentic-desktop-win-x64.exe",
-        size: "155 MB",
-        arch: "x64",
-        primary: true,
-      },
-    ],
-  },
   macos: {
     name: "macOS",
     assets: [
@@ -97,7 +85,7 @@ export const AGENTIC_DOWNLOADS: Record<PlatformKey, PlatformDownloads> = {
   },
 };
 
-export const AGENTIC_PLATFORMS: PlatformKey[] = ["windows", "macos", "linux"];
+export const AGENTIC_PLATFORMS: PlatformKey[] = ["macos", "linux"];
 
 export function downloadUrl(file: string): string {
   return `${AGENTIC_RELEASE_BASE}/${file}`;
@@ -124,7 +112,6 @@ export async function fetchLatestRelease(): Promise<ReleaseData | null> {
     
     const formatSize = (bytes: number) => `${Math.round(bytes / (1024 * 1024))} MB`;
     
-    const windowsAssets: DownloadAsset[] = [];
     const macosAssets: DownloadAsset[] = [];
     const linuxAssets: DownloadAsset[] = [];
     
@@ -133,16 +120,7 @@ export async function fetchLatestRelease(): Promise<ReleaseData | null> {
       const size = formatSize(asset.size);
       const url = asset.browser_download_url;
       
-      if (name.endsWith(".exe")) {
-        windowsAssets.push({
-          label: "Installer (x64)",
-          file: name,
-          size,
-          arch: "x64",
-          primary: true,
-          url,
-        });
-      } else if (name.endsWith(".dmg")) {
+      if (name.endsWith(".dmg")) {
         const isArm = name.includes("arm64");
         macosAssets.push({
           label: isArm ? "Apple Silicon" : "Intel",
@@ -186,7 +164,6 @@ export async function fetchLatestRelease(): Promise<ReleaseData | null> {
       releaseNotesUrl,
       allDownloadsUrl,
       downloads: {
-        windows: { name: "Windows", assets: windowsAssets.length ? windowsAssets : AGENTIC_DOWNLOADS.windows.assets },
         macos: { name: "macOS", assets: macosAssets.length ? macosAssets : AGENTIC_DOWNLOADS.macos.assets },
         linux: { name: "Linux", assets: linuxAssets.length ? linuxAssets : AGENTIC_DOWNLOADS.linux.assets },
       },

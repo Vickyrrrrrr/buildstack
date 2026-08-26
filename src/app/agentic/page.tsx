@@ -4,7 +4,7 @@ import AgentICClientPage from "./client";
 export const metadata: Metadata = {
   title: "AgentIC — Autonomous VLSI Design Agent | Buildstack EDA Lab",
   description:
-    "AgentIC is an AI-powered VLSI design agent that automates RTL-to-GDSII chip design. It writes Verilog, runs synthesis (Yosys), simulation (Verilator), STA (OpenSTA), physical design (OpenROAD), and DRC/LVS (Magic/KLayout). Supports Sky130, ASAP7, gf180mcu PDKs and analog SPICE flow. Local-first desktop app for Windows, Linux, macOS.",
+    "AgentIC is an AI-powered VLSI design agent that automates RTL-to-GDSII chip design. It writes Verilog, runs synthesis (Yosys), simulation (Verilator), STA (OpenSTA), physical design (OpenROAD), and DRC/LVS (Magic/KLayout). Supports Sky130, ASAP7, gf180mcu PDKs and analog SPICE flow. Local-first desktop app for macOS and Linux.",
   keywords: [
     "AgentIC",
     "AI VLSI design",
