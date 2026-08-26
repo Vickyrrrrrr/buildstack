@@ -38,7 +38,7 @@ export function OpenDesktopButton() {
       {attempted && (
         <p className="mx-auto max-w-md text-center text-sm text-text-muted">
           If your browser asks for permission, choose Open AgentIC. If nothing opens,
-          start the desktop app manually and click Recheck License.
+          start the desktop app manually from the download page.
         </p>
       )}
     </div>

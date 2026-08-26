@@ -21,13 +21,13 @@ const steps = [
   },
   {
     icon: KeyRound,
-    title: "Sign in and configure BYOK",
-    copy: "Use the same account you purchased with, then add your OpenAI-compatible model provider key.",
+    title: "Configure your model",
+    copy: "Add your OpenAI-compatible model provider key. Your designs stay on your machine.",
   },
   {
     icon: RefreshCw,
-    title: "Recheck license",
-    copy: "AgentIC verifies the signed entitlement, discovers local tools, and unlocks workspace execution.",
+    title: "Start building",
+    copy: "AgentIC discovers local tools and PDKs and unlocks workspace execution.",
   },
 ] as const;
 
@@ -70,8 +70,8 @@ export default async function AgentICDownloadPage() {
                 <h1 className="section-title">Download AgentIC Desktop for local-first EDA automation.</h1>
                 <p className="body-copy text-lg">
                   The desktop app runs the agent loop, file operations, and EDA commands
-                  locally. After installation, sign in, configure your model provider,
-                  and let AgentIC discover your native, Docker, WSL, or proprietary flows.
+                  locally. Configure your model provider and let AgentIC discover your
+                  native, Docker, WSL, or proprietary flows.
                 </p>
               </div>
               <div className="flex flex-col gap-4 sm:flex-row">

@@ -65,7 +65,7 @@ const faqs = [
   {
     question: "How much does AgentIC cost?",
     answer:
-      "AgentIC costs ₹299 per month for a complete Pro subscription. License verification uses signed entitlements (RSA public key cryptography). See the pricing page at https://buildstack.live/agentic/pricing for details.",
+      "AgentIC can be downloaded and used without a license key or account. If AgentIC ever introduces paid plans in the future, the pricing page will be updated accordingly.",
   },
   {
     question: "Where can I download AgentIC?",

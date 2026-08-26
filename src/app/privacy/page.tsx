@@ -96,11 +96,6 @@ export default function PrivacyPage() {
                         </thead>
                         <tbody className="text-text-muted">
                           <tr className="border-b border-border/50">
-                            <td className="py-2 pr-4">License validation</td>
-                            <td className="py-2 pr-4">License key only</td>
-                            <td className="py-2">api.lemonsqueezy.com</td>
-                          </tr>
-                          <tr className="border-b border-border/50">
                             <td className="py-2 pr-4">LLM API calls</td>
                             <td className="py-2 pr-4">Your design prompts (using your own API key)</td>
                             <td className="py-2">Your chosen LLM provider</td>
@@ -132,9 +127,10 @@ export default function PrivacyPage() {
                         build history and enable the Human-in-the-Loop pipeline.
                       </li>
                       <li>
-                        <strong>Payment information</strong> — processed entirely by
-                        Razorpay and Lemon Squeezy. We never receive, store, or have
-                        access to your credit card details.
+                        <strong>Payment information</strong> — currently not collected. If paid
+                        plans are introduced in the future, payment would be processed entirely
+                        by Lemon Squeezy. We would never receive, store, or have access to your
+                        credit card details.
                       </li>
                     </ul>
                     <p>
@@ -176,23 +172,16 @@ export default function PrivacyPage() {
                         <tbody className="text-text-muted">
                           <tr className="border-b border-border/50">
                             <td className="py-2 pr-4">Lemon Squeezy</td>
-                            <td className="py-2 pr-4">License issuance &amp; validation</td>
+                            <td className="py-2 pr-4">Future license issuance &amp; payment (if paid plans launch)</td>
                             <td className="py-2">
                               <a href="https://www.lemonsqueezy.com/privacy" target="_blank" rel="noreferrer" className="text-accent-primary hover:underline">Privacy Policy</a>
                             </td>
                           </tr>
                           <tr className="border-b border-border/50">
                             <td className="py-2 pr-4">Supabase</td>
-                            <td className="py-2 pr-4">Authentication &amp; database</td>
+                            <td className="py-2 pr-4">Authentication &amp; database (if account sign-in is introduced)</td>
                             <td className="py-2">
                               <a href="https://supabase.com/privacy" target="_blank" rel="noreferrer" className="text-accent-primary hover:underline">Privacy Policy</a>
-                            </td>
-                          </tr>
-                          <tr className="border-b border-border/50">
-                            <td className="py-2 pr-4">Razorpay</td>
-                            <td className="py-2 pr-4">Payment processing (web only)</td>
-                            <td className="py-2">
-                              <a href="https://razorpay.com/privacy" target="_blank" rel="noreferrer" className="text-accent-primary hover:underline">Privacy Policy</a>
                             </td>
                           </tr>
                           <tr>

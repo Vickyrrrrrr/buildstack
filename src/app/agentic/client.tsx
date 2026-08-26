@@ -68,13 +68,13 @@ export default function AgentICClientPage() {
                 </div>
                 <div className="flex flex-col gap-4 sm:flex-row">
                   <Button asChild size="lg">
-                    <Link href="/agentic/pricing">
-                      Buy AgentIC
+                    <Link href="/agentic/download">
+                      Download AgentIC
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                   </Button>
                   <Button asChild variant="ghost" size="lg">
-                    <Link href="/agentic/download">Download Desktop</Link>
+                    <Link href="/agentic/download">Download Now</Link>
                   </Button>
                 </div>
               </div>
@@ -149,12 +149,12 @@ export default function AgentICClientPage() {
                   </h2>
                   <p className="body-copy text-lg">
                     Buildstack does not need your Verilog, TCL, PDK files, logs, or
-                    generated artifacts to sell AgentIC. The cloud entitlement server
-                    verifies purchases; the desktop app does the engineering work locally.
+                    generated artifacts to provide AgentIC. The app is currently free,
+                    and all the engineering work happens locally on your machine.
                   </p>
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2 lg:w-[25rem] lg:grid-cols-1">
-                  {["License check", "Model configured", "Local tools detected"].map((label) => (
+                  {["Local-first workspace", "Model configured", "Local tools detected"].map((label) => (
                     <div key={label} className="flex items-center gap-3 rounded-full border border-border bg-bg-surface/70 px-4 py-3">
                       <CheckCircle2 className="h-5 w-5 text-accent-primary" />
                       <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-text-primary">

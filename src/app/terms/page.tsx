@@ -59,7 +59,7 @@ export default function TermsPage() {
                   <section id="acceptance" className="space-y-4">
                     <h2 className="text-2xl font-semibold text-text-primary">1. Acceptance of Terms</h2>
                     <p>
-                      By purchasing, downloading, installing, or using AgentIC (&ldquo;the Software&rdquo;),
+                      By downloading, installing, or using AgentIC (&ldquo;the Software&rdquo;),
                       you enter into a binding agreement with Buildstack Lab (&ldquo;Buildstack,&rdquo;
                       &ldquo;we,&rdquo; &ldquo;us&rdquo;). If you do not agree to these Terms of Service
                       (&ldquo;Terms&rdquo;), you may not access or use the Software.
@@ -74,21 +74,20 @@ export default function TermsPage() {
                   <section id="license" className="space-y-4">
                     <h2 className="text-2xl font-semibold text-text-primary">2. License Grant</h2>
                     <p>
-                      Subject to your payment of applicable fees and compliance with these Terms,
                       Buildstack grants you a limited, non-exclusive, non-transferable, revocable
                       license to install and execute the Software on machines you own or control,
-                      solely for your internal business or personal use.
+                      solely for your internal business or personal use. No license key or
+                      payment is required to use the Software.
                     </p>
                     <p>
-                      Each license key is associated with a specific number of machine activations
-                      as defined in your purchase plan. You may not exceed this limit. License keys
-                      are issued and managed through Lemon Squeezy, our authorized reseller and
-                      merchant of record.
+                      If paid plans are introduced in the future, each license may be associated
+                      with a specific number of machine activations as defined by your plan, and
+                      licenses would be issued and managed through our authorized reseller,
+                      Lemon Squeezy.
                     </p>
                     <p>
                       The community edition of AgentIC, available via public source repositories,
-                      is provided separately under its own terms and is not subject to the
-                      fee requirements of this commercial license.
+                      is provided separately under its own terms.
                     </p>
                   </section>
 
@@ -115,7 +114,7 @@ export default function TermsPage() {
                     <h2 className="text-2xl font-semibold text-text-primary">4. Restrictions</h2>
                     <p>You agree not to, and shall not permit any third party to:</p>
                     <ul className="list-disc pl-6 space-y-2">
-                      <li>Redistribute, resell, sublicense, or lease the Software or your license key to any third party.</li>
+                      <li>Redistribute, resell, sublicense, or lease the Software to any third party.</li>
                       <li>Reverse engineer, decompile, disassemble, or otherwise attempt to derive the source code of the Software, except to the extent such restriction is prohibited by applicable law.</li>
                       <li>Modify, adapt, or create derivative works of the Software without prior written authorization.</li>
                       <li>Remove, obscure, or alter any proprietary notices or labels on the Software.</li>
@@ -127,42 +126,26 @@ export default function TermsPage() {
                   <section id="fees" className="space-y-4">
                     <h2 className="text-2xl font-semibold text-text-primary">5. Fees &amp; Payment</h2>
                     <p>
-                      Fees for the Software are set forth on the purchase page at buildstack.live
-                      and are processed through Lemon Squeezy. All fees are quoted in US Dollars
-                      and are non-refundable except as provided in our Refund Policy.
+                      No payment is required to download, install, or use the Software.
                     </p>
                     <p>
-                      <strong>Subscription &amp; Cancellation:</strong> If you purchase a subscription plan,
-                      you will be billed automatically in advance on a recurring cycle (monthly or annually)
-                      corresponding to your plan. You may cancel your subscription at any time through the
-                      Lemon Squeezy customer portal (linked in your receipt email) or by contacting us at{" "}
-                      <a href="mailto:contactme@buildstack.live" className="text-accent-primary hover:underline">
-                        contactme@buildstack.live
-                      </a>.
-                      Upon cancellation, your subscription will remain active until the end of your current
-                      paid billing period, at which point it will expire and your license key will be deactivated.
-                    </p>
-                    <p>
-                      Lemon Squeezy is the merchant of record for all transactions. Your payment
-                      relationship, including chargebacks and disputes, is governed by
-                      Lemon Squeezy&apos;s terms and the policies of your payment method.
+                      Should Buildstack introduce paid plans in the future, any applicable fees
+                      will be set forth on the website and processed through our authorized
+                      reseller, Lemon Squeezy. If and when paid plans are introduced, we will
+                      update these Terms and notify users before any charges apply.
                     </p>
                   </section>
 
                   <section id="validation" className="space-y-4">
                     <h2 className="text-2xl font-semibold text-text-primary">6. License Validation</h2>
                     <p>
-                      The Software periodically validates your license key against Lemon Squeezy&apos;s
-                      servers. An active internet connection is required for initial activation and
-                      periodic re-validation. A grace period of 24 hours is provided for temporary
-                      connectivity interruptions. Failure to validate within the grace period will
-                      result in suspension of Software functionality until a valid connection is
-                      re-established.
+                      No license activation or validation is required to use the Software —
+                      you can install and run it without an account or license key.
                     </p>
                     <p>
-                      You may not circumvent, disable, or otherwise interfere with the license
-                      validation mechanism. Attempts to do so constitute a material breach of
-                      these Terms.
+                      If paid plans are introduced in the future, the Software may validate your
+                      license. Any such validation requirements and connectivity expectations
+                      will be documented at that time before becoming effective.
                     </p>
                   </section>
 
@@ -200,8 +183,10 @@ export default function TermsPage() {
                     <p>
                       Buildstack&apos;s total aggregate liability for any claims arising out of or
                       relating to these Terms or the Software shall not exceed the amount you paid
-                      for the Software in the twelve (12) months preceding the claim. The foregoing
-                      limitations shall apply even if the remedy fails of its essential purpose.
+                      for the Software in the twelve (12) months preceding the claim, or, where the
+                      Software is provided free of charge, a nominal amount of one hundred US
+                      dollars ($100). The foregoing limitations shall apply even if the remedy
+                      fails of its essential purpose.
                     </p>
                   </section>
 

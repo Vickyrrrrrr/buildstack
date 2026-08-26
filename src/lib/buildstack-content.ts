@@ -20,9 +20,9 @@ export const heroTickerItems = [
 ] as const;
 
 export const agenticTerminalLines: TerminalLine[] = [
-  { text: '$ agentic desktop', type: "output", delay: 200 },
+  { text: "$ agentic desktop", type: "output", delay: 200 },
   { text: "", type: "info", delay: 80 },
-  { text: "[OK] License verified", type: "success" },
+  { text: "[OK] AgentIC ready", type: "success" },
   { text: "[OK] Model key configured locally", type: "success" },
   { text: "[OK] Discovering EDA tools and PDKs", type: "success" },
   { text: "[OK] Creating RTL and testbench files", type: "success" },
@@ -36,7 +36,7 @@ export const agenticTerminalLines: TerminalLine[] = [
   { text: "", type: "info", delay: 80 },
   { text: "[OK] Build artifacts refreshed", type: "success" },
   { text: "-> Files stay under AgentIC-workspace", type: "output" },
-  { text: "-> Cloud sees license + usage counts only", type: "output" },
+  { text: "-> Designs stay on your machine", type: "output" },
 ];
 
 export const technologyTerminalLines: TerminalLine[] = [
@@ -60,7 +60,7 @@ export const technologyStack = [
   "OpenAI-compatible BYOK model providers",
   "Native, Docker, WSL, and proprietary EDA flows",
   "Workspace-scoped file and command tools",
-  "Signed cloud entitlement verification",
+  "No license or payment required",
 ] as const;
 
 export const openLaneConfig = `{

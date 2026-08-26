@@ -139,10 +139,10 @@ export default function RootLayout({
               offers: [
                 {
                   "@type": "Offer",
-                  name: "AgentIC Pro",
-                  price: "299",
-                  priceCurrency: "INR",
-                  url: "https://buildstack.live/agentic/pricing",
+                  name: "AgentIC",
+                  price: "0",
+                  priceCurrency: "USD",
+                  url: "https://buildstack.live/agentic/download",
                 },
               ],
               audience: {
